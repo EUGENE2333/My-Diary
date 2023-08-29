@@ -35,7 +35,7 @@ fun About(
     val enabled = viewModel.enabledFlow.collectAsState(initial = false).value
     val head = "Unveiling the Enchanted Chronicles of this Ethereal Diary Realm!"
 
-    val about = "\"Brace yourselves, fellow voyagers, for I am on the cusp of unraveling" +
+    val about = "Brace yourselves, fellow voyagers, for I am on the cusp of unraveling" +
             " the mystique that shrouds the essence of the MyDiary application! Firstly, " +
             "let us extend a triumphant felicitation unto you for gracing this realm." +
             " Your presence here, my dear luminary, is akin to stumbling upon an elusive " +
