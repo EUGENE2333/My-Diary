@@ -2,6 +2,7 @@ package com.example.mydiary.presentation.compose.mainComposables2.home
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -15,11 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.example.mydiary.R
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.data.utils.Utils
@@ -117,7 +120,9 @@ fun Home(
 
         content = { padding ->
             Column(modifier = Modifier.padding(padding)) {
+
                 when (homeUiState.notesList) {
+
                     is Resources.Loading -> {
                         CircularProgressIndicator(
                             modifier = Modifier
@@ -126,6 +131,15 @@ fun Home(
                         )
                     }
                     is Resources.Success -> {
+
+                        if(homeUiState.notesList.data!!.isEmpty()){
+                            Image(
+                                painter = painterResource(id = R.drawable.brown_vintage_journal_notebook),
+                                contentDescription = "journal image",
+                                modifier = Modifier
+                                    .fillMaxSize()
+                            )
+                        }
 
                         LazyVerticalStaggeredGrid(
                             columns = StaggeredGridCells.Adaptive(150.dp),

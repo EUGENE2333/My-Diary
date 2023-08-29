@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import androidx.activity.compose.BackHandler
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -43,8 +45,7 @@ fun DiaryListScreen(
     onNoteClick:(String)-> Unit,
     navToLoginPage:() -> Unit,
     onNavigateToNewDiaryEntryScreen: () -> Unit
-
-    ) {
+  ) {
 
 
     // Get a ScaffoldState object to control the drawer
@@ -110,9 +111,14 @@ fun DiaryListScreen(
             }
         },
         backgroundColor = selectedColorTheme,
+
         content = {
 
-            Box(  modifier = Modifier.fillMaxSize()) {
+            Box(  modifier = Modifier
+                .fillMaxSize(),
+                
+               
+            ) {
 
                 when(homeUiState.notesList){
                     is Resources.Loading -> {
@@ -123,8 +129,18 @@ fun DiaryListScreen(
                         )
                     }
                     is Resources.Success -> {
+
+                        if(homeUiState.notesList.data!!.isEmpty()){
+                            Image(
+                                painter = painterResource(id = R.drawable.brown_vintage_journal_notebook),
+                                contentDescription = "journal image",
+                                modifier = Modifier
+                                    .fillMaxSize()
+                            )
+                        }
                         LazyColumn(
-                            contentPadding = PaddingValues(3.dp)
+                            contentPadding = PaddingValues(3.dp),
+                        
                         ){
 
                             items(homeUiState.notesList.data ?: emptyList()){note ->
@@ -196,6 +212,7 @@ fun DiaryListScreen(
                         }
                     )
                 }
+
             }
 
             LaunchedEffect(key1 = homeViewModel?.hasUser){
