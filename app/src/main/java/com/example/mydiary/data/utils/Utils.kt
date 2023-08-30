@@ -50,7 +50,6 @@ object Utils {
     val fonts = listOf(
         FontFamily.Default,
         FontFamily.Serif,
-        FontFamily.SansSerif,
         FontFamily.Cursive,
         FontFamily.Monospace,
         FontFamily(Font(R.font.caveat)),
@@ -77,7 +76,7 @@ object Utils {
         FontFamily(Font(R.font.lifesavers_regular)),
         FontFamily(Font(R.font.pizzat)),
         FontFamily(Font(R.font.slimshoot)),
-        FontFamily(Font(R.font.gnyrwn977)),
+        FontFamily(Font(resId =R.font.gnyrwn977)),
         )
 
 }

@@ -117,7 +117,6 @@ class PasswordManager(private val context: Context) {
         return when (font) {
             FontFamily.Default -> "default"
             FontFamily.Serif -> "serif"
-            FontFamily.SansSerif -> "SansSerif"
             FontFamily.Cursive -> "Cursive"
             FontFamily.Monospace -> "Monospace"
             FontFamily(Font(R.font.caveat)) -> "caveat"
@@ -153,7 +152,6 @@ class PasswordManager(private val context: Context) {
         return when (fontName) {
             "default" -> FontFamily.Default
             "serif" -> FontFamily.Serif
-            "SansSerif" -> FontFamily.SansSerif
             "Cursive" -> FontFamily.Cursive
             "Monospace" -> FontFamily.Monospace
             "caveat" -> FontFamily(Font(R.font.caveat))
