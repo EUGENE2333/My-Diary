@@ -139,6 +139,7 @@ class PasswordManager(private val context: Context) {
             FontFamily(Font(R.font.dings)) -> "dings"
             FontFamily(Font(R.font.famousfaces)) -> "famousfaces"
             FontFamily(Font(R.font.first_writing)) -> "firstWriting"
+            FontFamily(Font(R.font.summer_belynda)) -> "summerbelynda"
             else  ->  "default"
         }
     }
@@ -169,6 +170,7 @@ class PasswordManager(private val context: Context) {
             "dings" -> FontFamily(Font(R.font.dings))
             "famousfaces" -> FontFamily(Font(R.font.famousfaces))
             "firstWriting" ->  FontFamily(Font(R.font.first_writing))
+            "summerbelynda" ->   FontFamily(Font(R.font.summer_belynda))
             else -> FontFamily.Default
         }
     }

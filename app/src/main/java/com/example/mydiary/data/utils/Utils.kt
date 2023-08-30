@@ -72,6 +72,8 @@ object Utils {
         FontFamily(Font(R.font.dings)),
         FontFamily(Font(R.font.famousfaces)),
         FontFamily(Font(R.font.first_writing)),
+        FontFamily(Font(R.font.summer_belynda)),
+
 
 
 
