@@ -76,6 +76,8 @@ object Utils {
         FontFamily(Font(R.font.wortl_r)),
         FontFamily(Font(R.font.lifesavers_regular)),
         FontFamily(Font(R.font.pizzat)),
+        FontFamily(Font(R.font.slimshoot)),
+
 
 
 

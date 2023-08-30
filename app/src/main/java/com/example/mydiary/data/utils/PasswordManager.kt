@@ -143,6 +143,7 @@ class PasswordManager(private val context: Context) {
             FontFamily(Font(R.font.wortl_r)) -> "wortlr"
             FontFamily(Font(R.font.lifesavers_regular)) -> "lifesavers_regular"
             FontFamily(Font(R.font.pizzat)) -> "pizzat"
+            FontFamily(Font(R.font.slimshoot)) -> "slimshoot"
             else  ->  "default"
         }
     }
@@ -177,6 +178,7 @@ class PasswordManager(private val context: Context) {
             "wortlr" -> FontFamily(Font(R.font.wortl_r))
             "lifesavers_regular" ->  FontFamily(Font(R.font.lifesavers_regular))
             "pizzat" ->  FontFamily(Font(R.font.pizzat))
+            "slimshoot" -> FontFamily(Font(R.font.slimshoot))
             else -> FontFamily.Default
         }
     }
