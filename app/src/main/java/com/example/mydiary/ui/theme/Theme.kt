@@ -14,9 +14,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 
 
@@ -30,23 +27,7 @@ fun MyDiaryTheme(
 
     val selectedFontTheme by rememberUpdatedState(viewModel.passwordManager.getFontTheme())
 
-    val Typography = Typography(
-    when (selectedFontTheme) {
-        FontFamily.Default ->  FontFamily.Default
-        FontFamily.Serif ->  FontFamily.Serif
-        FontFamily.SansSerif->  FontFamily.SansSerif
-        FontFamily.Cursive ->  FontFamily.Cursive
-        FontFamily.Monospace ->  FontFamily.Monospace
-        FontFamily(Font(R.font.caveat)) -> FontFamily(Font(R.font.caveat))
-        FontFamily(Font(R.font.conquest))->  FontFamily(Font(R.font.conquest))
-        FontFamily(Font(R.font.kaushan)) -> FontFamily(Font(R.font.kaushan))
-        FontFamily(Font(R.font.lobster)) -> FontFamily(Font(R.font.lobster))
-        FontFamily(Font(R.font.shadowsintolight)) -> FontFamily(Font(R.font.shadowsintolight))
-
-        else -> FontFamily.Default
-
-    }
-    )
+    val Typography = Typography(selectedFontTheme)
 
 
 

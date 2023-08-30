@@ -119,23 +119,17 @@ class PasswordManager(private val context: Context) {
             FontFamily.Serif -> "serif"
             FontFamily.Cursive -> "Cursive"
             FontFamily.Monospace -> "Monospace"
-            FontFamily(Font(R.font.conquest)) -> "conquest"
             FontFamily(Font(R.font.kaushan)) -> "kaushan"
             FontFamily(Font(R.font.lobster)) -> "lobster"
             FontFamily(Font(R.font.shadowsintolight)) -> "shadowsintolight"
-            FontFamily(Font(R.font.newhearddecorative)) -> "newhearddecorative"
             FontFamily(Font(R.font.quietmeows)) -> "quietmeows"
             FontFamily(Font(R.font.arabia)) -> "arabia"
             FontFamily(Font(R.font.chasinghearts)) -> "chasinghearts"
             FontFamily(Font(R.font.royal)) -> "royal"
-            FontFamily(Font(R.font.lovevale)) -> "lovevale"
             FontFamily(Font(R.font.santa)) -> "santa"
             FontFamily(Font(R.font.twirly)) -> "twirly"
-            FontFamily(Font(R.font.helloween)) -> "helloween"
             FontFamily(Font(R.font.dj5)) -> "dj5"
             FontFamily(Font(R.font.condensedoblique)) ->  "condensedoblique"
-            FontFamily(Font(R.font.dings)) -> "dings"
-            FontFamily(Font(R.font.famousfaces)) -> "famousfaces"
             FontFamily(Font(R.font.first_writing)) -> "firstWriting"
             FontFamily(Font(R.font.summer_belynda)) -> "summerbelynda"
             FontFamily(Font(R.font.wortl_r)) -> "wortlr"
@@ -153,23 +147,17 @@ class PasswordManager(private val context: Context) {
             "serif" -> FontFamily.Serif
             "Cursive" -> FontFamily.Cursive
             "Monospace" -> FontFamily.Monospace
-            "conquest" ->  FontFamily(Font(R.font.conquest))
             "kaushan" ->  FontFamily(Font(R.font.kaushan))
             "lobster" ->  FontFamily(Font(R.font.lobster))
             "shadowsintolight" ->   FontFamily(Font(R.font.shadowsintolight))
-            "newhearddecorative" -> FontFamily(Font(R.font.newhearddecorative))
             "quietmeows" -> FontFamily(Font(R.font.quietmeows))
             "arabia" -> FontFamily(Font(R.font.arabia))
             "chasinghearts" -> FontFamily(Font(R.font.chasinghearts))
             "royal" ->  FontFamily(Font(R.font.royal))
-            "lovevale" ->  FontFamily(Font(R.font.lovevale))
             "santa" -> FontFamily(Font(R.font.santa))
             "twirly" -> FontFamily(Font(R.font.twirly))
-            "helloween" -> FontFamily(Font(R.font.helloween))
             "dj5"->  FontFamily(Font(R.font.dj5))
             "condensedoblique" ->  FontFamily(Font(R.font.condensedoblique))
-            "dings" -> FontFamily(Font(R.font.dings))
-            "famousfaces" -> FontFamily(Font(R.font.famousfaces))
             "firstWriting" ->  FontFamily(Font(R.font.first_writing))
             "summerbelynda" ->   FontFamily(Font(R.font.summer_belynda))
             "wortlr" -> FontFamily(Font(R.font.wortl_r))
