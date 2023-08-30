@@ -77,12 +77,7 @@ object Utils {
         FontFamily(Font(R.font.lifesavers_regular)),
         FontFamily(Font(R.font.pizzat)),
         FontFamily(Font(R.font.slimshoot)),
-
-
-
-
-
-
+        FontFamily(Font(R.font.gnyrwn977)),
         )
 
 }
