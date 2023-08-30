@@ -119,7 +119,6 @@ class PasswordManager(private val context: Context) {
             FontFamily.Serif -> "serif"
             FontFamily.Cursive -> "Cursive"
             FontFamily.Monospace -> "Monospace"
-            FontFamily(Font(R.font.caveat)) -> "caveat"
             FontFamily(Font(R.font.conquest)) -> "conquest"
             FontFamily(Font(R.font.kaushan)) -> "kaushan"
             FontFamily(Font(R.font.lobster)) -> "lobster"
@@ -154,7 +153,6 @@ class PasswordManager(private val context: Context) {
             "serif" -> FontFamily.Serif
             "Cursive" -> FontFamily.Cursive
             "Monospace" -> FontFamily.Monospace
-            "caveat" -> FontFamily(Font(R.font.caveat))
             "conquest" ->  FontFamily(Font(R.font.conquest))
             "kaushan" ->  FontFamily(Font(R.font.kaushan))
             "lobster" ->  FontFamily(Font(R.font.lobster))

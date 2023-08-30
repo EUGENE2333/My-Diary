@@ -52,7 +52,6 @@ object Utils {
         FontFamily.Serif,
         FontFamily.Cursive,
         FontFamily.Monospace,
-        FontFamily(Font(R.font.caveat)),
         FontFamily(Font(R.font.conquest)),
         FontFamily(Font(R.font.kaushan)),
         FontFamily(Font(R.font.lobster)),
