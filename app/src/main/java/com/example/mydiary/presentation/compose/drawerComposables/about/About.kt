@@ -14,14 +14,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
-import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -77,13 +75,7 @@ fun About(
                     Text(
                         text = "About",
                         color = Color.White,
-                        fontSize = if(
-                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFont == FontFamily(Font(R.font.twirly)) ||
-                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                        ) 37.sp else  19.sp,
+                        fontSize = headerFontSizeBasedOnFontTheme(selectedFont),
                         fontFamily = selectedFont
                     )
                 },
@@ -128,13 +120,7 @@ fun About(
                     Text(
                         text = about,
                         style = MaterialTheme.typography.body1,
-                        fontSize = if(
-                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFont == FontFamily(Font(R.font.twirly)) ||
-                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                        ) 37.sp else  17.sp,
+                        fontSize = fontSizeBasedOnFontTheme(selectedFont),
                         fontFamily = selectedFont
                     )
                 }

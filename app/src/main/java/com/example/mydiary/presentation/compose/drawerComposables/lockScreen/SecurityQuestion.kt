@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,7 +41,12 @@ fun SecurityQuestions(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
-                title = { Text(text = "Security Questions",color = Color.White, fontFamily = selectedFont) },
+                title = {
+                    Text(text = "Security Questions",
+                        color = Color.White,
+                        fontFamily = selectedFont,
+                        fontSize =  headerFontSizeBasedOnFontTheme(selectedFont)
+                    )},
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {
                     IconButton(onClick = { navController.navigate(Screen.DiaryList.route) }) {

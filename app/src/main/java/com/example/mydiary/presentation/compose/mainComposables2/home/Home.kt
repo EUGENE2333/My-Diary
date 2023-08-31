@@ -17,12 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
@@ -32,6 +29,8 @@ import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.animations.bouncingClickable
 import com.example.mydiary.presentation.compose.mainComposables.drawerContent.DrawerContent
+import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.google.firebase.Timestamp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -103,13 +102,7 @@ fun Home(
                         text = "Home",
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 35.sp else 19.sp,
+                        fontSize = headerFontSizeBasedOnFontTheme(selectedFontTheme)
                     )
                 }
             )
@@ -170,24 +163,6 @@ fun Home(
                             }
 
                         }
-                        /*
-                    LazyVerticalGrid(
-                        columns = GridCells.Fixed(2),
-                        contentPadding = PaddingValues(16.dp)
-                    ){
-
-                      items(homeUiState.notesList.data ?: emptyList()){note->
-                          NoteItem(
-                              notes =note,
-                              viewModel = viewModel,
-                              onLongClick = {
-                                  openDialog = true
-                                  selectedNote = note
-                              }) {
-                                  onNoteClick.invoke(note.documentId)
-                              }
-                      }
-                    }  */
                     }
                     else -> {
                         Text(
@@ -299,7 +274,7 @@ onClick: () -> Unit
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(4.dp),
                     maxLines = 4,
-                    fontFamily = selectedFontTheme
+                    fontSize = fontSizeBasedOnFontTheme(selectedFontTheme),
                 )
             }
 

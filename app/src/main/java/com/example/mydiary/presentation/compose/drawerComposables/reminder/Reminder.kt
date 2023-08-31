@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -125,14 +126,7 @@ fun Reminder(
                                 " ideas, and journal.Writing down is a therapy on it's own way! Set a"+
                                 " reminder to update your diary !",
                         style = MaterialTheme.typography.subtitle2,
-                        fontSize = if(
-                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFont == FontFamily(Font(R.font.twirly)) ||
-                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                        ) 26.sp else 16.sp,
-
+                        fontSize =fontSizeBasedOnFontTheme(selectedFont),
                         color = Color.White,
                         fontFamily = selectedFont
                     )
@@ -145,13 +139,7 @@ fun Reminder(
                         text =  "weeeee" + sliderPosition.toInt().toString(),
                         color = Color.White,
                         fontFamily = selectedFont,
-                        fontSize = if(
-                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFont == FontFamily(Font(R.font.twirly)) ||
-                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                        ) 26.sp else  19.sp,
+                        fontSize = fontSizeBasedOnFontTheme(selectedFont)
                     )
                 }
 
@@ -197,13 +185,7 @@ fun Reminder(
                             Text(
                                 "Set Reminder",
                                 fontFamily = selectedFont,
-                                fontSize = if(
-                                    selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                                    selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                                    selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                                    selectedFont == FontFamily(Font(R.font.twirly)) ||
-                                    selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                                ) 24.sp else  18.sp,
+                                fontSize = fontSizeBasedOnFontTheme(selectedFont)
                             )
                         }
                    /*     Button(

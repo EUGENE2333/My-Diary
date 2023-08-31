@@ -20,6 +20,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -47,7 +48,12 @@ fun ChangePassword(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
-                title = { androidx.compose.material.Text(text = "Lock",color = Color.White, fontFamily = selectedFont) },
+                title = { Text(
+                    text = "Lock",
+                    color = Color.White,
+                    fontFamily = selectedFont,
+                    fontSize =  headerFontSizeBasedOnFontTheme(selectedFont)
+                ) },
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {

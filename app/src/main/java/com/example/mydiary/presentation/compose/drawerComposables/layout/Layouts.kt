@@ -19,13 +19,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import kotlinx.coroutines.launch
 
 @Composable
@@ -55,13 +54,7 @@ import kotlinx.coroutines.launch
                         text = "Choose Format",
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 37.sp else  17.sp,
+                        fontSize =  headerFontSizeBasedOnFontTheme(selectedFontTheme)
                     )
                 },
                 backgroundColor = Color(0xFF2C2428),
@@ -91,13 +84,7 @@ import kotlinx.coroutines.launch
             Text(
                 text = "Select Layout Format",
                 color = Color.White,
-                fontSize = if(
-                    selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                    selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                    selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                    selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                    selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                ) 26.sp else  17.sp,
+                fontSize = fontSizeBasedOnFontTheme(selectedFontTheme)
             )
 
             Row {

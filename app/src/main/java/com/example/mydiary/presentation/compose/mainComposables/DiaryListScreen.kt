@@ -18,10 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
@@ -87,13 +84,7 @@ fun DiaryListScreen(
                 Text(
                     text = "My Diary",
                     color = Color.White,
-                    fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                    ) 37.sp else  26.sp,
+                    fontSize = headerFontSizeBasedOnFontTheme(selectedFontTheme),
                     fontFamily = selectedFontTheme
                 )
             },

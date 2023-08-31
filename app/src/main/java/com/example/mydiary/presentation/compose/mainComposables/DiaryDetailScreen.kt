@@ -17,14 +17,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
-import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailUiState
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
@@ -72,13 +68,7 @@ fun DiaryDetailScreen(
                         text = "Diary Entry",
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 37.sp else  17.sp,
+                        fontSize = headerFontSizeBasedOnFontTheme(selectedFontTheme)
                     )},
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {
@@ -154,13 +144,7 @@ fun DiaryDetailScreen(
 
                         textStyle = TextStyle(
                             fontFamily = selectedFontTheme,
-                            fontSize = if(
-                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                            ) 26.sp else 16.sp,
+                            fontSize = fontSizeBasedOnFontTheme(selectedFontTheme),
                             color = selectedColorTheme
                         )
 
@@ -178,13 +162,7 @@ fun DiaryDetailScreen(
 
                         textStyle = TextStyle(
                             fontFamily = selectedFontTheme,
-                            fontSize = if(
-                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                            ) 26.sp else 16.sp,
+                            fontSize = fontSizeBasedOnFontTheme(selectedFontTheme),
                             color = selectedColorTheme
                         ),
                         maxLines = Int.MAX_VALUE

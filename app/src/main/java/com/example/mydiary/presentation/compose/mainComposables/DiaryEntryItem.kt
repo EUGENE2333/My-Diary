@@ -6,13 +6,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mydiary.R
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.presentation.DiaryViewModel
@@ -75,14 +72,7 @@ fun DiaryEntryItem(
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis,
                                 style = MaterialTheme.typography.body1,
-                                fontSize = if(
-                                    selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                                    selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                                    selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                                    selectedFont == FontFamily(Font(R.font.twirly)) ||
-                                    selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                                ) 26.sp else 16.sp,
-
+                                fontSize = fontSizeBasedOnFontTheme(selectedFont),
                                 color = selectedColorTheme,
                                 fontFamily = selectedFont
 

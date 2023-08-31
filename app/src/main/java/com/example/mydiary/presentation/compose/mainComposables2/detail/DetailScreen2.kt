@@ -111,7 +111,7 @@ fun DetailScreen2(
            OutlinedTextField(
                value = detailUiState.note,
                onValueChange ={detailViewModel?.onNoteChange(it)},
-               label = {Text(text = "Title")},
+               label = {Text(text = "note")},
                modifier = Modifier
                    .fillMaxWidth()
                    .weight(1f)

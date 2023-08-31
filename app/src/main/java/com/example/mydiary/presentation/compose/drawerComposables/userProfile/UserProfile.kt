@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
 
 
@@ -49,7 +50,12 @@ fun UserProfile(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(title = {
-                androidx.compose.material.Text(text = "User Profile",fontFamily = selectedFont, color = Color.White)
+                Text(
+                    text = "User Profile",
+                    fontFamily = selectedFont,
+                    color = Color.White,
+                    fontSize =  headerFontSizeBasedOnFontTheme(selectedFont)
+                )
             },
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {

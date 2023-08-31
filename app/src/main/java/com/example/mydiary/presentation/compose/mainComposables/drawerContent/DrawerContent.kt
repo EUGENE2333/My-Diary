@@ -22,16 +22,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -97,13 +95,7 @@ viewModel: DiaryViewModel,
                 )
                 Text(
                     text = "Account",
-                    fontSize = if(
-                        selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                        selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                        selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                        selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                        selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                    ) 45.sp else  26.sp,
+                    fontSize =headerFontSizeBasedOnFontTheme(selectedFontTheme),
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontFamily = selectedFontTheme,
@@ -235,7 +227,7 @@ viewModel: DiaryViewModel,
                 Row(
                     modifier =  Modifier.padding(
                             start = 20.dp,
-                            bottom = 1.dp
+                            bottom = 3.dp
                 )
                 ) {
 

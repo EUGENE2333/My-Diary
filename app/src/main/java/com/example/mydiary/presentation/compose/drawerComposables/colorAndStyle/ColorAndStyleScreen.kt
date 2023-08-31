@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -34,7 +35,12 @@ fun ColorAndStyle(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(title = {
-                Text(text = "Color and Font", color = Color.White)
+                Text(
+                    text = "Color and Font",
+                    color = Color.White,
+                    fontFamily = selectedFont,
+                    fontSize =  headerFontSizeBasedOnFontTheme(selectedFont)
+                )
             },
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {
