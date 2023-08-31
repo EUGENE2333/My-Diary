@@ -86,7 +86,13 @@ fun DiaryListScreen(
                 Text(
                     text = "My Diary",
                     color = Color.White,
-                    fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 47.sp else  26.sp,
+                    fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                    ) 37.sp else  26.sp,
                     fontFamily = selectedFontTheme
                 )
             },

@@ -60,7 +60,14 @@ fun Reminder(
                     Text(
                         text = "Set Reminder",
                         color = Color.White,
-                        fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 47.sp else  26.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 37.sp else  26.sp,
+
                         fontFamily = selectedFont
                     )
                 },
@@ -97,7 +104,14 @@ fun Reminder(
                              text = "Set a reminder to open diary",
                              style = MaterialTheme.typography.subtitle1,
                              color = Color.White,
-                             fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 47.sp else  26.sp,
+                             fontSize = if(
+                                 selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                                 selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                                 selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                                 selectedFont == FontFamily(Font(R.font.twirly)) ||
+                                 selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                             ) 37.sp else  26.sp,
+
                              fontFamily = selectedFont
                          )
                      }
@@ -111,7 +125,14 @@ fun Reminder(
                                 " ideas, and journal.Writing down is a therapy on it's own way! Set a"+
                                 " reminder to update your diary !",
                         style = MaterialTheme.typography.subtitle2,
-                        fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 37.sp else  16.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 26.sp else 16.sp,
+
                         color = Color.White,
                         fontFamily = selectedFont
                     )
@@ -124,7 +145,13 @@ fun Reminder(
                         text =  "weeeee" + sliderPosition.toInt().toString(),
                         color = Color.White,
                         fontFamily = selectedFont,
-                        fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 47.sp else  26.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 26.sp else  19.sp,
                     )
                 }
 
@@ -170,7 +197,13 @@ fun Reminder(
                             Text(
                                 "Set Reminder",
                                 fontFamily = selectedFont,
-                                fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 27.sp else  26.sp,
+                                fontSize = if(
+                                    selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                                    selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                                    selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                                    selectedFont == FontFamily(Font(R.font.twirly)) ||
+                                    selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                                ) 24.sp else  18.sp,
                             )
                         }
                    /*     Button(

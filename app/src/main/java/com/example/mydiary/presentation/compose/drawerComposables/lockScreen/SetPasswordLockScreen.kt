@@ -91,7 +91,12 @@ fun LockScreen(
                     onPasswordChanged = { password = it },
                 )
                 Spacer(modifier = Modifier.height(15.dp))
-                Text(text = "Confirm Password",style = typography.subtitle2, fontFamily = selectedFont)
+                Text(
+                    text = "Confirm Password",
+                    style = typography.subtitle2,
+                    color = Color.White,
+                    fontFamily = selectedFont
+                )
                 Spacer(modifier = Modifier.height(3.dp))
                 PasswordTextField(
                     label = "Confirm Password",

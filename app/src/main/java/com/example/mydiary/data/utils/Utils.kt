@@ -56,8 +56,6 @@ object Utils {
         FontFamily(Font(R.font.lobster)),
         FontFamily(Font(R.font.shadowsintolight)),
         FontFamily(Font(R.font.quietmeows)),
-        FontFamily(Font(R.font.arabia)),
-        FontFamily(Font(R.font.chasinghearts)),
         FontFamily(Font(R.font.royal)),
         FontFamily(Font(R.font.santa)),
         FontFamily(Font(R.font.twirly)),

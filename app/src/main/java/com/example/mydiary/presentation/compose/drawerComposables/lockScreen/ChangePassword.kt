@@ -113,10 +113,12 @@ fun ChangePassword(
 
                 )
                 Spacer(modifier = Modifier.height(3.dp))
-               Text(text = "Enter New Password",
+               Text(
+                   text = "Enter New Password",
+                   color = Color.White,
                    style = MaterialTheme.typography.subtitle2,
                    fontFamily = selectedFont,
-                   color = Color.White
+
                )
                 Spacer(modifier = Modifier.height(3.dp))
                 PasswordTextField(
@@ -125,7 +127,13 @@ fun ChangePassword(
                     onPasswordChanged = { password = it },
                 )
                 Spacer(modifier = Modifier.height(15.dp))
-             Text(text = "Confirm Password",color = Color.White, style = MaterialTheme.typography.subtitle2, fontFamily = selectedFont)
+
+             Text(text = "Confirm Password",
+                 color = Color.White,
+                 style = MaterialTheme.typography.subtitle2,
+                 fontFamily = selectedFont
+                )
+
                 Spacer(modifier = Modifier.height(3.dp))
                 PasswordTextField(
                     label = "Confirm New Password",

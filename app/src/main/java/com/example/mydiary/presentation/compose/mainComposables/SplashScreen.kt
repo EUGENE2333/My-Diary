@@ -20,6 +20,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mydiary.R
@@ -62,7 +64,14 @@ import kotlinx.coroutines.delay
 
         Text(
             text = "My Diary",
-            fontSize = 37.sp,
+            fontSize = if(
+                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+            ) 50.sp else 37.sp,
+
             fontFamily = selectedFontTheme,
             color = Color.White,
             modifier = Modifier.padding(top  = 40.dp)

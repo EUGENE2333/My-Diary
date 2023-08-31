@@ -60,7 +60,13 @@ fun NewDiaryEntryScreen(
                         text = "Write Note",
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 47.sp else  17.sp,
+                        fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                        ) 47.sp else  17.sp,
                     )},
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {
@@ -123,7 +129,13 @@ fun NewDiaryEntryScreen(
 
                             textStyle = TextStyle(
                                 fontFamily = selectedFontTheme,
-                                fontSize = if (selectedFontTheme == FontFamily(Font(R.font.arabia))) 47.sp else 16.sp,
+                                fontSize = if(
+                                    selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                                ) 26.sp else 16.sp,
                                 color = selectedColorTheme
                             )
                         )
@@ -139,7 +151,13 @@ fun NewDiaryEntryScreen(
 
                             textStyle = TextStyle(
                                 fontFamily = selectedFontTheme,
-                                fontSize = if (selectedFontTheme == FontFamily(Font(R.font.arabia))) 47.sp else 16.sp,
+                                fontSize = if(
+                                    selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                                    selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                                ) 26.sp else 16.sp,
                                 color = selectedColorTheme
                             ),
                             maxLines = Int.MAX_VALUE

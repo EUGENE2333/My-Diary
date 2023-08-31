@@ -65,7 +65,7 @@ fun DiaryEntryItem(
                                 fontWeight = FontWeight.Normal,
                                 color = selectedColorTheme,
                                 fontFamily = selectedFont,
-                                fontSize = 19.sp,
+                                fontSize = 22.sp,
                                 maxLines = 1,
                                 overflow = TextOverflow.Clip,
                             )
@@ -75,7 +75,14 @@ fun DiaryEntryItem(
                                 maxLines = 2,
                                 overflow = TextOverflow.Ellipsis,
                                 style = MaterialTheme.typography.body1,
-                                fontSize = if (selectedFont == FontFamily(Font(R.font.arabia))) 37.sp else 16.sp,
+                                fontSize = if(
+                                    selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                                    selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                                    selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                                    selectedFont == FontFamily(Font(R.font.twirly)) ||
+                                    selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                                ) 26.sp else 16.sp,
+
                                 color = selectedColorTheme,
                                 fontFamily = selectedFont
 

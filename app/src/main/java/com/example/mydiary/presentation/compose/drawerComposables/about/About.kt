@@ -77,7 +77,13 @@ fun About(
                     Text(
                         text = "About",
                         color = Color.White,
-                        fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 47.sp else  17.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 37.sp else  19.sp,
                         fontFamily = selectedFont
                     )
                 },
@@ -122,7 +128,13 @@ fun About(
                     Text(
                         text = about,
                         style = MaterialTheme.typography.body1,
-                        fontSize = if(selectedFont == FontFamily(Font(R.font.arabia))) 47.sp else  16.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 37.sp else  17.sp,
                         fontFamily = selectedFont
                     )
                 }

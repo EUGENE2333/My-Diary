@@ -96,7 +96,13 @@ viewModel: DiaryViewModel,
                 )
                 Text(
                     text = "Account",
-                    fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 45.sp else  26.sp,
+                    fontSize = if(
+                        selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                        selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                        selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                        selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                        selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                    ) 45.sp else  26.sp,
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontFamily = selectedFontTheme,
@@ -152,12 +158,14 @@ viewModel: DiaryViewModel,
                     )
                     Text(
                         text = if (viewModel.passwordManager.getPassword() == "null") " Add Lock" else "Change Lock",
-                        fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
-                        modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                            .padding(top = 10.dp)
-                            .padding(start = 45.dp)
-                                else
-                            Modifier
+                        fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                        ) 26.sp else  16.sp,
+                        modifier = Modifier
                                 .padding(top = 16.dp)
                                 .padding(start = 15.dp),
                         color = Color.White,
@@ -192,14 +200,16 @@ viewModel: DiaryViewModel,
 
                     Text(
                         text = "Colors and style",
-                        fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
+                        fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                                ) 26.sp else  16.sp,
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                            .padding(top = 10.dp)
-                            .padding(start = 45.dp)
-                        else
-                            Modifier
+                        modifier = Modifier
                                 .padding(top = 16.dp)
                                 .padding(start = 15.dp),
 
@@ -231,14 +241,17 @@ viewModel: DiaryViewModel,
 
                     Text(
                         text = "Reminder",
-                        fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
+                        fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                        ) 26.sp else  16.sp,
+
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                            .padding(top = 10.dp)
-                            .padding(start = 45.dp)
-                        else
-                            Modifier
+                        modifier = Modifier
                                 .padding(top = 16.dp)
                                 .padding(start = 15.dp),
 
@@ -271,16 +284,18 @@ viewModel: DiaryViewModel,
                     Row {
                         Text(
                             text = "Text to Speech",
-                            fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
+                            fontSize = if(
+                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                            ) 26.sp else  16.sp,
+
                             color = Color.White,
                             fontFamily = selectedFontTheme,
 
-                            modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                                .padding(top = 10.dp)
-                                .padding(start = 45.dp)
-                                .padding(end = 30.dp)
-                            else
-                                Modifier
+                            modifier = Modifier
                                     .padding(top = 16.dp)
                                     .padding(start = 15.dp)
                                     .padding(end = 30.dp)
@@ -329,12 +344,15 @@ viewModel: DiaryViewModel,
                     )
                     Text(
                         text = "Layout Format",
-                        fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
-                        modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                            .padding(top = 10.dp)
-                            .padding(start = 45.dp)
-                        else
-                            Modifier
+                        fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                        ) 26.sp else  16.sp,
+
+                        modifier = Modifier
                                 .padding(top = 16.dp)
                                 .padding(start = 15.dp),
                         color = Color.White,
@@ -373,13 +391,16 @@ viewModel: DiaryViewModel,
                         )
                         Text(
                             text = "Rate and review",
-                            fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
+                            fontSize = if(
+                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                            ) 26.sp else  16.sp,
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-                            modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                                .padding(top = 10.dp)
-                                .padding(start = 45.dp)
-                            else
+                            modifier =
                                 Modifier
                                     .padding(top = 16.dp)
                                     .padding(start = 15.dp),
@@ -417,13 +438,17 @@ viewModel: DiaryViewModel,
 
                         Text(
                             text = "Recommend to a Friend",
-                            fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
+                            fontSize = if(
+                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                            ) 26.sp else  16.sp,
+
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-                            modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                                .padding(top = 10.dp)
-                                .padding(start = 45.dp)
-                            else
+                            modifier =
                                 Modifier
                                     .padding(top = 16.dp)
                                     .padding(start = 15.dp),
@@ -457,13 +482,17 @@ viewModel: DiaryViewModel,
 
                         Text(
                             text = "About",
-                            fontSize = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) 26.sp else  16.sp,
+                            fontSize = if(
+                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                            ) 26.sp else  16.sp,
+
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-                            modifier = if(selectedFontTheme == FontFamily(Font(R.font.arabia))) Modifier
-                                .padding(top = 10.dp)
-                                .padding(start = 45.dp)
-                            else
+                            modifier =
                                 Modifier
                                     .padding(top = 16.dp)
                                     .padding(start = 15.dp),

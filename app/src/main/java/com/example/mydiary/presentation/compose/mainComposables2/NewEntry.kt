@@ -21,11 +21,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mydiary.R
 import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailUiState
@@ -113,7 +110,7 @@ fun NewEntry(
                 },
                 textStyle = TextStyle(
                     fontFamily = selectedFontTheme,
-                    fontSize = if (selectedFontTheme == FontFamily(Font(R.font.arabia))) 47.sp else 16.sp,
+                    fontSize = 17.sp,
                 ),
                 label = {Text(text = "Title")},
                 modifier = Modifier
@@ -128,7 +125,7 @@ fun NewEntry(
                 label = {Text(text = "Note")},
                 textStyle = TextStyle(
                     fontFamily = selectedFontTheme,
-                    fontSize = if (selectedFontTheme == FontFamily(Font(R.font.arabia))) 47.sp else 16.sp,
+                    fontSize = 17.sp,
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -158,3 +155,5 @@ fun ColorItem(
 
     }
 }
+
+

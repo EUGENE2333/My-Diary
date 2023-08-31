@@ -17,9 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
@@ -99,7 +102,14 @@ fun Home(
                     Text(
                         text = "Home",
                         color = Color.White,
-                        fontFamily = selectedFontTheme
+                        fontFamily = selectedFontTheme,
+                        fontSize = if(
+                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
+                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+                        ) 35.sp else 19.sp,
                     )
                 }
             )

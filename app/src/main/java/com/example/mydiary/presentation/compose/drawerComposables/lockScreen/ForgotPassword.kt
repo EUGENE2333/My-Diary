@@ -121,7 +121,7 @@ fun ForgotPassword(
                  if(isAnswerConfirmed){
                      Text(
                          text = "Your password is: $savedPassword",
-                         fontSize = 45.sp,
+                         fontSize = 22.sp,
                          style = typography.body1,
                          modifier = Modifier.bringIntoViewRequester(bringIntoViewRequester),
                      )

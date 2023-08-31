@@ -59,7 +59,13 @@ fun RateAndReview(
                     Text(
                         text = "Rate and Review",
                         color = Color.White,
-                        fontSize = if (selectedFont == FontFamily(Font(R.font.arabia))) 47.sp else 17.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 37.sp else 17.sp,
                         fontFamily = selectedFont
                     )
                 },
@@ -91,7 +97,14 @@ fun RateAndReview(
                     Text(
                         text = "How do you feel about MyDiary?",
                         style = TextStyle(
-                            fontSize = if (selectedFont == FontFamily(Font(R.font.arabia))) 40.sp else 30.sp,
+                            fontSize = if(
+                                selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFont == FontFamily(Font(R.font.twirly)) ||
+                                selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                            ) 40.sp else 30.sp,
+
                             fontWeight = FontWeight.Normal,
                             fontFamily = selectedFont
                         ),
@@ -158,7 +171,14 @@ fun RateAndReview(
                         text = "It will mean a lot to us if you give us a 5 star rating in the" +
                                 " Google Play Store.",
                         style = TextStyle(
-                            fontSize = if (selectedFont == FontFamily(Font(R.font.arabia))) 19.sp else 12.sp,
+                            fontSize = if(
+                                selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFont == FontFamily(Font(R.font.twirly)) ||
+                                selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                            ) 19.sp else 12.sp,
+
                             fontWeight = FontWeight.Normal,
                             fontFamily = selectedFont
                         ),
@@ -196,7 +216,14 @@ fun RateAndReview(
                 ) {
                     Text(
                         text = "Rate and Review",
-                        fontSize = if (selectedFont == FontFamily(Font(R.font.arabia))) 27.sp else 19.sp,
+                        fontSize = if(
+                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                            selectedFont == FontFamily(Font(R.font.twirly)) ||
+                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                        ) 27.sp else 19.sp,
+
                         fontFamily = selectedFont
                     )
                 }
@@ -209,7 +236,14 @@ fun RateAndReview(
                     Text(
                         text = "Thank you for your support",
                         style = TextStyle(
-                            fontSize = if (selectedFont == FontFamily(Font(R.font.arabia))) 19.sp else 12.sp,
+                            fontSize = if(
+                                selectedFont == FontFamily(Font(R.font.pizzat)) ||
+                                selectedFont == FontFamily(Font(R.font.first_writing)) ||
+                                selectedFont == FontFamily(Font(R.font.slimshoot)) ||
+                                selectedFont == FontFamily(Font(R.font.twirly)) ||
+                                selectedFont == FontFamily(Font(R.font.gnyrwn977))
+                            ) 19.sp else 12.sp,
+
                             fontWeight = FontWeight.Normal,
                             fontFamily = selectedFont
                         ),
