@@ -14,4 +14,4 @@ fun fontSizeBasedOnFontTheme(selectedFontTheme: FontFamily): TextUnit =
         selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
         selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
         selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-    ) 45.sp else 26.sp
+    )  26.sp else  16.sp
