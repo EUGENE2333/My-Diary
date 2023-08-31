@@ -29,22 +29,3 @@ fun Modifier.paddingForText(): Modifier = this.then(
         start = 15.dp,
     )
 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

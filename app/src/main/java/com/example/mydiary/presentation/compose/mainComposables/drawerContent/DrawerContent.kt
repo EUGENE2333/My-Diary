@@ -31,6 +31,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -143,31 +144,19 @@ viewModel: DiaryViewModel,
             ) {
                 // Add some other fields in the drawer
                 Row(
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                        .padding(bottom = 8.dp)
+                    modifier = Modifier.paddingForSection()
                 ) {
 
                     Image(
                         painter = painterResource(id = R.drawable.lock_icon),
                         contentDescription = "Lock Image",
-                        modifier = Modifier
-                            .padding(top = 16.dp)
-                            .padding(horizontal = 6.dp),
+                        modifier = Modifier.paddingForImage()
 
                     )
                     Text(
                         text = if (viewModel.passwordManager.getPassword() == "null") " Add Lock" else "Change Lock",
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 26.sp else  16.sp,
-                        modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(start = 15.dp),
+                        fontSize =fontSizeBasedOnFontTheme(selectedFontTheme),
+                        modifier = Modifier.paddingForText(),
                         color = Color.White,
                         fontFamily = selectedFontTheme,
                     )
@@ -183,35 +172,23 @@ viewModel: DiaryViewModel,
                 .clickable { navController.navigate(Screen.ColorAndStyle.route) }  // call it from a background threat or hoist it
             ) {
                 Row(
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                        .padding(bottom = 8.dp)
+                    modifier = Modifier.paddingForSection()
                 ) {
 
                     Image(
                         painter = painterResource(id = R.drawable.color_icon),
                         contentDescription = "Colors and style Image",
-                        modifier = Modifier
-                            .padding(top = 16.dp)
-                            .padding(horizontal = 6.dp)
+                        modifier = Modifier.paddingForImage()
 
 
                     )
 
                     Text(
                         text = "Colors and style",
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                                ) 26.sp else  16.sp,
+                        fontSize =fontSizeBasedOnFontTheme(selectedFontTheme),
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(start = 15.dp),
+                        modifier = Modifier.paddingForText(),
 
                     )
                 }
@@ -225,35 +202,22 @@ viewModel: DiaryViewModel,
                 .clickable { navController.navigate(Screen.Reminder.route) }  // call it from a background threat or hoist it
             ) {
                 Row(
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                        .padding(bottom = 8.dp)
+                    modifier = Modifier.paddingForSection()
                 ) {
 
                     Image(
                         painter = painterResource(id = R.drawable.add_alert),
                         contentDescription = "Reminder Image",
-                        modifier = Modifier
-                            .padding(top = 16.dp)
-                            .padding(horizontal = 6.dp)
+                        modifier = Modifier.paddingForImage()
 
                     )
 
                     Text(
                         text = "Reminder",
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 26.sp else  16.sp,
-
+                        fontSize =fontSizeBasedOnFontTheme(selectedFontTheme),
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(start = 15.dp),
+                        modifier = Modifier.paddingForText(),
 
                     )
                 }
@@ -269,32 +233,23 @@ viewModel: DiaryViewModel,
                 //   .clickable { navController.navigate(Screen.Reminder.route) }  // call it from a background threat or hoist it
             ) {
                 Row(
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                        .padding(bottom = 1.dp)
+                    modifier =  Modifier.padding(
+                            start = 20.dp,
+                            bottom = 1.dp
+                )
                 ) {
 
                     Image(
                         painter = painterResource(id = R.drawable.voice_over),
                         contentDescription = "Text to Speech",
-                        modifier = Modifier
-                            .padding(top = 16.dp)
-                            .padding(horizontal = 6.dp)
+                        modifier = Modifier.paddingForImage()
                     )
                     Row {
                         Text(
                             text = "Text to Speech",
-                            fontSize = if(
-                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                            ) 26.sp else  16.sp,
-
+                            fontSize = fontSizeBasedOnFontTheme(selectedFontTheme),
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-
                             modifier = Modifier
                                     .padding(top = 16.dp)
                                     .padding(start = 15.dp)
@@ -329,32 +284,20 @@ viewModel: DiaryViewModel,
             ) {
                 // Add some other fields in the drawer
                 Row(
-                    modifier = Modifier
-                        .padding(start = 20.dp)
-                        .padding(bottom = 8.dp)
+                    modifier = Modifier.paddingForSection()
                 ) {
 
                     Image(
                         painter = painterResource(id = R.drawable.display_settings),
                         contentDescription = null,
-                        modifier = Modifier
-                            .padding(top = 16.dp)
-                            .padding(horizontal = 6.dp),
+                        modifier = Modifier.paddingForImage()
 
                     )
                     Text(
                         text = "Layout Format",
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 26.sp else  16.sp,
+                        fontSize = fontSizeBasedOnFontTheme(selectedFontTheme),
 
-                        modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(start = 15.dp),
+                        modifier = Modifier.paddingForText(),
                         color = Color.White,
                         fontFamily = selectedFontTheme,
                     )
@@ -373,9 +316,7 @@ viewModel: DiaryViewModel,
                     .clickable { navController.navigate(Screen.RateAndReview.route) }  // call it from a background threat or hoist it
                 ) {
                     Row(
-                        modifier = Modifier
-                            .padding(start = 20.dp)
-                            .padding(bottom = 8.dp)
+                        modifier = Modifier.paddingForSection()
                     ) {
 
                         Image(
@@ -383,27 +324,16 @@ viewModel: DiaryViewModel,
                                 id = R.drawable.rate_review_icon
                             ),
                             contentDescription = "Rate and review Image",
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(horizontal = 6.dp)
+                            modifier = Modifier.paddingForImage()
 
 
                         )
                         Text(
                             text = "Rate and review",
-                            fontSize = if(
-                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                            ) 26.sp else  16.sp,
+                            fontSize =fontSizeBasedOnFontTheme(selectedFontTheme),
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-                            modifier =
-                                Modifier
-                                    .padding(top = 16.dp)
-                                    .padding(start = 15.dp),
+                            modifier = Modifier.paddingForText(),
 
                         )
                     }
@@ -421,39 +351,22 @@ viewModel: DiaryViewModel,
                     }
                 ) {
                     Row(
-                        modifier = Modifier
-                            .padding(start = 20.dp)
-                            .padding(bottom = 8.dp)
+                        modifier = Modifier.paddingForSection()
                     ) {
 
                         Image(
                             painter = painterResource(id = R.drawable.share_icon),
                             contentDescription = "share Image",
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(horizontal = 6.dp)
-
-
+                            modifier = Modifier.paddingForImage()
                         )
 
                         Text(
                             text = "Recommend to a Friend",
-                            fontSize = if(
-                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                            ) 26.sp else  16.sp,
-
+                            fontSize =fontSizeBasedOnFontTheme(selectedFontTheme),
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-                            modifier =
-                                Modifier
-                                    .padding(top = 16.dp)
-                                    .padding(start = 15.dp),
-
-                        )
+                            modifier = Modifier.paddingForText()
+                            )
                     }
 
                 }
@@ -465,38 +378,21 @@ viewModel: DiaryViewModel,
                     .clickable { navController.navigate(Screen.About.route) }  // call it from a background threat or hoist it
                 ) {
                     Row(
-                        modifier = Modifier
-                            .padding(start = 20.dp)
-                            .padding(bottom = 8.dp)
+                        modifier = Modifier.paddingForSection()
                     ) {
 
                         Image(
                             painter = painterResource(id = R.drawable.about_icon),
                             contentDescription = "About Image",
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .padding(horizontal = 6.dp)
-
-
+                            modifier = Modifier.paddingForImage()
                         )
 
                         Text(
                             text = "About",
-                            fontSize = if(
-                                selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
-                                selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                            ) 26.sp else  16.sp,
-
+                            fontSize =fontSizeBasedOnFontTheme(selectedFontTheme),
                             color = Color.White,
                             fontFamily = selectedFontTheme,
-                            modifier =
-                                Modifier
-                                    .padding(top = 16.dp)
-                                    .padding(start = 15.dp),
-
+                            modifier = Modifier.paddingForText()
                         )
                     }
 
