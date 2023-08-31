@@ -31,7 +31,7 @@ import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.animations.bouncingClickable
-import com.example.mydiary.presentation.compose.mainComposables.DrawerContent
+import com.example.mydiary.presentation.compose.mainComposables.drawerContent.DrawerContent
 import com.google.firebase.Timestamp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

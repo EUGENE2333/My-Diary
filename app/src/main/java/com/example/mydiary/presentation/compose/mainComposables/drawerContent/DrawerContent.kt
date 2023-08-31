@@ -1,4 +1,4 @@
-package com.example.mydiary.presentation.compose.mainComposables
+package com.example.mydiary.presentation.compose.mainComposables.drawerContent
 
 import android.content.Intent
 import android.content.res.Configuration

@@ -28,6 +28,7 @@ import com.example.mydiary.R
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.mainComposables.drawerContent.DrawerContent
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeUiState
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
 import kotlinx.coroutines.Dispatchers
