@@ -219,7 +219,7 @@ fun Home(
                 }
             }
         },
-        drawerContent = { DrawerContent(navController = navController, viewModel = viewModel) },
+        drawerContent = { DrawerContent(navController = navController, viewModel = viewModel, homeViewModel = homeViewModel) },
         drawerBackgroundColor = Color.White,
         drawerContentColor = Color.Black,
         drawerShape = MaterialTheme.shapes.small,

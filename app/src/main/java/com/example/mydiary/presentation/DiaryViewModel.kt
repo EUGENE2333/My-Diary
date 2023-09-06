@@ -20,6 +20,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+const val EXPORTED_NOTES_FILE_NAME = "diary_notes.txt"
 
 class DiaryViewModel(
     private val application: MyDiaryApplication,
