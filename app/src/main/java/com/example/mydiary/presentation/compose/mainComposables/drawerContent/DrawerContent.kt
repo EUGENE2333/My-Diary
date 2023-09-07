@@ -26,7 +26,6 @@ import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
-import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
 import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -299,7 +298,7 @@ fun DrawerContent(
                     .fillMaxWidth()
                     .clickable {
                         viewModel.viewModelScope.launch(Dispatchers.Main) {
-                              // navigate to eport page
+                            navController.navigate(Screen.Export.route)
                         }
                     }
                 ) {

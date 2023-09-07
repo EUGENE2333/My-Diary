@@ -7,15 +7,17 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeUiState
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
-import kotlinx.coroutines.launch
 
 
 @Composable
@@ -26,7 +28,6 @@ fun ExportScreen(
 ){
 
    val scaffoldState  = rememberScaffoldState()
-    val scope = rememberCoroutineScope()
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
     val selectedFontTheme = viewModel.passwordManager.getFontTheme()
     val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
@@ -59,22 +60,35 @@ fun ExportScreen(
             )
         },
         backgroundColor = selectedColorTheme,
-    ){paddingValues ->
+    ){ paddingValues ->
 
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(paddingValues),
+            horizontalAlignment = Alignment.CenterHorizontally,
 
         ) {
 
-            OutlinedButton(onClick = {
-                scope.launch {
+            Text(
+                text = "Export all your entries",
+                color = Color.White,
+                fontSize =  headerFontSizeBasedOnFontTheme(selectedFontTheme),
+                fontWeight = FontWeight.Normal,
+                fontFamily = selectedFontTheme,
+                modifier = Modifier.padding(top = 157.dp, bottom = 30.dp)
+            )
 
-                    if (homeUiState.notesList.data!!.isEmpty()) {
-                        // no data to export . snackbar message
-                        scaffoldState.snackbarHostState.showSnackbar("No entries to export")
-                    }
+            Text(
+                text = "Store/open your entries in an external application",
+                color = Color.White,
+                fontSize =  headerFontSizeBasedOnFontTheme(selectedFontTheme),
+                fontFamily = selectedFontTheme,
+                modifier = Modifier.padding(vertical = 30.dp)
+            )
+
+          Button(
+              onClick = {
 
                     if (!exporting && !exportSuccess) {
                         exporting = true
@@ -83,7 +97,6 @@ fun ExportScreen(
                             exporting = false
                         }
                     }
-                }
             }) {
                 Text(
                     text = "Export",
@@ -96,19 +109,3 @@ fun ExportScreen(
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
