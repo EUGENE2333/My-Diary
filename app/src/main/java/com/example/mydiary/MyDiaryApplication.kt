@@ -5,6 +5,7 @@ import com.example.mydiary.data.utils.PasswordManager
 import com.example.mydiary.data.utils.PreferencesManager
 import com.example.mydiary.domain.repository.AuthRepository
 import com.example.mydiary.presentation.DiaryViewModelFactory
+import com.google.firebase.FirebaseApp
 
 
 class MyDiaryApplication: Application() {
