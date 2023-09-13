@@ -1,22 +1,24 @@
 package com.example.mydiary.presentation.compose.drawerComposables.about
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
+import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
@@ -90,7 +92,11 @@ fun About(
                     IconButton(onClick = {
                         mainActivity.speakText(head + about)
                     }) {
-                        Icon(Icons.Filled.Face, contentDescription = "Speech", tint = Color.White)
+
+                        Image(
+                            painter = painterResource(id = R.drawable.outlet),
+                            contentDescription = null
+                        )
                     }
                     }
                 }

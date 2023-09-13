@@ -2,25 +2,25 @@ package com.example.mydiary.presentation.compose.mainComposables
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
+import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailUiState
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
@@ -48,10 +48,7 @@ fun DiaryDetailScreen(
     val enabled = viewModel.enabledFlow.collectAsState(initial = false).value
     val isFormsNotBlank = detailUiState.note.isNotBlank() && detailUiState.title.isNotBlank()
     val scope = rememberCoroutineScope()
-    val bringIntoViewRequester = BringIntoViewRequester()
 
-    val isNoteIdNotBlank = noteId.isNotBlank()
-    val icon = if (isNoteIdNotBlank) Icons.Default.Refresh else Icons.Default.Check
 
     LaunchedEffect(key1 = Unit){
         detailViewModel?.getNote(noteId)
@@ -100,7 +97,10 @@ fun DiaryDetailScreen(
                                 }
                             }
                         }) {
-                            Icon(Icons.Filled.Face, contentDescription = "Speech",tint = Color.White)
+                            Image(
+                                painter = painterResource(id = R.drawable.outlet),
+                                contentDescription = null
+                            )
                         }
                     }
 

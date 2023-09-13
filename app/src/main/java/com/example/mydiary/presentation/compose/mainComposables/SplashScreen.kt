@@ -68,7 +68,6 @@ import kotlinx.coroutines.delay
                 selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
                 selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
                 selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
                 selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
             ) 50.sp else 37.sp,
 
