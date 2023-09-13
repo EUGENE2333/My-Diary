@@ -13,6 +13,7 @@ class DetailViewModel(
     private val repository: StorageRepository = StorageRepository()
 ): ViewModel(){
 
+
     var detailUiState by mutableStateOf(DetailUiState())
     private set
 

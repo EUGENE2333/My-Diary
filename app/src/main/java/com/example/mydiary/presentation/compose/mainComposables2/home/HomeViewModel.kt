@@ -51,8 +51,6 @@ class HomeViewModel (
     fun deleteAccount(context: Context, navToSignUpPage: () -> Unit) =
         repository.deleteAccount(context, navToSignUpPage)
 
-
-
     }
 
 data class HomeUiState(
