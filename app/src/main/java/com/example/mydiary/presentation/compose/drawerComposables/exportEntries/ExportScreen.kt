@@ -1,5 +1,8 @@
 package com.example.mydiary.presentation.compose.drawerComposables.exportEntries
 
+import android.content.Intent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,14 +21,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
+import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
-import com.example.mydiary.presentation.compose.mainComposables2.home.HomeUiState
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
-import kotlinx.coroutines.launch
 
 
 @Composable
@@ -42,18 +43,19 @@ fun ExportScreen(
    val scaffoldState  = rememberScaffoldState()
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
     val selectedFontTheme = viewModel.passwordManager.getFontTheme()
-    val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
+  //  val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     // Handle export button click
-    var exporting by remember { mutableStateOf(false) }
+ //   var exporting by remember { mutableStateOf(false) }
     var exportSuccess by remember { mutableStateOf(false) }
 
     // Create a sample TXT file
  //   val sampleTxtFile = createSampleTxtFile(context, homeViewModel)
 
     // Function to create and export the sample TXT file
-    val exportSampleTxtFile: () -> Unit = {
+  /*  val exportSampleTxtFile: () -> Unit = {
         try {
             val sampleTxtFile = createSampleTxtFile(context, homeViewModel)
             if (sampleTxtFile != null) {
@@ -67,6 +69,21 @@ fun ExportScreen(
             // Handle any exceptions, e.g., file creation or export errors
             // You can show a Snackbar or log the error for debugging
             e.printStackTrace()
+        }
+    } */
+
+    // Create a launcher for the share action
+    val shareLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument()
+    ) { uri ->
+        if (uri != null) {
+            // Share the exported file
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "text/plain"
+                putExtra(Intent.EXTRA_STREAM, uri)
+            }
+            context.startActivity(intent)
         }
     }
 
@@ -134,13 +151,46 @@ fun ExportScreen(
 
           Button(
               onClick = {
-                  viewModel.viewModelScope.launch {
+                   // Export notes to TXT file
+
+                       val notes = homeViewModel?.homeUiState?.notesList
+                       if (notes is Resources.Success) {
+                           val notesData = notes.data
+                           if (notesData != null) {
+                               homeViewModel.exportNotesToFile(notesData)
+                           }
+                           exportSuccess = true
+                           }
+
+
+
+                       /*
+                       val filePath =
+                           "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)}/notes.txt"
+                       homeViewModel?.exportNotesToTxtFile(filePath)
+                       exportSuccess = true
+
+                       // Share the exported file using a launcher
+                       if (exportSuccess) {
+                           val file = File(filePath)
+                           shareLauncher.launch(file.absolutePath)
+                       }
+                       if(homeViewModel?.notesNull!!.value) {
+                           withContext(Dispatchers.Main){
+                               scaffoldState.snackbarHostState.showSnackbar("no notes to export")
+                           }
+                       }
+
+                       */
+
+                /*  viewModel.viewModelScope.launch {
 
                       if (!exporting && !exportSuccess) {
                           exporting = true
                           exportSampleTxtFile()
                       }
-                  }
+                  } */
+
             }) {
                 Text(
                     text = "Export",

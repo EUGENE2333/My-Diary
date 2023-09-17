@@ -1,5 +1,5 @@
 package com.example.mydiary.presentation.compose.drawerComposables.exportEntries
-
+/*
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -53,3 +53,5 @@ fun exportUserNotesAsText(context: Context, file: File, onComplete: (Boolean) ->
 
         onComplete(true)
     }
+
+        */

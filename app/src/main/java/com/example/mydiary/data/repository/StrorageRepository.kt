@@ -2,7 +2,6 @@ package com.example.mydiary.data.repository
 
 import android.app.AlertDialog
 import android.content.Context
-import androidx.core.content.FileProvider
 import com.example.mydiary.data.model.Notes
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
@@ -11,6 +10,9 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+
+
+
 
 const val NOTES_COLLECTION_REF = "notes"
 
@@ -175,5 +177,5 @@ class StorageRepository (){
 
 
 
-class MyFileProvider : FileProvider()
+      //class MyFileProvider : FileProvider()
 
