@@ -2,7 +2,6 @@ package com.example.mydiary.presentation.compose.drawerComposables.userProfile
 
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
@@ -28,7 +27,7 @@ import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.launch
 
 
-@OptIn(ExperimentalFoundationApi::class)
+
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun SignInPage(
@@ -38,8 +37,8 @@ fun SignInPage(
     onNavigateToNoteHomeScreen:() -> Unit,
     onNavigateToDiaryHomeScreen:() -> Unit
 ) {
-    val loginUiState = viewModel?.loginUiState
-    val isError = loginUiState?.loginError != null
+    val loginUiState = viewModel.loginUiState
+    val isError = loginUiState.loginError != null
     val context = LocalContext.current
     var hasLoggedUser = viewModel.loginSuccessful
     val scaffoldState = rememberScaffoldState()
@@ -71,12 +70,12 @@ fun SignInPage(
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 if(isError){
-                    Text(text = loginUiState?.loginError ?: "Unknown error",color = Color.Red)
+                    Text(text = loginUiState.loginError ?: "Unknown error",color = Color.Red)
                 }
                 Spacer(modifier = Modifier.height(10.dp))
 
                 OutlinedTextField(
-                    value = loginUiState?.userName ?: "",
+                    value = loginUiState.userName,
                     onValueChange = { viewModel.onUserNameChange(it) },
                     leadingIcon ={ Icons.Default.Person },
                     label = { Text("Email") },
@@ -92,7 +91,7 @@ fun SignInPage(
                      modifier = Modifier
                  )
                 PasswordTextField(
-                    password = loginUiState?.password ?: "",
+                    password = loginUiState.password,
                     onPasswordChanged ={viewModel.onPasswordChange(it)},
                     label ="Password",
 
@@ -138,7 +137,7 @@ fun SignInPage(
                         
                     }
                 }
-                if(loginUiState?.isLoading == true){
+                if(loginUiState.isLoading){
                     CircularProgressIndicator()
                 }
 

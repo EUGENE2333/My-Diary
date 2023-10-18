@@ -141,7 +141,7 @@ fun DiaryListScreen(
                         
                         ){
 
-                            items(homeUiState.notesList.data ?: emptyList()){note ->
+                            items(homeUiState.notesList.data){ note ->
                                 DiaryEntryItem(
                                     notes = note ,
                                     viewModel = viewModel,

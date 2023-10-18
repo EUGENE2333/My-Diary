@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.callbackFlow
 const val NOTES_COLLECTION_REF = "notes"
 
 @Suppress("IMPLICIT_CAST_TO_ANY")
-class StorageRepository (){
+class StorageRepository {
 
     private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 

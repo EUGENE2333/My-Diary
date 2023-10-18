@@ -22,7 +22,6 @@ import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
-import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailUiState
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
 import kotlinx.coroutines.launch
 
@@ -40,7 +39,7 @@ fun DiaryDetailScreen(
     onNavigate: () -> Unit
 ) {
 
-    val detailUiState = detailViewModel?.detailUiState ?: DetailUiState()
+    val detailUiState = detailViewModel!!.detailUiState
     val scaffoldState = rememberScaffoldState()
     val selectedFontTheme = viewModel.passwordManager.getFontTheme()
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
@@ -51,7 +50,7 @@ fun DiaryDetailScreen(
 
 
     LaunchedEffect(key1 = Unit){
-        detailViewModel?.getNote(noteId)
+        detailViewModel.getNote(noteId)
     }
 
 
@@ -77,7 +76,7 @@ fun DiaryDetailScreen(
                     IconButton(onClick = {
                         scope.launch {
                         if (isFormsNotBlank) {
-                            detailViewModel?.updateNote(noteId)
+                            detailViewModel.updateNote(noteId)
                         } else {
                                 scaffoldState.snackbarHostState.showSnackbar("Please enter some text")
                             }
@@ -119,7 +118,7 @@ fun DiaryDetailScreen(
                     scope.launch {
                         scaffoldState.snackbarHostState
                             .showSnackbar("Entry Updated Successfully")
-                        detailViewModel?.resetNoteAddedStatus()
+                        detailViewModel.resetNoteAddedStatus()
                         onNavigate.invoke()
 
                     }
@@ -135,7 +134,7 @@ fun DiaryDetailScreen(
 
                     TextField(
                         value = detailUiState.title,
-                        onValueChange = { detailViewModel?.onTitleChange(it) },
+                        onValueChange = { detailViewModel.onTitleChange(it) },
                         label = { Text( "Title", fontFamily = selectedFontTheme) },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -152,7 +151,7 @@ fun DiaryDetailScreen(
 
                     TextField(
                         value = detailUiState.note,
-                        onValueChange = { detailViewModel?.onNoteChange(it) },
+                        onValueChange = { detailViewModel.onNoteChange(it) },
                         label = { Text("Content", fontFamily = selectedFontTheme) },
                         modifier = Modifier
                             .fillMaxWidth()
