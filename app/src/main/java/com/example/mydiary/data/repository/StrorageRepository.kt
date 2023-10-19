@@ -18,7 +18,7 @@ const val NOTES_COLLECTION_REF = "notes"
 
 
 @Suppress("IMPLICIT_CAST_TO_ANY")
-class StorageRepository (){
+class StorageRepository {
 
     private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 
@@ -64,6 +64,7 @@ class StorageRepository (){
             snapshotStateListener?.remove()
         }
     }
+
 
     fun getNote(
         noteId: String,

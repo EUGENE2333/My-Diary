@@ -108,7 +108,7 @@ class ReminderBroadcastReceiver : BroadcastReceiver() {
         val message = intent.getStringExtra("message") ?: "Come and write your experiences and ideas!"
 
         val activityIntent = Intent(context, MainActivity::class.java).apply {
-           intent!!.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+           intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val activityPendingIntent = PendingIntent.getActivity(
             context,

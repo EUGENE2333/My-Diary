@@ -32,7 +32,7 @@ fun SignUpPage(
     navController: NavController,
     viewModel: DiaryViewModel
 ) {
-    val loginUiState = viewModel?.loginUiState
+    val loginUiState = viewModel.loginUiState
     val isError = loginUiState?.signUpError != null
     val context = LocalContext.current
     var hasCreatedUser = viewModel.loginSuccessful

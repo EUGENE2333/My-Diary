@@ -40,7 +40,7 @@ fun DiaryEntryItem(
         backgroundColor = Utils.colors[0]
         ) {
 
-        Row() {
+        Row {
             Card(modifier = Modifier.padding(4.dp)) {
                 Text(
                     text = formattDate(notes.timestamp),
