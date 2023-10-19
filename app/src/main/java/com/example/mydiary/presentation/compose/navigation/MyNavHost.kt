@@ -9,11 +9,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.mydiary.MyDiaryApplication
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.drawerComposables.ReccomendApp.RecommendApp
 import com.example.mydiary.presentation.compose.drawerComposables.about.About
 import com.example.mydiary.presentation.compose.drawerComposables.colorAndStyle.ColorAndStyle
+import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportScreen
 import com.example.mydiary.presentation.compose.drawerComposables.layout.Layout
 import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.*
 import com.example.mydiary.presentation.compose.drawerComposables.rateAndReview.RateAndReview
@@ -39,7 +39,6 @@ fun MyNavHost(
     viewModel: DiaryViewModel,
     homeViewModel: HomeViewModel,
     detailViewModel: DetailViewModel,
-    application: MyDiaryApplication
 ) {
 
     val passwordManager = viewModel.passwordManager
@@ -95,7 +94,6 @@ fun MyNavHost(
 
             }
         }
-
 
         composable(route = Screen.DiaryList.route) {
             DiaryListScreen(
@@ -252,6 +250,10 @@ fun MyNavHost(
             About(navController = navController,viewModel = viewModel)
         }
 
+        composable(route = Screen.Export.route) {
+                 ExportScreen(navController = navController, viewModel = viewModel, homeViewModel = HomeViewModel() )
+        }
+
         composable(route = Screen.Layout.route) {
             Layout(
                 navController = navController,
@@ -317,7 +319,6 @@ fun MyNavHost(
             }
         }
 
-
         composable(route = Screen.ChangePassword.route) {
 
            ChangePassword(
@@ -327,13 +328,3 @@ fun MyNavHost(
         }
     }
 }
-
-
-
-
-
-
-
-
-
-

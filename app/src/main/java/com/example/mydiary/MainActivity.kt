@@ -61,7 +61,6 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
                         viewModel = diaryViewModel,
                         homeViewModel = homeViewModel,
                         detailViewModel = detailViewModel,
-                        application = application
                     )
                 }
 

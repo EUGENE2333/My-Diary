@@ -178,17 +178,6 @@ fun RateAndReview(
                             // Open the app page in the browser instead
                             Log.e("RateAndReview", "NOT YET IN PLAY STORE")
 
-                            /*
-                            val browserIntent = Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
-                            )
-                            context.startActivity(browserIntent)
-                            viewModel.viewModelScope.launch(Dispatchers.IO) {
-                                scaffoldState.snackbarHostState.showSnackbar(
-                                    "Password has been set!!"
-                                )
-                            } */
                         }
                     },
                     modifier = Modifier.fillMaxWidth()

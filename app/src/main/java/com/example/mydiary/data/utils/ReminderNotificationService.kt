@@ -91,17 +91,6 @@ class ReminderForegroundService : Service() {
         const val DISMISS_ACTION = "com.example.reminder.DISMISS"
 
     }
-
-   /* override fun onDestroy() {
-        // Service is destroyed, restart it
-        val restartIntent = Intent(this, ReminderForegroundService::class.java)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(restartIntent)
-        } else {
-            startService(restartIntent)
-        }
-        super.onDestroy()
-    } */
 }
 
 class ReminderDismissReceiver : BroadcastReceiver() {
@@ -112,18 +101,6 @@ class ReminderDismissReceiver : BroadcastReceiver() {
         }
     }
 }
-
- /* class BootReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-        if (intent.action == "android.intent.action.BOOT_COMPLETED") {
-            // Start the foreground service on device boot
-            val serviceIntent = Intent(context, ReminderForegroundService::class.java)
-            ContextCompat.startForegroundService(context, serviceIntent)
-        }
-    }
-} */
-
-
 
 class ReminderBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

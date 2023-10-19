@@ -19,6 +19,7 @@ sealed class Screen(val route: String){
     object Recommend: Screen("recommend_page")
     object  About: Screen("about_page")
     object  Layout: Screen("layout_page")
+    object  Export: Screen("export_page")
 
     object DiaryDetail: Screen("diary_detail_screen/{userid}")
 

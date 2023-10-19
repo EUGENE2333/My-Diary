@@ -11,7 +11,11 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
+
+
+
 const val NOTES_COLLECTION_REF = "notes"
+
 
 @Suppress("IMPLICIT_CAST_TO_ANY")
 class StorageRepository {
@@ -168,5 +172,10 @@ class StorageRepository {
             dialog.show()
         }
     }
+
 }
+
+
+
+      //class MyFileProvider : FileProvider()
 
