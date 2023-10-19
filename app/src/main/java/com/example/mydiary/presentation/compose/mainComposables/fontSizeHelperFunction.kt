@@ -12,7 +12,6 @@ fun fontSizeBasedOnFontTheme(selectedFontTheme: FontFamily): TextUnit =
     if (selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
         selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
         selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-        selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
         selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
     )  26.sp else  16.sp
 
@@ -21,6 +20,5 @@ fun headerFontSizeBasedOnFontTheme(selectedFontTheme: FontFamily): TextUnit =
     if (selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
         selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
         selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-        selectedFontTheme == FontFamily(Font(R.font.twirly)) ||
         selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
     )  37.sp else  25.sp

@@ -125,7 +125,6 @@ class PasswordManager(private val context: Context) {
             FontFamily(Font(R.font.quietmeows)) -> "quietmeows"
             FontFamily(Font(R.font.royal)) -> "royal"
             FontFamily(Font(R.font.santa)) -> "santa"
-            FontFamily(Font(R.font.twirly)) -> "twirly"
             FontFamily(Font(R.font.dj5)) -> "dj5"
             FontFamily(Font(R.font.condensedoblique)) ->  "condensedoblique"
             FontFamily(Font(R.font.first_writing)) -> "firstWriting"
@@ -151,7 +150,6 @@ class PasswordManager(private val context: Context) {
             "quietmeows" -> FontFamily(Font(R.font.quietmeows))
             "royal" ->  FontFamily(Font(R.font.royal))
             "santa" -> FontFamily(Font(R.font.santa))
-            "twirly" -> FontFamily(Font(R.font.twirly))
             "dj5"->  FontFamily(Font(R.font.dj5))
             "condensedoblique" ->  FontFamily(Font(R.font.condensedoblique))
             "firstWriting" ->  FontFamily(Font(R.font.first_writing))

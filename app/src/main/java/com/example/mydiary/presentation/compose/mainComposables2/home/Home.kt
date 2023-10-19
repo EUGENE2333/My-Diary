@@ -304,17 +304,3 @@ private fun formatDate(timestamp: Timestamp): String {
     val simpleDateFormat = SimpleDateFormat("MM-dd-yy hh:mm", Locale.getDefault())
     return simpleDateFormat.format(timestamp.toDate())
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

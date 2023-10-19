@@ -1,5 +1,6 @@
 package com.example.mydiary.presentation.compose.mainComposables2.detail
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -59,7 +60,9 @@ class DetailViewModel(
     fun getNote(noteId: String){
         repository.getNote(
             noteId = noteId,
-            onError = {},
+            onError = {
+                 Log.e("DetailViewModel:","${it?.message.toString()}")
+            },
         ){
             detailUiState = detailUiState.copy(selectedNote = it)
             detailUiState.selectedNote?.let { it1 -> setEditFields(it1) }
@@ -84,11 +87,6 @@ class DetailViewModel(
     fun resetState(){
         detailUiState = DetailUiState()
     }
-
-
-
-
-
 
 
 

@@ -65,7 +65,6 @@ fun Reminder(
                             selectedFont == FontFamily(Font(R.font.pizzat)) ||
                             selectedFont == FontFamily(Font(R.font.first_writing)) ||
                             selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFont == FontFamily(Font(R.font.twirly)) ||
                             selectedFont == FontFamily(Font(R.font.gnyrwn977))
                         ) 37.sp else  26.sp,
 
@@ -109,7 +108,6 @@ fun Reminder(
                                  selectedFont == FontFamily(Font(R.font.pizzat)) ||
                                  selectedFont == FontFamily(Font(R.font.first_writing)) ||
                                  selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                                 selectedFont == FontFamily(Font(R.font.twirly)) ||
                                  selectedFont == FontFamily(Font(R.font.gnyrwn977))
                              ) 37.sp else  26.sp,
 
