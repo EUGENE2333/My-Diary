@@ -30,18 +30,31 @@ and notes, offering a range of functionalities to enhance productivity and perso
   <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/47aecb4c-f953-44f7-ba7e-90bb7de2a14e" hspace= "10">
   </p>
 
-  
-<p>
-       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/36d7a1af-804f-4176-8d13-91fce6cded88" hspace= "10">
-  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/2364c71c-3677-47ad-b36b-20eb760475bf" hspace= "10">  
+ <p>
+       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/d4ebe099-9deb-4768-a0d7-70631015ea19" hspace= "10">
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/10af958f-61b4-47f3-9a0b-cd6589ca6a44" hspace= "10">  
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/b6bec1fd-224f-4585-9e3f-a898d8964e77" hspace= "10">
+  </p> 
+
+  <p>
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/acf50b95-d122-4da2-8b32-ae7f1daba47c" hspace= "10">  
+     <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/36d7a1af-804f-4176-8d13-91fce6cded88" hspace= "10">
   <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/bb5767be-2451-4894-9923-7eb9fb265235" hspace= "10">
-  </p>
+    
+   </p>
+
+  <p>
+       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/79a26c91-9842-45af-8a2d-21660975ee93" hspace= "10">  
+    <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/81298337-f3de-441a-ba11-f50321931628" hspace= "10">
+    <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/2364c71c-3677-47ad-b36b-20eb760475bf" hspace= "10">  
   
+  </p>
+
+ 
 <p>
-       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/81298337-f3de-441a-ba11-f50321931628" hspace= "10">
-  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/50007cd8-69b7-4022-b8c9-35c1a4348bca" hspace= "10">  
   <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/570583ed-0e7a-476d-8f5d-eb8c0ae2ebd8" hspace= "10">
   </p>
+  
 
 
 
