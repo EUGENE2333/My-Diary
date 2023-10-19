@@ -37,7 +37,6 @@ fun SignInPage(
     onNavigateToNoteHomeScreen:() -> Unit,
     onNavigateToDiaryHomeScreen:() -> Unit
 ) {
-    val loginUiState = viewModel.loginUiState
     val isError = loginUiState.loginError != null
     val context = LocalContext.current
     var hasLoggedUser = viewModel.loginSuccessful

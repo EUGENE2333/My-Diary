@@ -15,6 +15,7 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
 import com.example.mydiary.data.utils.ReminderForegroundService
 import com.example.mydiary.presentation.DiaryViewModel
+import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
 import com.example.mydiary.presentation.compose.navigation.MyNavHost
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var detailViewModel: DetailViewModel
+    private lateinit var exportViewModel: ExportViewModel
 
     private val application: MyDiaryApplication by lazy {
         applicationContext as MyDiaryApplication
@@ -50,6 +52,10 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
             this,
         ).get(DetailViewModel::class.java)
 
+       exportViewModel = ViewModelProvider(
+           this,
+       ).get(ExportViewModel:: class.java)
+
         // Initialize the TextToSpeech engine
         textToSpeech = TextToSpeech(this, this)
 
@@ -61,6 +67,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
                         viewModel = diaryViewModel,
                         homeViewModel = homeViewModel,
                         detailViewModel = detailViewModel,
+                        exportViewModel = exportViewModel
                     )
                 }
 
@@ -119,27 +126,3 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
         textToSpeech.shutdown()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

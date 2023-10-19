@@ -1,57 +1,51 @@
 package com.example.mydiary.presentation.compose.drawerComposables.exportEntries
-/*
+
 import android.content.Context
 import android.content.Intent
+import android.os.Environment
 import android.util.Log
+import androidx.compose.runtime.Stable
 import androidx.core.content.FileProvider
-import com.example.mydiary.presentation.compose.mainComposables2.home.HomeUiState
-import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
+import com.example.mydiary.data.model.Notes
 import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStreamWriter
+import java.io.FileWriter
 
 
-fun createSampleTxtFile(context: Context, homeViewModel: HomeViewModel?): File? {
-    try {
-        val homeUiState = homeViewModel?.homeUiState ?: HomeUiState()
-        val notesText = buildString {
-            homeUiState.notesList.data?.forEach { note ->
-                append("Title: ${note.title}\nDescription: ${note.description}\n\n")
-            }
+@Stable
+fun exportTxTFile(notes:List<Notes>? ,context: Context ) {
+
+    val notesText = buildString {
+        notes?.forEach { note ->
+            append("Title: ${note.title}\nDescription: ${note.description}\n\n")
         }
-        val fileName = "sample_notes.txt"
-        val fileContents = notesText
-        val file = File(context.getExternalFilesDir(null), fileName)
-
-        val outputStream = FileOutputStream(file)
-        val writer = OutputStreamWriter(outputStream)
-        writer.write(fileContents)
-        writer.close()
-        outputStream.close()
-
-        // Log the file path for debugging
-        Log.d("FileCreation", "File created: ${file.absolutePath}")
-
-        return file
-    } catch (e: Exception) {
-        e.printStackTrace()
-        return null
     }
+
+    val file = createTxtFile("notes.txt", notesText)
+
+    val shareIntent = Intent(Intent.ACTION_SEND)
+    shareIntent.type = "text/plain"
+    shareIntent.putExtra(
+        Intent.EXTRA_STREAM,
+        FileProvider.getUriForFile(context, context.packageName + ".provider", file)
+    )
+    shareIntent.putExtra(Intent.EXTRA_TEXT, notesText)
+
+    val chooserIntent = Intent.createChooser(shareIntent, "Share Notes")
+
+    context.startActivity(chooserIntent)
 }
 
 
-fun exportUserNotesAsText(context: Context, file: File, onComplete: (Boolean) -> Unit) {
-        val shareIntent = Intent(Intent.ACTION_SEND)
-        shareIntent.type = "text/plain"
-        val fileUri =
-            FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
-        shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri)
 
-        val chooserIntent = Intent.createChooser(shareIntent, "Export Notes as TXT")
-        chooserIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        context.startActivity(chooserIntent)
-
-        onComplete(true)
+private fun createTxtFile(fileName: String, content: String): File {
+    val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName)
+    try {
+        val fileWriter = FileWriter(file)
+        fileWriter.use {
+            it.write(content)
+        }
+    } catch (e: Exception) {
+        Log.e("createTxtFile", "Error creating .TXT file: ${e.message}")
     }
-
-        */
+    return file
+}

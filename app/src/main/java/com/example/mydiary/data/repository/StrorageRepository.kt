@@ -65,6 +65,7 @@ class StorageRepository {
         }
     }
 
+
     fun getNote(
         noteId: String,
         onError: (Throwable?) -> Unit,

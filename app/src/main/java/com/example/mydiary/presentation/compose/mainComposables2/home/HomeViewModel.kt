@@ -1,7 +1,6 @@
 package com.example.mydiary.presentation.compose.mainComposables2.home
 
 import android.content.Context
-import android.os.Environment
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -11,8 +10,6 @@ import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.data.repository.StorageRepository
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.FileWriter
 
 
 class HomeViewModel (
@@ -57,27 +54,6 @@ class HomeViewModel (
 
     fun deleteAccount(context: Context, navToSignUpPage: () -> Unit) =
         repository.deleteAccount(context, navToSignUpPage)
-
-
-    // Function to export notes as a TXT file
-    fun exportNotesToFile(notes: List<Notes>) {
-        val fileName = "notes.txt"
-        val notesText = buildString {
-            for (note in notes) {
-                append("Title: ${note.title}\nDescription: ${note.description}\n\n")
-            }
-        }
-
-        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName)
-        try {
-            val fileWriter = FileWriter(file)
-            fileWriter.use {
-                it.write(notesText)
-            }
-        } catch (e: Exception) {
-            // Handle any exceptions
-        }
-    }
 
 }
 

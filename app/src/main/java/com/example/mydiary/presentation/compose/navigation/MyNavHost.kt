@@ -14,6 +14,7 @@ import com.example.mydiary.presentation.compose.drawerComposables.ReccomendApp.R
 import com.example.mydiary.presentation.compose.drawerComposables.about.About
 import com.example.mydiary.presentation.compose.drawerComposables.colorAndStyle.ColorAndStyle
 import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportScreen
+import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportViewModel
 import com.example.mydiary.presentation.compose.drawerComposables.layout.Layout
 import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.*
 import com.example.mydiary.presentation.compose.drawerComposables.rateAndReview.RateAndReview
@@ -39,6 +40,7 @@ fun MyNavHost(
     viewModel: DiaryViewModel,
     homeViewModel: HomeViewModel,
     detailViewModel: DetailViewModel,
+    exportViewModel: ExportViewModel
 ) {
 
     val passwordManager = viewModel.passwordManager
@@ -251,7 +253,7 @@ fun MyNavHost(
         }
 
         composable(route = Screen.Export.route) {
-                 ExportScreen(navController = navController, viewModel = viewModel, homeViewModel = HomeViewModel() )
+                 ExportScreen(navController = navController, viewModel = viewModel, exportViewModel = exportViewModel )
         }
 
         composable(route = Screen.Layout.route) {

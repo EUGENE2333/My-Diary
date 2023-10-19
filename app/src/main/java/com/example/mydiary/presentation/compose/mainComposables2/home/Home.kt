@@ -15,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -55,7 +54,8 @@ fun Home(
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
     val selectedFontTheme = viewModel.passwordManager.getFontTheme()
     val items = homeUiState.notesList.data ?: emptyList()
-    val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    val notesText = remember { mutableStateOf("") }
 
     LaunchedEffect(key1 = Unit) {
         homeViewModel?.loadNotes()
