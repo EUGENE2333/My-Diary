@@ -22,3 +22,27 @@ and notes, offering a range of functionalities to enhance productivity and perso
 - Account Management: Empower users to log out or delete their accounts, offering complete control over their data. Implement security questions for password 
   recovery, ensuring a secure and user-friendly process
 
+  ## Screenshots
+
+<p>
+       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/58fcb1e5-63e6-407f-9e94-2d6a66c8cb72" hspace= "10">
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/2cda3a00-15d9-4430-a9c7-5cdcfd07b920" hspace= "10">  
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/47aecb4c-f953-44f7-ba7e-90bb7de2a14e" hspace= "10">
+  </p>
+
+  
+<p>
+       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/36d7a1af-804f-4176-8d13-91fce6cded88" hspace= "10">
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/2364c71c-3677-47ad-b36b-20eb760475bf" hspace= "10">  
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/bb5767be-2451-4894-9923-7eb9fb265235" hspace= "10">
+  </p>
+  
+<p>
+       <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/81298337-f3de-441a-ba11-f50321931628" hspace= "10">
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/50007cd8-69b7-4022-b8c9-35c1a4348bca" hspace= "10">  
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/570583ed-0e7a-476d-8f5d-eb8c0ae2ebd8" hspace= "10">
+  </p>
+
+
+
+
