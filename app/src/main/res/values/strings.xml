@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">My Diary</string>
+    <string name="diary_description">
+        This Diary Application is a vault for your daily life experiences, ideas, and journal. Writing down is a therapy on its own way! Set a reminder to update your diary!
+    </string>
 
 </resources>

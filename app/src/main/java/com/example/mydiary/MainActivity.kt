@@ -22,7 +22,6 @@ import com.example.mydiary.presentation.compose.navigation.MyNavHost
 import com.example.mydiary.ui.theme.MyDiaryTheme
 
 
-
 class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
     private lateinit var diaryViewModel: DiaryViewModel
     private lateinit var textToSpeech: TextToSpeech
@@ -34,27 +33,17 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
         applicationContext as MyDiaryApplication
     }
 
-   // @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
-        diaryViewModel = ViewModelProvider(
-            this,
-            application.diaryViewModelFactory
-        ).get(DiaryViewModel::class.java)
+        diaryViewModel = ViewModelProvider(this, application.diaryViewModelFactory).get(DiaryViewModel::class.java)
 
-        homeViewModel = ViewModelProvider(
-            this,
-        ).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this,).get(HomeViewModel::class.java)
 
-        detailViewModel = ViewModelProvider(
-            this,
-        ).get(DetailViewModel::class.java)
+        detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
 
-       exportViewModel = ViewModelProvider(
-           this,
-       ).get(ExportViewModel:: class.java)
+       exportViewModel = ViewModelProvider(this,).get(ExportViewModel:: class.java)
 
         // Initialize the TextToSpeech engine
         textToSpeech = TextToSpeech(this, this)
@@ -83,12 +72,14 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
             insets
         }
     }
-    fun createForegroundService(title: String, message: String,imeDelayInSeconds: Long ) {
+    fun createForegroundService(title: String, message: String,days: Long ) {
 
         val intent = Intent(this, ReminderForegroundService::class.java)
         intent.putExtra("title", "Reminder")
         intent.putExtra("message", "Reminder notification set!!")
         ContextCompat.startForegroundService(this, intent)
+
+        val delayInMillis = days * 24 * 60 * 60 * 1000L // Convert days to milliseconds
 
         Handler(Looper.getMainLooper()).postDelayed({
 
@@ -97,7 +88,7 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
             serviceIntent.putExtra("message", message)
 
             ContextCompat.startForegroundService(this, serviceIntent)
-        }, imeDelayInSeconds * 1000)
+        },delayInMillis)
     }
 
 
@@ -121,7 +112,6 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
 
     override fun onStop() {
         super.onStop()
-    //    passwordManager.lockApp()
         // Shutdown the TextToSpeech engine
         textToSpeech.shutdown()
     }

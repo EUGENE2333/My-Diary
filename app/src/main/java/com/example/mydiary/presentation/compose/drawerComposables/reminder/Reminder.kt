@@ -18,18 +18,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
+import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -42,16 +41,11 @@ fun Reminder(
 
 ) {
     var sliderPosition by remember { mutableStateOf(0f) }
-    // Maintain the selected reminder time using mutableStateOf
-    val selectedReminderTime = remember { mutableStateOf(0) }
-    val message = "Come and write your experiences and ideas!"
     val mainActivity = (LocalContext.current as MainActivity)
     val selectedFont = viewModel.passwordManager.getFontTheme()
-  //  val message = remember { mutableStateOf("Don't forget to open your diary!") }
-  //  val scheduler = AndroidAlarmScheduler(context)
-  //  var alarmItem: AlarmItem? = null
-
     val scaffoldState = rememberScaffoldState()
+
+    val diaryDescription = stringResource(R.string.diary_description)
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -61,13 +55,7 @@ fun Reminder(
                     Text(
                         text = "Set Reminder",
                         color = Color.White,
-                        fontSize = if(
-                            selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                        ) 37.sp else  26.sp,
-
+                        fontSize = headerFontSizeBasedOnFontTheme(selectedFont),
                         fontFamily = selectedFont
                     )
                 },
@@ -104,13 +92,7 @@ fun Reminder(
                              text = "Set a reminder to open diary",
                              style = MaterialTheme.typography.subtitle1,
                              color = Color.White,
-                             fontSize = if(
-                                 selectedFont == FontFamily(Font(R.font.pizzat)) ||
-                                 selectedFont == FontFamily(Font(R.font.first_writing)) ||
-                                 selectedFont == FontFamily(Font(R.font.slimshoot)) ||
-                                 selectedFont == FontFamily(Font(R.font.gnyrwn977))
-                             ) 37.sp else  26.sp,
-
+                             fontSize = headerFontSizeBasedOnFontTheme(selectedFont),
                              fontFamily = selectedFont
                          )
                      }
@@ -120,9 +102,7 @@ fun Reminder(
                     modifier = Modifier.padding(vertical = 10.dp,horizontal = 10.dp).fillMaxWidth()
                 ) {
                     Text(
-                        text = "This Diary Application is a vault for your daily life experiences,"+
-                                " ideas, and journal.Writing down is a therapy on it's own way! Set a"+
-                                " reminder to update your diary !",
+                        text = diaryDescription,
                         style = MaterialTheme.typography.subtitle2,
                         fontSize =fontSizeBasedOnFontTheme(selectedFont),
                         color = Color.White,
@@ -134,7 +114,10 @@ fun Reminder(
                     modifier = Modifier.padding(vertical = 7.dp).fillMaxWidth()
                 ) {
                     Text(
-                        text =  "weeeee" + sliderPosition.toInt().toString(),
+                        text = if(sliderPosition.toInt() == 1)
+                            sliderPosition.toInt().toString() + " " + "day"
+                               else
+                            sliderPosition.toInt().toString() + " " + "days",
                         color = Color.White,
                         fontFamily = selectedFont,
                         fontSize = fontSizeBasedOnFontTheme(selectedFont)
@@ -147,38 +130,30 @@ fun Reminder(
                         .padding(horizontal = 15.dp),
                     value = sliderPosition,
                     onValueChange = { sliderPosition = it },
-                    valueRange = 0f..130f,
+                    valueRange = 0f..7f,
                   //  steps = 4,
                     colors = SliderDefaults.colors(activeTickColor = Color.White, thumbColor = Color.Red)
 
                 )
                     Row (
                         modifier = Modifier.padding(vertical = 10.dp),
-                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
 
                             ){
                         // Button to set the reminder and show a notification
                         Button(
                             onClick = {
-                             /*   alarmItem = AlarmItem(
-                                  time = LocalDateTime.now()
-                                        .plusSeconds(sliderPosition.toLong())
-
-                                )
-                                alarmItem?.let(scheduler::schedule) */
-                                //     setReminder(selectedReminderTime.value, context)
-                             //   val time = LocalDateTime.now().plusSeconds(sliderPosition.toLong())
-                                val delayInSeconds = sliderPosition.toLong()
+                                val days = sliderPosition.toLong()
                                 val title = "Reminder"
                                 val message = "Come and write your experiences and ideas!"
-                                mainActivity.createForegroundService(title, message, delayInSeconds)
+                                mainActivity.createForegroundService(title, message, days)
 
                                 viewModel.viewModelScope.launch {
                                     scaffoldState.snackbarHostState.showSnackbar("Reminder scheduled to " + sliderPosition.toInt().toString() + "days")
                                 }
                             },
-                            modifier = Modifier.padding(10.dp)
+                            modifier = Modifier.padding(start= 100.dp)
                         ) {
                             Text(
                                 "Set Reminder",
@@ -186,11 +161,6 @@ fun Reminder(
                                 fontSize = fontSizeBasedOnFontTheme(selectedFont)
                             )
                         }
-                   /*     Button(
-                            onClick = {alarmItem?.let (scheduler::cancel)  }
-                        ) {
-                            Text("Cancel Reminder")
-                        }  */
                     }
 
             }
