@@ -214,7 +214,14 @@ fun MyNavHost(
     }
 
         composable(route = Screen.SignUpPage.route) {
-           SignUpPage(navController = navController, viewModel = viewModel)
+           SignUpPage(navController = navController, viewModel = viewModel, onNavigateToDiaryList = {
+               navController.navigate(Screen.DiaryList.route) {
+                   launchSingleTop = true
+                   popUpTo(route = Screen.SignInPage.route) {
+                       inclusive = true
+                   }
+               }
+           })
         }
 
         composable(route = Screen.SignInPage.route) {

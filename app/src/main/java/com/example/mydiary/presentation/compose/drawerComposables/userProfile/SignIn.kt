@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
@@ -40,7 +41,6 @@ fun SignInPage(
     val loginUiState = viewModel.loginUiState
     val isError = loginUiState.loginError != null
     val context = LocalContext.current
-    var hasLoggedUser = viewModel.loginSuccessful
     val scaffoldState = rememberScaffoldState()
     val isNoteFormat by viewModel.isNoteFormat.collectAsState(initial = false)
 
@@ -64,7 +64,7 @@ fun SignInPage(
             ) {
                 Text(
                     text = "Log in to an existing Account",
-                    style = typography.h3,
+                   fontSize = 20.sp,
                     fontWeight = FontWeight.Black,
                     color = MaterialTheme.colors.primary,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -101,7 +101,7 @@ fun SignInPage(
                     onClick = {
                         viewModel.viewModelScope.launch {
                         viewModel.loginUser(context)
-                                if(hasLoggedUser.value) {
+                                if(loginUiState.isSuccessLogin) {
                                     if(isNoteFormat){
                                         onNavigateToNoteHomeScreen.invoke()
                                     }else{
@@ -140,7 +140,6 @@ fun SignInPage(
                 if(loginUiState.isLoading){
                     CircularProgressIndicator()
                 }
-
 
             }
         })

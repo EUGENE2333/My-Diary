@@ -38,10 +38,6 @@ class DiaryViewModel(
        private set
 
 
-    private val _loginSuccessful = MutableStateFlow(false)
-    var loginSuccessful: MutableStateFlow<Boolean> = _loginSuccessful
-
-
     val enabledFlow: Flow<Boolean> = preferencesManager.enabledFlow
     val isNoteFormat: Flow<Boolean> = preferencesManager.isFormatFlow
 
@@ -93,7 +89,6 @@ class DiaryViewModel(
             authRepository.createUser(loginUiState.userNameSignUp, loginUiState.passwordSignUp){
                     isSuccessful ->
                 if(isSuccessful){
-                    loginSuccessful.value = true
                    Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
                     loginUiState = loginUiState.copy(isSuccessLogin = true)
                     passwordManager.setUserAccount(currentUser?.email.toString())
@@ -123,7 +118,6 @@ class DiaryViewModel(
             authRepository.loginUser(loginUiState.userName, loginUiState.password){
                     isSuccessful ->
                 if(isSuccessful){
-                    loginSuccessful.value = true
                     Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
                     loginUiState = loginUiState.copy(isSuccessLogin = true)
                     passwordManager.setUserAccount(currentUser?.email.toString())
@@ -167,24 +161,3 @@ class DiaryViewModel(
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
