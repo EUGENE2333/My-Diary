@@ -69,4 +69,16 @@ object Utils {
         FontFamily(Font(R.font.gnyrwn977)),
         )
 
+    val questions = listOf(
+        "What is the name of your favorite movie?",
+        "What is your mother's maiden name?",
+        "Wht is your favourite color?",
+        "What is your favorite childhood cartoon show?",
+        "What is the name of your best childhood friend?",
+        "What is your favorite book or author?",
+        "What is the name of your childhood hero or role model?",
+        "What is the middle name of your youngest sibling?",
+        "What was the name of your first school?"
+    )
+
 }

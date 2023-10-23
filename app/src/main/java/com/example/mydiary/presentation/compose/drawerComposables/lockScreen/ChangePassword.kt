@@ -82,10 +82,11 @@ fun ChangePassword(
                     onDismissRequest = { expanded = false }
                 ) {
                     androidx.compose.material3.DropdownMenuItem(
-                        text = { androidx.compose.material3.Text("Remove Lock") },
+                        text = { Text(text = "Remove Lock", color = Color.Black) },
                         onClick = {
                             viewModel.viewModelScope.launch(Dispatchers.IO) {
                                 passwordManager.setPassword("null")
+                                passwordManager.setQuestionAnswer("","")
                                 withContext(Dispatchers.Main) {
                                     scaffoldState.snackbarHostState.showSnackbar(
                                         "App Lock has been removed"

@@ -3,6 +3,8 @@ package com.example.mydiary.presentation.compose.drawerComposables.lockScreen
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.typography
@@ -12,9 +14,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.example.mydiary.R
+import com.example.mydiary.data.utils.Utils.questions
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.navigation.Screen
@@ -27,13 +33,14 @@ import kotlinx.coroutines.withContext
 fun SecurityQuestions(
     navController: NavController,
     viewModel: DiaryViewModel,
-    onQuestionSet: (String) -> Unit,
 ) {
     var answer by remember { mutableStateOf("") }
     val selectedFont = viewModel.passwordManager.getFontTheme()
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
     val scaffoldState = rememberScaffoldState()
-    // val context = LocalContext.current
+    var expanded by remember { mutableStateOf(false) }
+    var selectedQuestion by remember { mutableStateOf("") }
+    var isQuestionSelected by remember { mutableStateOf(false) }
 
 
 
@@ -60,35 +67,75 @@ fun SecurityQuestions(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(16.dp),
+                    .padding(top= 96.dp,start = 10.dp, end = 10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
             ) {
-
                 Spacer(modifier = Modifier.height(25.dp))
-                Text(
-                    text = "What is the name of your favourite movie?",
-                    style = typography.subtitle2,
-                    fontFamily = selectedFont,
-                    color =  Color.White
-                )
-                Spacer(modifier = Modifier.height(3.dp))
-                TextField(
-                    value =answer,
-                    onValueChange = { answer = it },
-                    maxLines = 1,
+                Row(
+                    modifier = Modifier.clickable {  expanded = !expanded },
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "Select a security question",
+                        style = typography.subtitle2,
+                        fontFamily = selectedFont,
+                        fontSize = 23.sp,
+                        color = Color.White
+                    )
+                    Image(
+                        painter =if(!expanded)
+                            painterResource(id = R.drawable.keyboard_arrow_down)
+                        else
+                            painterResource(id = R.drawable.keyboard_arrow_up),
+                        contentDescription = "share Image",
+                        modifier = Modifier.size(40.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.height(13.dp))
+
+                // Dropdown to select a security question
+                DropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { selectedQuestion = "" },
                     modifier = Modifier.fillMaxWidth()
-                )
+                ) {
+                    questions.forEach { question ->
+                        DropdownMenuItem(onClick = {
+                            selectedQuestion = question
+                            isQuestionSelected = true
+                            expanded = false
+                        }) {
+                            Text(text = question)
+                        }
+                    }
+                }
+
                 Spacer(modifier = Modifier.height(15.dp))
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    onClick = {
+
+                if(isQuestionSelected){
+                    Text(
+                        text = selectedQuestion,
+                        style = typography.subtitle2,
+                        fontFamily = selectedFont,
+                        color = Color.White,
+                        fontSize = 23.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(15.dp))
+                    TextField(
+                        value =answer,
+                        onValueChange = { answer = it },
+                        maxLines = 1,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Spacer(modifier = Modifier.height(15.dp))
+
+                    Button(
+                        onClick = {
                             viewModel.viewModelScope.launch(Dispatchers.IO) {
                                 try {
-                                    if(answer.isNotEmpty()) {
-                                        val passwordManager = viewModel.passwordManager
-                                        passwordManager.setQuestionAnswer(answer)
-                                        onQuestionSet(answer)
+                                    if ( answer.trim().isNotEmpty()) {
+                                        viewModel.passwordManager.setQuestionAnswer(selectedQuestion,answer.trim())
                                         withContext(Dispatchers.Main) {
                                             scaffoldState.snackbarHostState.showSnackbar(
                                                 "Security Question has been set!!"
@@ -107,10 +154,11 @@ fun SecurityQuestions(
                                     Log.e(TAG, "Error setting password: $e")
                                 }
                             }
-                    },
-                    //  enabled = isPasswordConfirmed,
-                ) {
-                    Text(text = "Done",style = typography.subtitle2, fontFamily = selectedFont)
+                        },
+                    ) {
+                        Text(text = "Done",style = typography.subtitle2, fontFamily = selectedFont)
+                    }
+
                 }
 
             }

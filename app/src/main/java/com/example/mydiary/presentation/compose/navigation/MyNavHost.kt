@@ -58,6 +58,7 @@ fun MyNavHost(
                     ){
                 if(!viewModel.hasUser ){
                     viewModel.passwordManager.setPassword("null")
+                    passwordManager.setQuestionAnswer("","")
                     navController.navigate( Screen.SignInPage.route){
                         launchSingleTop = true
                         popUpTo(0){
@@ -166,9 +167,6 @@ fun MyNavHost(
             SecurityQuestions(
                 navController = navController,
                 viewModel = viewModel,
-                onQuestionSet ={
-                    passwordManager.setQuestionAnswer(it).toString()
-                }
             )
         }
         composable(route = Screen.ForgotPassword.route){

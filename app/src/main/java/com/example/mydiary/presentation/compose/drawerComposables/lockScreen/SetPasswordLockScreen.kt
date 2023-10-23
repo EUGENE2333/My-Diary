@@ -158,7 +158,7 @@ fun LockScreen(
                         )
                     },
                     text = {
-                        androidx.compose.material3.Text(
+                       Text(
                             text = "Password has been set successfully! \nPlease add security question" +
                                     " to be used to recover your password.",
                             fontFamily = selectedFont

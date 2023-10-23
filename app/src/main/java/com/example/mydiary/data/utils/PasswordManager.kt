@@ -20,7 +20,8 @@ class PasswordManager(private val context: Context) {
         private const val APP_LOCKED_KEY = "app_locked"
         private const val COLOR_THEME_KEY = "color_theme"
         private const val FONT_THEME_KEY = "font_theme"
-        private const val SECURITY_QUESTION_KEY = "answer"
+        private const val SECURITY_QUESTION_KEY = "question"
+        private const val SECURITY_ANSWER_KEY = "answer"
         private const val USER_ACCOUNT = "password"
     }
 
@@ -69,16 +70,22 @@ class PasswordManager(private val context: Context) {
         return false
     }
 
-    fun setQuestionAnswer(answer: String) {
-        prefs.edit().putString(SECURITY_QUESTION_KEY,answer).apply()
+    fun setQuestionAnswer(question: String, answer: String) {
+        prefs.edit()
+            .putString(SECURITY_QUESTION_KEY, question)
+            .putString(SECURITY_ANSWER_KEY, answer)
+            .apply()
     }
 
-    private fun getQuestionAnswer(): String? {
+     fun getQuestion(): String? {
         return prefs.getString(SECURITY_QUESTION_KEY, "")
     }
+     fun getAnswer(): String? {
+        return prefs.getString(SECURITY_ANSWER_KEY, "")
+    }
 
-    fun verifyQuestionAnswer(answer: String): Boolean {
-        return answer == getQuestionAnswer()
+    fun verifyAnswer(answer: String): Boolean {
+        return answer == getAnswer()
     }
     fun isQuestionAnswerSet(): Boolean {
         return prefs.contains(SECURITY_QUESTION_KEY)

@@ -40,6 +40,7 @@ fun ForgotPassword(
 ) {
     var answer by remember { mutableStateOf("") }
     var isAnswerConfirmed by remember { mutableStateOf(false) }
+    val question = viewModel.passwordManager.getQuestion().toString()
     val savedPassword = viewModel.passwordManager.getPassword().toString()
     val selectedFont = viewModel.passwordManager.getFontTheme()
     val scaffoldState = rememberScaffoldState()
@@ -80,7 +81,13 @@ fun ForgotPassword(
             ) {
 
                 Spacer(modifier = Modifier.height(25.dp))
-                Text(text = "What is the name of your favourite movie?",style = typography.subtitle2,fontFamily = selectedFont)
+                Text(
+                    text = question,
+                    style = typography.subtitle2,
+                    fontFamily = selectedFont,
+                    color = Color.Black,
+                    fontSize = 23.sp
+                )
                 Spacer(modifier = Modifier.height(3.dp))
                 TextField(
                     value =answer,
@@ -103,7 +110,7 @@ fun ForgotPassword(
                         viewModel.viewModelScope.launch(Dispatchers.IO) {
                             try {
                                 val passwordManager = viewModel.passwordManager
-                                if (passwordManager.verifyQuestionAnswer(answer)){
+                                if (passwordManager.verifyAnswer(answer.trim())){
                                     isAnswerConfirmed = true
                                 }else{
                                     withContext(Dispatchers.Main) {
@@ -119,7 +126,6 @@ fun ForgotPassword(
                             }
                         }
                     },
-                    //  enabled = isPasswordConfirmed,
                 ) {
                     Text(text = "Done",style = typography.subtitle2, fontFamily = selectedFont)
                 }
