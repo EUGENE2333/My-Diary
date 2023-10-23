@@ -60,7 +60,8 @@ fun SignInPage(
                 modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = "Log in to an existing Account",

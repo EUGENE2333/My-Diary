@@ -69,7 +69,7 @@ import kotlinx.coroutines.delay
                 selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
                 selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
                 selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-            ) 50.sp else 37.sp,
+            ) 58.sp else 40.sp,
 
             fontFamily = selectedFontTheme,
             color = Color.White,

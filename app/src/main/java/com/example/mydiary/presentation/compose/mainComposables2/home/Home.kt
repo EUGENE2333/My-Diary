@@ -99,7 +99,7 @@ fun Home(
 
                 title = {
                     Text(
-                        text = "Home",
+                        text = "Write Note",
                         color = Color.White,
                         fontFamily = selectedFontTheme,
                         fontSize = headerFontSizeBasedOnFontTheme(selectedFontTheme)

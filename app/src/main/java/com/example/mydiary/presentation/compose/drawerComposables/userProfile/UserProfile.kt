@@ -113,14 +113,12 @@ fun UserProfile(
                     modifier = Modifier
                         .size(140.dp)
                         .clip(CircleShape)
-                      //  .align(Alignment.CenterHorizontally)
                 )
 
                 Text(
                     text = userEmail,
                     fontFamily = FontFamily.Default,
                     fontSize = 21.sp,
-                  //  modifier = Modifier.align(Alignment.CenterHorizontally),
                     color = Color.White
                 )
 
@@ -128,7 +126,6 @@ fun UserProfile(
                     text = "Your account is active.",
                     fontFamily = FontFamily.Default,
                     fontSize = 10.sp,
-                 //   modifier = Modifier.align(Alignment.CenterHorizontally),
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(23.dp))

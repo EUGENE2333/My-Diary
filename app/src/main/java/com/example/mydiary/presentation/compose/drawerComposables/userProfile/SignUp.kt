@@ -41,7 +41,7 @@ fun SignUpPage(
         topBar = {
             TopAppBar(
                 title = {
-                    androidx.compose.material.Text(text = "MyDiary", color = Color.White)
+                  Text(text = "My Diary", color = Color.White)
                 },
                 backgroundColor = Color(0xFF2C2428),
             )

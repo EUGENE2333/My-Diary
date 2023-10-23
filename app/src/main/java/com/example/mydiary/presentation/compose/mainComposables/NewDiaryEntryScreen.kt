@@ -60,12 +60,7 @@ fun NewDiaryEntryScreen(
                         text = "Write Note",
                         color = Color.White,
                         fontFamily = selectedFontTheme,
-                        fontSize = if(
-                            selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
-                            selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
-                        ) 47.sp else  17.sp,
+                        fontSize = headerFontSizeBasedOnFontTheme(selectedFontTheme = selectedFontTheme)
                     )},
                 backgroundColor = Color(0xFF2C2428),
                 navigationIcon = {
