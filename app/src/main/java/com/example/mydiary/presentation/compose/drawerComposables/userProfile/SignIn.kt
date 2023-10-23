@@ -107,6 +107,7 @@ fun SignInPage(
                                     }else{
                                         onNavigateToDiaryHomeScreen.invoke()
                                     }
+                                    viewModel.passwordManager.setPassword("null")
                                 }
 
                         }

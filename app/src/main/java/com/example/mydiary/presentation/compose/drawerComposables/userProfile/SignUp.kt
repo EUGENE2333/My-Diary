@@ -106,7 +106,7 @@ fun SignUpPage(
                             delay(1000)
                             if (loginUiState.isSuccessLogin) {
                                 onNavigateToDiaryList.invoke()
-                                //  viewModel.passwordManager.isPasswordSet()
+                                viewModel.passwordManager.setPassword("null")
                             }
                         }
                     },

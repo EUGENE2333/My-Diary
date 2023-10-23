@@ -57,6 +57,7 @@ fun MyNavHost(
                 viewModel = viewModel
                     ){
                 if(!viewModel.hasUser ){
+                    viewModel.passwordManager.setPassword("null")
                     navController.navigate( Screen.SignInPage.route){
                         launchSingleTop = true
                         popUpTo(0){

@@ -33,7 +33,6 @@ fun LockScreen(
     navController: NavController,
     viewModel: DiaryViewModel,
     onPasswordSet: (String) -> Unit,
-// onPasswordVerified: (Boolean) -> Unit
 ) {
     var password by remember { mutableStateOf("") }
     var passwordConfirmation by remember { mutableStateOf("") }
@@ -124,12 +123,6 @@ fun LockScreen(
                                     onPasswordSet(password)
                                     passwordManager.lockApp()
                                     isPasswordSet = passwordManager.isPasswordSet()
-                                  /*  withContext(Dispatchers.Main) {
-                                        scaffoldState.snackbarHostState.showSnackbar(
-                                            "Password has been set!!"
-                                        )
-                                     //   navController.popBackStack()
-                                    } */
                                 } catch (e: Exception) {
                                     // Handle any exceptions that may occur
                                     Log.e("LockScreen", "Error setting password: $e")
@@ -144,7 +137,7 @@ fun LockScreen(
                             }
                         }
                     },
-                  //  enabled = isPasswordConfirmed,
+
                 ) {
                     Text(
                         text = "Set Password",
@@ -157,7 +150,7 @@ fun LockScreen(
             }
             if (isPasswordSet) {
                 AlertDialog(
-                    onDismissRequest = { /* Handle dialog dismiss if needed */ navController.popBackStack() },
+                    onDismissRequest = { navController.popBackStack() },
                     title = {
                         androidx.compose.material3.Text(
                             text = "Add Security Question",
