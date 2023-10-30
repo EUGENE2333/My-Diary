@@ -12,6 +12,9 @@ buildscript {
       //  kotlin_version = '1.5.10'
 
     }
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.10'
+    }
 
 
 }
