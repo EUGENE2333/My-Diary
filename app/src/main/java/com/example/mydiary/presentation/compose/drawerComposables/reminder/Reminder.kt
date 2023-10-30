@@ -130,7 +130,7 @@ fun Reminder(
                         .padding(horizontal = 15.dp),
                     value = sliderPosition,
                     onValueChange = { sliderPosition = it },
-                    valueRange = 0f..7f,
+                    valueRange = 0f..30f,
                   //  steps = 4,
                     colors = SliderDefaults.colors(activeTickColor = Color.White, thumbColor = Color.Red)
 
@@ -144,10 +144,10 @@ fun Reminder(
                         // Button to set the reminder and show a notification
                         Button(
                             onClick = {
-                                val days = sliderPosition.toLong()
-                                val title = "Reminder"
-                                val message = "Come and write your experiences and ideas!"
-                                mainActivity.createForegroundService(title, message, days)
+                                val time = sliderPosition.toLong()
+                             //   val title = "Reminder"
+                             //   val message = "Come and write your experiences and ideas!"
+                           //     mainActivity.schedulePeriodicNotifications(time)
 
                                 viewModel.viewModelScope.launch {
                                     scaffoldState.snackbarHostState.showSnackbar("Reminder scheduled to " + sliderPosition.toInt().toString() + "days")

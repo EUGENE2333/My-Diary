@@ -1,19 +1,14 @@
 package com.example.mydiary
 
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.speech.tts.TextToSpeech
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.ViewModelProvider
-import com.example.mydiary.data.utils.ReminderForegroundService
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
@@ -72,26 +67,6 @@ class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
             insets
         }
     }
-    fun createForegroundService(title: String, message: String,days: Long ) {
-
-        val intent = Intent(this, ReminderForegroundService::class.java)
-        intent.putExtra("title", "Reminder")
-        intent.putExtra("message", "Reminder notification set!!")
-        ContextCompat.startForegroundService(this, intent)
-
-        val delayInMillis = days * 24 * 60 * 60 * 1000L // Convert days to milliseconds
-
-        Handler(Looper.getMainLooper()).postDelayed({
-
-            val serviceIntent = Intent(this, ReminderForegroundService::class.java)
-            serviceIntent.putExtra("title", title)
-            serviceIntent.putExtra("message", message)
-
-            ContextCompat.startForegroundService(this, serviceIntent)
-        },delayInMillis)
-    }
-
-
 
 
     override fun onInit(status: Int) {

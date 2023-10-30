@@ -9,7 +9,6 @@ import com.example.mydiary.presentation.DiaryViewModelFactory
 
 class MyDiaryApplication: Application() {
 
-
     val passwordManager: PasswordManager by lazy { PasswordManager(this) }
 
     private val authRepository: AuthRepository by lazy { AuthRepository()}
