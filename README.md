@@ -54,7 +54,8 @@ and notes, offering a range of functionalities to enhance productivity and perso
 <p>
   <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/1c4fc9f7-45e7-46d7-a3bc-ce01f50e177d" hspace= "10">  
   <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/570583ed-0e7a-476d-8f5d-eb8c0ae2ebd8" hspace= "10">
-  </p>
+  <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/db48c434-8e8b-4967-a6d7-8c48e5a3105b" hspace= "10">  
+</p>
   
 
 
