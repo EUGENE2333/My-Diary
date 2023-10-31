@@ -145,6 +145,11 @@ fun DiaryListScreen(
                                 DiaryEntryItem(
                                     notes = note ,
                                     viewModel = viewModel,
+                                    isSwipeToDelete = {
+                                        if(it) {
+                                            openDialog = true
+                                        }
+                                    },
                                     onLongClick = {
                                         selectedNote = note
                                         openDialog = true
