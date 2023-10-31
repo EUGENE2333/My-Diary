@@ -29,16 +29,16 @@ import java.util.*
 fun DiaryEntryItem(
     notes: Notes,
     viewModel:DiaryViewModel,
-    isSwipeToDelete:(Boolean) -> Unit,
+    onSwipeToDelete:() -> Unit,
     onLongClick: () -> Unit,
     onClick: () -> Unit,
 
-) {
+    ) {
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
     val selectedFont = viewModel.passwordManager.getFontTheme()
 
     val delete =   SwipeAction(
-        onSwipe = {isSwipeToDelete.invoke(true)},
+        onSwipe = {onSwipeToDelete.invoke()},
         icon = {
             Icon(
                 Icons.Default.Delete,
