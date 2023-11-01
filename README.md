@@ -1,7 +1,8 @@
 # My-Diary
+## Overview
 Diary, Notes and Journal App - an elegant and feature-rich mobile application developed using Kotlin,
 Jetpack Compose, and MVVM architecture. This app is designed to provide users with a seamless experience for managing their diary entries
-and notes, offering a range of functionalities to enhance productivity and personalization. Below, you'll find an overview of the app's
+and notes, offering a range of functionalities to enhance productivity and personalization.
 ## Highlights
 - User-Friendly Authentication
 - Email-Based Login: A secure and hassle-free login system based on email addresses.
