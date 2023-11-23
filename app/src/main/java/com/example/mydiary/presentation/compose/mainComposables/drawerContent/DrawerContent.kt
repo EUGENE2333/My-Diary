@@ -3,6 +3,7 @@ package com.example.mydiary.presentation.compose.mainComposables.drawerContent
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -13,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -53,6 +56,18 @@ fun DrawerContent(
     }
 
     val scaffoldState = rememberScaffoldState()
+
+    val value by rememberInfiniteTransition().animateFloat(
+        initialValue = 25f,
+        targetValue = -25f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 600,
+                easing = LinearEasing
+            ),
+            repeatMode = RepeatMode.Reverse
+        )
+    )
 
     Scaffold(
         scaffoldState = scaffoldState
@@ -200,6 +215,13 @@ fun DrawerContent(
                             painter = painterResource(id = R.drawable.add_alert),
                             contentDescription = "Reminder Image",
                             modifier = Modifier.paddingForImage()
+                                .graphicsLayer(
+                                    transformOrigin = TransformOrigin(
+                                        pivotFractionX = 0.5f,
+                                        pivotFractionY = 0.0f,
+                                    ),
+                                    rotationZ = value
+                                )
 
                         )
 
