@@ -34,7 +34,6 @@ import kotlinx.coroutines.launch
     onNavigateToNoteHomeScreen: () -> Unit,
     onNavigateToDiaryHomeScreen: () -> Unit
 ) {
-
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val selectedFontTheme = viewModel.passwordManager.getFontTheme()
@@ -208,4 +207,3 @@ import kotlinx.coroutines.launch
         }
     }
 }
-

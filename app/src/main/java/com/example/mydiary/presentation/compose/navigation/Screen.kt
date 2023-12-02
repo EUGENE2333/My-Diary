@@ -27,9 +27,6 @@ sealed class Screen(val route: String){
     object Home: Screen("home_page")
     object DiaryDetail2: Screen("diary_detail_screen2/{id}")
     object NewEntry: Screen("new_entry")
-
-
-
 }
 
 /*

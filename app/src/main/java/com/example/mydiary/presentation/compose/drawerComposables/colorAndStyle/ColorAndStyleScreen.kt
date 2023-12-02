@@ -17,7 +17,6 @@ import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 
-
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ColorAndStyle(
@@ -29,7 +28,6 @@ fun ColorAndStyle(
     val selectedFontTheme = viewModel.selectedFont.collectAsState()
     val selectedFont by rememberUpdatedState(viewModel.passwordManager.getFontTheme())
     val scaffoldState = rememberScaffoldState()
-
 
     Scaffold(
         scaffoldState = scaffoldState,

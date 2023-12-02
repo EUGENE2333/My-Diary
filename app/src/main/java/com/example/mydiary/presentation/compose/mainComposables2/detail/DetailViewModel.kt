@@ -87,9 +87,6 @@ class DetailViewModel(
     fun resetState(){
         detailUiState = DetailUiState()
     }
-
-
-
 }
 
 data class DetailUiState(

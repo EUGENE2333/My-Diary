@@ -23,13 +23,9 @@ class ExportViewModel: ViewModel() {
 
     private val _exportUiState = MutableStateFlow(ExportUiState())
     val exportUiState: StateFlow<ExportUiState> = _exportUiState
-
-
     init {
         getNotes(userId)
     }
-
-
     private fun getNotes(userId: String) {
         firestore.collection("notes")
             .whereEqualTo("userId", userId)

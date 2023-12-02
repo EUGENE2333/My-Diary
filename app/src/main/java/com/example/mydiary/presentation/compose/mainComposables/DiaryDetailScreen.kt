@@ -25,7 +25,6 @@ import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "SuspiciousIndentation",
     "CoroutineCreationDuringComposition"
@@ -38,7 +37,6 @@ fun DiaryDetailScreen(
     noteId: String,
     onNavigate: () -> Unit
 ) {
-
     val detailUiState = detailViewModel!!.detailUiState
     val scaffoldState = rememberScaffoldState()
     val selectedFontTheme = viewModel.passwordManager.getFontTheme()
@@ -52,8 +50,6 @@ fun DiaryDetailScreen(
     LaunchedEffect(key1 = Unit){
         detailViewModel.getNote(noteId)
     }
-
-
 
     Scaffold(
         scaffoldState = scaffoldState,
@@ -173,15 +169,3 @@ fun DiaryDetailScreen(
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

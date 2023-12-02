@@ -53,15 +53,12 @@ class PasswordManager(private val context: Context) {
     fun getPassword(): String? {
         return prefs.getString(PASSWORD_KEY, "")
     }
-
     fun isAppLocked(): Boolean {
         return prefs.getBoolean(APP_LOCKED_KEY, false)
     }
-
     fun lockApp() {
         prefs.edit().putBoolean(APP_LOCKED_KEY, true).apply()
     }
-
     fun unlockApp(password: String): Boolean {
         if (verifyPassword(password)) {
             prefs.edit().putBoolean(APP_LOCKED_KEY, false).apply()
@@ -69,15 +66,13 @@ class PasswordManager(private val context: Context) {
         }
         return false
     }
-
     fun setQuestionAnswer(question: String, answer: String) {
         prefs.edit()
             .putString(SECURITY_QUESTION_KEY, question)
             .putString(SECURITY_ANSWER_KEY, answer)
             .apply()
     }
-
-     fun getQuestion(): String? {
+    fun getQuestion(): String? {
         return prefs.getString(SECURITY_QUESTION_KEY, "")
     }
      fun getAnswer(): String? {
@@ -94,20 +89,16 @@ class PasswordManager(private val context: Context) {
     fun setUserAccount(userEmail: String) {
         prefs.edit().putString(USER_ACCOUNT, userEmail).apply()
     }
-
     fun getUserAccount(): String? {
         return prefs.getString(USER_ACCOUNT, "")
     }
-
     fun setColorTheme(color: Color) {
         prefs.edit().putInt(COLOR_THEME_KEY, color.toArgb()).apply()
     }
-
     fun getColorTheme(): Color {
         val colorInt = prefs.getInt(COLOR_THEME_KEY, Color(0xFF1E6D65).toArgb())
         return Color(colorInt)
     }
-
     fun setFontTheme(font: FontFamily) {
         val fontName = getFontNameFromFamily(font)
         prefs.edit().putString(FONT_THEME_KEY, fontName).apply()
@@ -117,8 +108,6 @@ class PasswordManager(private val context: Context) {
         val fontName = prefs.getString(FONT_THEME_KEY, "default")
         return getFontFamilyFromName(fontName)
     }
-
-
     // Helper function to convert FontFamily to font name string
    private  fun getFontNameFromFamily(font: FontFamily): String {
         return when (font) {

@@ -32,8 +32,6 @@ import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailVi
 import com.example.mydiary.presentation.compose.mainComposables2.home.Home
 import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
 
-
-
 @Composable
 fun MyNavHost(
     navController: NavHostController = rememberNavController(),

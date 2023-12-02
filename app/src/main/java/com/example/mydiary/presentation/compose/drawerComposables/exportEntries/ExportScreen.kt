@@ -23,7 +23,6 @@ import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 
-
 @Composable
 fun ExportScreen(
     navController: NavController,
@@ -36,8 +35,6 @@ fun ExportScreen(
     val context = LocalContext.current
     val exportState = exportViewModel.exportUiState.collectAsState().value
     val notes = exportState.notesList.data
-
-
 
     Scaffold(
         scaffoldState = scaffoldState,

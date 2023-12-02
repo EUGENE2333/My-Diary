@@ -10,7 +10,6 @@ import com.example.mydiary.data.model.Notes
 import java.io.File
 import java.io.FileWriter
 
-
 @Stable
 fun exportTxTFile(notes:List<Notes>? ,context: Context ) {
 
@@ -34,8 +33,6 @@ fun exportTxTFile(notes:List<Notes>? ,context: Context ) {
 
     context.startActivity(chooserIntent)
 }
-
-
 
 private fun createTxtFile(fileName: String, content: String): File {
     val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), fileName)

@@ -11,8 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-
-
 class AuthRepository(private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()) {
     val currentUser: FirebaseUser? = firebaseAuth.currentUser
 
@@ -59,9 +57,6 @@ class CreateUserCompleteListener(private val onComplete: (Boolean) -> Unit) :
         }
     }
 }
-
-
-
 class LoginUserCompleteListener(private val onComplete: (Boolean) -> Unit) :
     OnCompleteListener<AuthResult> {
     override fun onComplete(task: Task<AuthResult>) {
@@ -72,17 +67,3 @@ class LoginUserCompleteListener(private val onComplete: (Boolean) -> Unit) :
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
