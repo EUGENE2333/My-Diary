@@ -48,6 +48,10 @@ fun SignUpPage(
         },
         content = {
 
+            if (loginUiState.isLoading) {
+                CircularProgressIndicator()
+            }
+
             Column(
                 modifier = modifier
                     .fillMaxSize()
@@ -134,9 +138,7 @@ fun SignUpPage(
 
                     }
                 }
-                if (loginUiState.isLoading) {
-                    CircularProgressIndicator()
-                }
+
 
             }
         }

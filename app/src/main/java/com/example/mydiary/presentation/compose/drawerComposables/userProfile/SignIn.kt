@@ -64,7 +64,7 @@ fun SignInPage(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Log in to an existing Account",
+                    text = "Login to an existing Account",
                    fontSize = 20.sp,
                     fontWeight = FontWeight.Black,
                     color = MaterialTheme.colors.primary,
