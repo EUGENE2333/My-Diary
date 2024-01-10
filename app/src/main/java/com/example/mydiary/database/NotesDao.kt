@@ -1,10 +1,11 @@
-package com.example.mydiary.database.model
+package com.example.mydiary.database
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.mydiary.database.model.NotesEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
