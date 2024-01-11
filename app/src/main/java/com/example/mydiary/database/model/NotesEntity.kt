@@ -8,7 +8,7 @@ import com.google.firebase.Timestamp
 @Entity(tableName = "notes")
 data class NotesEntity(
     @PrimaryKey
-    val userId: Long,
+    val userId: String,
     @ColumnInfo(defaultValue = "")
     val title: String,
     @ColumnInfo(defaultValue = "")
