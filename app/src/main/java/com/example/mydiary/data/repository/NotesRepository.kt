@@ -1,11 +1,8 @@
 package com.example.mydiary.data.repository
 
-import com.example.mydiary.database.NotesDao
-import com.example.mydiary.network.NotesNetworkDatasource
+import com.example.mydiary.data.model.Notes
+import kotlinx.coroutines.flow.Flow
 
-class NotesRepository(
-    private val notesDao: NotesDao,
-    private val network: NotesNetworkDatasource
-) {
-
+interface NotesRepository {
+    fun getNotesStream():Flow<List<Notes>>
 }
