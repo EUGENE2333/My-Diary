@@ -8,6 +8,7 @@ import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class NotesRepositoryImpl(
@@ -19,7 +20,7 @@ class NotesRepositoryImpl(
     override fun getNotesStream(range:String): Flow<Resources<List<Notes>>> = flow {
         val notesResults = withContext(ioDispatcher){
           executeRequest {
-           val localModels = network.getNotes(range).map {it.asEntity() }
+           val localModels = network.getNotes(range).map {it.asEntity()}
               notesDao.insertNotes(localModels)
               localModels.map { it.asExternalModel() }
           }
