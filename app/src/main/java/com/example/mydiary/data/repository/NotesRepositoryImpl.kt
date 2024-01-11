@@ -17,9 +17,11 @@ class NotesRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
 ): NotesRepository{
 
-    override fun getNotesStream(): Flow<List<Notes>> = flow {
+    override fun getNotesStream(range:String): Flow<List<Notes>> = flow {
         val notesResults = withContext(ioDispatcher){
-
+          executeRequest {
+           val localModels = network.getNotes(range).map { }
+          }
         }
         notesDao.getNotesEntitiesAsFlow()
             .map {
