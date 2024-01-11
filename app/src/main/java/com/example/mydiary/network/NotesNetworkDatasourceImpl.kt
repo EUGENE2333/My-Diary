@@ -29,8 +29,8 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
                 .addSnapshotListener{snapshot,e ->
                     val response = if(snapshot != null){
                         //deserialize the data return so that it can be in form of JSON format
-                        val notes = snapshot.toObjects(NetworkNotes::class.java)
-                        Resources.Success(data = notes)
+                        val networkNotes = snapshot.toObjects(NetworkNotes::class.java)
+                        Resources.Success(data = networkNotes)
                     }else{
                         e?.cause?.let { Resources.Error(throwable = it) }
                     }
