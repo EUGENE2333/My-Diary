@@ -1,4 +1,4 @@
-package com.example.mydiary.network
+package com.example.mydiary.network.module
 
 import com.google.firebase.Timestamp
 

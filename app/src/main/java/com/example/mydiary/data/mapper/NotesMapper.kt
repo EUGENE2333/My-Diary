@@ -2,7 +2,7 @@ package com.example.mydiary.data.mapper
 
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.database.model.NotesEntity
-import com.example.mydiary.network.NetworkNotes
+import com.example.mydiary.network.module.NetworkNotes
 
 /**
  * Converts the network model to the local model for persisting
