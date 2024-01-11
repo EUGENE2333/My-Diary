@@ -13,6 +13,9 @@ interface NotesDao {
 
     @Query(value = "SELECT * FROM notes")
     fun getNotesEntitiesAsFlow(): Flow<List<NotesEntity>>
+
+    @Query(value = "SELECT * FROM notes where userId = :userId")
+    fun getNoteEntityById(userId: String): NotesEntity
     @Insert
     suspend fun insertNotes(entities: List<NotesEntity>)
     @Update
