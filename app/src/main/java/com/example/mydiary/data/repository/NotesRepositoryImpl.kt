@@ -27,7 +27,8 @@ class NotesRepositoryImpl(
         emit(notesResults)
     }
 
-    override suspend fun getSpecificNote(id: String): Resources<Notes> = withContext(ioDispatcher){
-
+    override suspend fun getSpecificNote(userId: String): Resources<Notes> = withContext(ioDispatcher){
+        val localModel =  notesDao.getNoteEntityById(userId)
+        Resources.Success(localModel.asExternalModel())
     }
 }
