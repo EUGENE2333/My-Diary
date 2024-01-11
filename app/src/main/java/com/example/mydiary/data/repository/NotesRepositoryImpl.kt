@@ -26,4 +26,8 @@ class NotesRepositoryImpl(
         }
         emit(notesResults)
     }
+
+    override suspend fun getSpecificNote(id: String): Resources<Notes> = withContext(ioDispatcher){
+
+    }
 }
