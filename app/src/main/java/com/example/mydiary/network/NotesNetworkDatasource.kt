@@ -7,9 +7,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface NotesNetworkDatasource {
     suspend fun getNotes(userId:String): Flow<Resources<List<NetworkNotes>>>
-    suspend fun getSpecificNote(
-        noteId: String,
-        onError: (Throwable?) -> Unit,
-        onSuccess: (Notes?) -> Unit
-    ): List<NetworkNotes>
 }

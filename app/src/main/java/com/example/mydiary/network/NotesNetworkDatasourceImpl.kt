@@ -49,12 +49,4 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
             snapshotStateListener?.remove()
         }
     }
-
-    override suspend fun getSpecificNote(
-        noteId: String,
-        onError: (Throwable?) -> Unit,
-        onSuccess: (Notes?) -> Unit
-    ): List<NetworkNotes> {
-        TODO("Not yet implemented")
-    }
 }
