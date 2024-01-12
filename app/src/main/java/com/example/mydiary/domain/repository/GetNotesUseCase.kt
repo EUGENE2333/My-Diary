@@ -1,19 +1,11 @@
 package com.example.mydiary.domain.repository
 
 import com.example.mydiary.data.model.Notes
-import com.example.mydiary.data.repository.NotesRepository
 import com.example.mydiary.data.repository.Resources
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 
-abstract class GetNotesUseCase(
-    private val notesRepository: NotesRepository
-){
-    operator fun invoke(range: String): Flow<Resources<List<Notes>>> =
-        notesRepository.getNotesStream(range)
+interface GetNotesUseCase {
+    fun getAllNotes(range: String): Flow<Resources<List<Notes>>>
 
-    fun getSpecificNote(id: String): Flow<Resources<Notes>> =  flow {
-        val data = notesRepository.getSpecificNote(id)
-        emit(data)
-    }
+    suspend fun getSpecificNote(id: String): Resources<Notes>
 }
