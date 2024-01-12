@@ -1,4 +1,4 @@
-package com.example.mydiary.domain
+package com.example.mydiary.domain.repository
 
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.NotesRepository
