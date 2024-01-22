@@ -13,7 +13,7 @@ data class NotesEntity(
     val title: String,
     @ColumnInfo(defaultValue = "")
     val description: String,
-    val timestamp: Timestamp = Timestamp.now(),
+    val timestamp: Timestamp,
     val colorIndex: Int = 0,
     @ColumnInfo(defaultValue = "")
     val documentId: String
