@@ -11,7 +11,7 @@ class GetNotesUseCaseImpl(  private val notesRepository: NotesRepository): GetNo
      return notesRepository.getNotesStream(range)
     }
 
-    override suspend fun getSpecificNote(id: String): Resources<Notes> {
+   /* override suspend fun getSpecificNote(id: String): Resources<Notes> {
        return notesRepository.getSpecificNote(id)
-    }
+    } */
 }
