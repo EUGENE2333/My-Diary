@@ -2,16 +2,12 @@ package com.example.mydiary.data.repository
 
 import com.example.mydiary.data.mapper.NotesDomainMapper
 import com.example.mydiary.data.mapper.NotesRemoteMapper
-import com.example.mydiary.data.mapper.asEntity
-import com.example.mydiary.data.mapper.asExternalModel
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.database.NotesDao
 import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.withContext
 
 class NotesRepositoryImpl(
@@ -28,6 +24,6 @@ class NotesRepositoryImpl(
 
     override suspend fun getSpecificNote(userId: String): Resources<Notes> = withContext(ioDispatcher){
         val localModel =  notesDao.getNoteEntityById(userId)
-        Resources.Success(localModel.asExternalModel())
+        Resources.Success(notesDomainMapper.mapToDomain(localModel))
     }
 }
