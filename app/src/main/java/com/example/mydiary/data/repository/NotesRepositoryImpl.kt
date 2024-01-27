@@ -1,5 +1,7 @@
 package com.example.mydiary.data.repository
 
+import com.example.mydiary.data.mapper.NotesDomainMapper
+import com.example.mydiary.data.mapper.NotesRemoteMapper
 import com.example.mydiary.data.mapper.asEntity
 import com.example.mydiary.data.mapper.asExternalModel
 import com.example.mydiary.data.model.Notes
@@ -15,6 +17,8 @@ class NotesRepositoryImpl(
     private val notesDao: NotesDao,
     private val network: NotesNetworkDatasource,
     private val ioDispatcher: CoroutineDispatcher,
+    private val notesRemoteMapper: NotesRemoteMapper,
+    private val notesDomainMapper: NotesDomainMapper
 ): NotesRepository{
 
     override fun getNotesStream(range:String): Flow<Resources<List<Notes>>> = flow {
