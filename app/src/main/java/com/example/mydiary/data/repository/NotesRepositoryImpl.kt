@@ -11,6 +11,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.withContext
 
 class NotesRepositoryImpl(
@@ -21,15 +22,8 @@ class NotesRepositoryImpl(
     private val notesDomainMapper: NotesDomainMapper
 ): NotesRepository{
 
-    override fun getNotesStream(range:String): Flow<Resources<List<Notes>>> = flow {
-        val notesResults = withContext(ioDispatcher){
-          executeRequest {
-           val localModels = network.getNotes(range).map {it.asEntity()}
-              notesDao.insertNotes(localModels)
-              localModels.map { it.asExternalModel() }
-          }
-        }
-        emit(notesResults)
+    override fun getNotesStream(userId:String): Flow<Resources<List<Notes>>> = flow {
+
     }
 
     override suspend fun getSpecificNote(userId: String): Resources<Notes> = withContext(ioDispatcher){
