@@ -14,7 +14,11 @@ class NotesDomainMapper(): DomainMapper<NotesEntity?, Notes?>{
     }
 
     override fun mapFromDomain(domainModel: Notes?): NotesEntity? {
-        TODO("Not yet implemented")
+        return kotlin.runCatching {
+            tryMapFromDomain(domainModel = domainModel!!)
+        }.getOrElse {
+            null
+        }
     }
 
     private fun tryMapToDomain(local: NotesEntity): Notes{
@@ -31,4 +35,19 @@ class NotesDomainMapper(): DomainMapper<NotesEntity?, Notes?>{
         }
     }
 
+    private fun tryMapFromDomain(domainModel: Notes?): NotesEntity {
+        return with(domainModel!!){
+            NotesEntity(
+                userId = userId,
+                title = title,
+                description = description,
+                timestamp = timestamp.seconds,
+                colorIndex = colorIndex,
+                documentId = documentId
+            )
+        }
+
+    }
+
 }
+
