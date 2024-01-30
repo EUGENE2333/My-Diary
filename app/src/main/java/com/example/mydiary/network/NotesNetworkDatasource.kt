@@ -13,4 +13,6 @@ interface NotesNetworkDatasource {
         description: String,
         colorIndex: Int
     ):Boolean
+
+    suspend fun deleteNote(noteId: String): Boolean
 }
