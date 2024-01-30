@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface NotesNetworkDatasource {
     suspend fun getNotes(userId:String): Flow<Resources<List<NetworkNotes>>>
+    suspend fun addNotes(userId: String,notesList:List<NetworkNotes>)
 }
