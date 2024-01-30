@@ -8,4 +8,5 @@ interface NotesRepository {
     suspend fun getSpecificNote(userId: String): Resources<Notes>
     suspend fun syncNotesFromNetwork(userId: String)
     suspend fun saveNotesToLocal(domainNotes: Notes)
+    suspend fun saveNotesToRemote(userId:String)
 }
