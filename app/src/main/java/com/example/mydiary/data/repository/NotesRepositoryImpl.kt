@@ -67,7 +67,15 @@ class NotesRepositoryImpl(
 
     }
 
-    override suspend fun deleteNote(noteId: String): Resources<Unit> {
-        TODO("Not yet implemented")
+    override suspend fun deleteNote(note: Notes): Resources<Unit> = withContext(ioDispatcher){
+        try {
+            val noteEntity = notesDomainMapper.mapFromDomain(note)
+            noteEntity?.let { notesDao.deleteNotes(it) }
+
+            Resources.Success(Unit)
+
+        } catch (e:Exception){
+            Resources.Error(e)
+        }
     }
 }
