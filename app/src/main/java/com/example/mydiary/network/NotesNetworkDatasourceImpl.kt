@@ -50,6 +50,26 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
     }
 
     override suspend fun addNotes(userId: String, notesList: List<NetworkNotes>) {
-        TODO("Not yet implemented")
+        val batch = firebaseFirestore.batch()
+
+        for (note in notesList){
+            val documentId = notesRef.document().id
+            val noteMap = mapOf(
+                "userId" to userId,
+                "title" to note.title,
+                "description" to note.description,
+                "timestamp" to note.timestamp,
+                "colorIndex" to note.colorIndex,
+                "documentId" to note.documentId
+            )
+
+            val newDocumentRef = notesRef.document(documentId)
+            batch.set(newDocumentRef,noteMap)
+        }
+        batch.commit()
+            .addOnCompleteListener {
+                //Handle completion
+                // add logging or additional error handling here
+            }
     }
 }
