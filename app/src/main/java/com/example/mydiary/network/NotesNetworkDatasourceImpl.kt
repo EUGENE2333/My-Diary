@@ -72,4 +72,13 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
                 // add logging or additional error handling here
             }
     }
+
+    override suspend fun updateNote(
+        noteId: String,
+        title: String,
+        description: String,
+        colorIndex: Int
+    ): Boolean {
+        TODO("Not yet implemented")
+    }
 }
