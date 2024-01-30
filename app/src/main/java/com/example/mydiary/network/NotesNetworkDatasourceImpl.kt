@@ -94,7 +94,11 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
             }
     }
 
-    override suspend fun deleteNote(noteId: String): Boolean {
-        TODO("Not yet implemented")
+    override suspend fun deleteNote(noteId: String): Boolean = suspendCoroutine { continuation ->
+        notesRef.document(noteId)
+            .delete()
+            .addOnCompleteListener { task ->
+                continuation.resume(task.isSuccessful)
+            }
     }
 }
