@@ -30,4 +30,8 @@ class NotesRepositoryImpl(
         val localModel =  notesDao.getNoteEntityById(userId)
         Resources.Success(notesDomainMapper.mapToDomain(localModel))
     }
+
+    override suspend fun syncNotesFromNetwork(userId: String) {
+        TODO("Not yet implemented")
+    }
 }
