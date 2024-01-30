@@ -48,4 +48,8 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
             snapshotStateListener?.remove()
         }
     }
+
+    override suspend fun addNotes(userId: String, notesList: List<NetworkNotes>) {
+        TODO("Not yet implemented")
+    }
 }
