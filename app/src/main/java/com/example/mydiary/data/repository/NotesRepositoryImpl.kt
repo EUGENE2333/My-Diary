@@ -32,6 +32,25 @@ class NotesRepositoryImpl(
     }
 
     override suspend fun syncNotesFromNetwork(userId: String) {
-        TODO("Not yet implemented")
+        network.getNotes(userId)
+            .collect{
+                when(it){
+                    is Resources.Success -> {
+                        val networkNotesList = it.data
+                        val localNotesList = networkNotesList?.mapNotNull{
+                            notesRemoteMapper.mapFromRemote(it)
+                        }
+                        if (localNotesList != null) {
+                            notesDao.insertNotes(localNotesList)
+                        }
+                    }
+                    is Resources.Error -> {
+
+                    }
+                    is Resources.Loading -> {
+
+                    }
+                }
+            }
     }
 }
