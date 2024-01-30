@@ -66,4 +66,8 @@ class NotesRepositoryImpl(
             val networkNotesList = localNotesList.map{ notesRemoteMapper.mapToRemote(localNotesList) }
 
     }
+
+    override suspend fun deleteNote(noteId: String): Resources<Unit> {
+        TODO("Not yet implemented")
+    }
 }
