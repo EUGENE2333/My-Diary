@@ -15,7 +15,7 @@ class NotesRemoteMapper():RemoteMapper<NetworkNotes,NotesEntity?> {
       }
     }
 
-    override fun mapToRemote(local: NotesEntity?): NetworkNotes {
+    fun mapToRemote(local: List<NotesEntity>): NetworkNotes {
         return tryMapToRemote(local = local!!)
     }
 

@@ -7,6 +7,7 @@ import com.example.mydiary.database.NotesDao
 import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -58,5 +59,11 @@ class NotesRepositoryImpl(
         withContext(ioDispatcher){
             notesDomainMapper.mapFromDomain(domainNotes)
         }
+    }
+
+    override suspend fun saveNotesToRemote(userId: String) {
+        val localNotesList = notesDao.getNotesEntitiesAsFlow().firstOrNull() ?: emptyList()
+            val networkNotesList = localNotesList.map{ notesRemoteMapper.mapToRemote(localNotesList) }
+
     }
 }
