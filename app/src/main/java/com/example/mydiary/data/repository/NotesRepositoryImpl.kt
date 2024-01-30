@@ -53,4 +53,10 @@ class NotesRepositoryImpl(
                 }
             }
     }
+
+    override suspend fun saveNotesToLocal(domainNotes: Notes) {
+        withContext(ioDispatcher){
+            notesDomainMapper.mapFromDomain(domainNotes)
+        }
+    }
 }
