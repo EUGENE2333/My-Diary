@@ -93,4 +93,8 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
                 continuation.resume(task.isSuccessful)
             }
     }
+
+    override suspend fun deleteNote(noteId: String): Boolean {
+        TODO("Not yet implemented")
+    }
 }
