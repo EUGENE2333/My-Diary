@@ -9,6 +9,8 @@ import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 const val NOTES_COLLECTION_REF = "notes"
@@ -78,7 +80,17 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
         title: String,
         description: String,
         colorIndex: Int
-    ): Boolean {
-        TODO("Not yet implemented")
+    ): Boolean  = suspendCoroutine { continuation ->
+        val updateData = mapOf(
+            "title" to title,
+            "description" to description,
+            "colorIndex" to colorIndex
+        )
+
+        notesRef.document(noteId)
+            .update(updateData)
+            .addOnCompleteListener { task ->
+                continuation.resume(task.isSuccessful)
+            }
     }
 }
