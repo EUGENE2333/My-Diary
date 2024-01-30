@@ -7,7 +7,9 @@ import com.example.mydiary.database.NotesDao
 import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class NotesRepositoryImpl(
@@ -16,14 +18,78 @@ class NotesRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val notesRemoteMapper: NotesRemoteMapper,
     private val notesDomainMapper: NotesDomainMapper
-): NotesRepository{
+): NotesRepository {
 
-    override fun getNotesStream(userId:String): Flow<Resources<List<Notes>>> = flow {
+    override fun getNotesStream(): Flow<List<Notes>> = notesDao.getNotesEntitiesAsFlow()
+        .map { entities ->
+            entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
+
+        }
+        .flowOn(ioDispatcher)
+
+    override suspend fun getSpecificNote(userId: String): Resources<Notes> =
+        withContext(ioDispatcher) {
+            val localModel = notesDao.getNoteEntityById(userId)
+            Resources.Success(notesDomainMapper.mapToDomain(localModel))
+        }
+
+    override suspend fun syncNotesFromNetwork(userId: String) {
+        network.getNotes(userId)
+            .collect {
+                when (it) {
+                    is Resources.Success -> {
+                        val networkNotesList = it.data
+                        val localNotesList = networkNotesList?.mapNotNull {
+                            notesRemoteMapper.mapFromRemote(it)
+                        }
+                        if (localNotesList != null) {
+                            notesDao.insertNotes(localNotesList)
+                        }
+                    }
+
+                    is Resources.Error -> {
+
+                    }
+
+                    is Resources.Loading -> {
+
+                    }
+                }
+            }
+    }
+
+    override suspend fun saveNotesToLocal(domainNotes: Notes) {
+        withContext(ioDispatcher) {
+            notesDomainMapper.mapFromDomain(domainNotes)
+        }
+    }
+
+    override suspend fun saveNotesToRemote(userId: String) {
+        val localNotesList = notesDao.getNotesEntitiesAsFlow().firstOrNull() ?: emptyList()
+        val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(localNotesList) }
 
     }
 
-    override suspend fun getSpecificNote(userId: String): Resources<Notes> = withContext(ioDispatcher){
-        val localModel =  notesDao.getNoteEntityById(userId)
-        Resources.Success(notesDomainMapper.mapToDomain(localModel))
+    override suspend fun deleteNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
+        try {
+            val noteEntity = notesDomainMapper.mapFromDomain(note)
+            noteEntity?.let { notesDao.deleteNotes(it) }
+
+            Resources.Success(Unit)
+
+        } catch (e: Exception) {
+            Resources.Error(e)
+        }
+    }
+
+    override suspend fun updateNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
+        try {
+            val noteEntity = notesDomainMapper.mapFromDomain(note)
+            noteEntity?.let { notesDao.updateNotes(it) }
+
+            Resources.Success(Unit)
+        } catch (e: Exception) {
+            Resources.Error(e)
+        }
     }
 }

@@ -9,6 +9,8 @@ import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 
 const val NOTES_COLLECTION_REF = "notes"
@@ -47,5 +49,56 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
         awaitClose {
             snapshotStateListener?.remove()
         }
+    }
+
+    override suspend fun addNotes(userId: String, notesList: List<NetworkNotes>) {
+        val batch = firebaseFirestore.batch()
+
+        for (note in notesList){
+            val documentId = notesRef.document().id
+            val noteMap = mapOf(
+                "userId" to userId,
+                "title" to note.title,
+                "description" to note.description,
+                "timestamp" to note.timestamp,
+                "colorIndex" to note.colorIndex,
+                "documentId" to note.documentId
+            )
+
+            val newDocumentRef = notesRef.document(documentId)
+            batch.set(newDocumentRef,noteMap)
+        }
+        batch.commit()
+            .addOnCompleteListener {
+                //Handle completion
+                // add logging or additional error handling here
+            }
+    }
+
+    override suspend fun updateNote(
+        noteId: String,
+        title: String,
+        description: String,
+        colorIndex: Int
+    ): Boolean  = suspendCoroutine { continuation ->
+        val updateData = mapOf(
+            "title" to title,
+            "description" to description,
+            "colorIndex" to colorIndex
+        )
+
+        notesRef.document(noteId)
+            .update(updateData)
+            .addOnCompleteListener { task ->
+                continuation.resume(task.isSuccessful)
+            }
+    }
+
+    override suspend fun deleteNote(noteId: String): Boolean = suspendCoroutine { continuation ->
+        notesRef.document(noteId)
+            .delete()
+            .addOnCompleteListener { task ->
+                continuation.resume(task.isSuccessful)
+            }
     }
 }
