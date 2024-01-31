@@ -1,7 +1,7 @@
 package com.example.mydiary.domain
 
 import com.example.mydiary.data.model.Notes
-import com.example.mydiary.data.repository.NotesRepository
+import com.example.mydiary.database.localRepository.NotesRepository
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.domain.repository.GetNotesUseCase
 import kotlinx.coroutines.flow.Flow
