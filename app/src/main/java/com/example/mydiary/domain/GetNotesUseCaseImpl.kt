@@ -7,7 +7,7 @@ import com.example.mydiary.domain.repository.GetNotesUseCase
 import kotlinx.coroutines.flow.Flow
 
 class GetNotesUseCaseImpl(  private val notesRepository: NotesRepository): GetNotesUseCase {
-    override fun getAllNotes(range: String): Flow<List<Notes>> {
+    override fun getAllNotes(): Flow<List<Notes>> {
      return notesRepository.getNotesStream()
     }
 
