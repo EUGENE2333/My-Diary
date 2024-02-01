@@ -1,8 +1,9 @@
-package com.example.mydiary.data.repository
+package com.example.mydiary.database.localRepository
 
 import com.example.mydiary.data.mapper.NotesDomainMapper
 import com.example.mydiary.data.mapper.NotesRemoteMapper
 import com.example.mydiary.data.model.Notes
+import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.database.NotesDao
 import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher

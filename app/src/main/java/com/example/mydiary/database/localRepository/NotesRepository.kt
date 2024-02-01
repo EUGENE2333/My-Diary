@@ -1,6 +1,7 @@
-package com.example.mydiary.data.repository
+package com.example.mydiary.database.localRepository
 
 import com.example.mydiary.data.model.Notes
+import com.example.mydiary.data.repository.Resources
 import kotlinx.coroutines.flow.Flow
 
 interface NotesRepository {
