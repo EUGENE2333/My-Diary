@@ -5,7 +5,7 @@ import com.example.mydiary.data.repository.Resources
 import kotlinx.coroutines.flow.Flow
 
 interface GetNotesUseCase {
-    fun getAllNotes(range: String): Flow<Resources<List<Notes>>>
+    fun getAllNotes(range: String): Flow<List<Notes>>
 
     suspend fun getSpecificNote(id: String): Resources<Notes>
 }
