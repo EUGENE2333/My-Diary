@@ -81,11 +81,8 @@ class NotesRepositoryImpl(
 
     override suspend fun saveNotesToRemote(userId: String) {
         val localNotesList = notesDao.getNotesEntitiesAsFlow().firstOrNull() ?: emptyList()
-        localNotesList.forEach {
-            val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(it) }
-        }
-
-
+        val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(it) }
+        network.addNotes(userId, networkNotesList)
     }
 
     override suspend fun deleteNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
