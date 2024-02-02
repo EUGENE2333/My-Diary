@@ -77,23 +77,23 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
             }
     }
 
-
-    override suspend fun updateNote(
-        noteId: String,
+    override fun updateNote(
         title: String,
-        description: String,
-        colorIndex: Int
-    ): Boolean  = suspendCoroutine { continuation ->
-        val updateData = mapOf(
-            "title" to title,
-            "description" to description,
-            "colorIndex" to colorIndex
+        note: String,
+        color: Int,
+        noteId: String,
+        onResult:(Boolean) -> Unit
+    ){
+        val updateData = hashMapOf<String,Any>(
+            "colorIndex" to color,
+            "description" to note,
+            "title" to title
         )
 
         notesRef.document(noteId)
             .update(updateData)
-            .addOnCompleteListener { task ->
-                continuation.resume(task.isSuccessful)
+            .addOnCompleteListener {
+                onResult(it.isSuccessful)
             }
     }
 
