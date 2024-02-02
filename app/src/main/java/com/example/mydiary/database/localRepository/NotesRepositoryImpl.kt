@@ -25,6 +25,7 @@ class NotesRepositoryImpl(
 ): NotesRepository {
     fun user() = network.user()
     fun hasUser(): Boolean = network.hasUser()
+    fun getUserId(): String =network.getUserId()
     override fun getNotesStream(): Flow<List<Notes>> = notesDao.getNotesEntitiesAsFlow()
         .map { entities ->
             entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
