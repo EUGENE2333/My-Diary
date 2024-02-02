@@ -7,6 +7,8 @@ import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.database.NotesDao
 import com.example.mydiary.database.model.NotesEntity
 import com.example.mydiary.network.NotesNetworkDatasource
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
@@ -21,7 +23,7 @@ class NotesRepositoryImpl(
     private val notesRemoteMapper: NotesRemoteMapper,
     private val notesDomainMapper: NotesDomainMapper
 ): NotesRepository {
-
+    fun user() = network.user()
     override fun getNotesStream(): Flow<List<Notes>> = notesDao.getNotesEntitiesAsFlow()
         .map { entities ->
             entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
