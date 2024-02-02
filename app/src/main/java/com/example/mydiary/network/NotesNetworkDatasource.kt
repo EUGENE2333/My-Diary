@@ -1,5 +1,6 @@
 package com.example.mydiary.network
 
+import android.content.Context
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.network.module.NetworkNotes
 import com.google.firebase.Timestamp
@@ -27,4 +28,6 @@ interface NotesNetworkDatasource {
         noteId: String,
         onComplete:(Boolean) -> Unit
     )
+    fun deleteAccount(context: Context)
+
 }
