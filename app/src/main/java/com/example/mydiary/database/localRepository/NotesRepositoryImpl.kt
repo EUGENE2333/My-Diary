@@ -26,12 +26,18 @@ class NotesRepositoryImpl(
     override fun user() = network.user()
    override  fun hasUser(): Boolean = network.hasUser()
    override fun getUserId(): String =network.getUserId()
-    override fun getNotesStream(): Flow<List<Notes>> = notesDao.getNotesEntitiesAsFlow()
-        .map { entities ->
-            entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
 
-        }
-        .flowOn(ioDispatcher)
+
+    override fun getNotesStream(): Flow<Resources<List<Notes>>> =
+        notesDao.getNotesEntitiesAsFlow()
+            .map { entities ->
+                val notesList = entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
+                Resources.Success(data = notesList)
+            }
+            .flowOn(ioDispatcher)
+
+
+
 
     override suspend fun getSpecificNote(documentId: String): Resources<Notes> =
         withContext(ioDispatcher) {
