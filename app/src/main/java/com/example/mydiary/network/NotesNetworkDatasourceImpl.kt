@@ -2,6 +2,7 @@ package com.example.mydiary.network
 
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.network.module.NetworkNotes
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
@@ -51,29 +52,31 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
         }
     }
 
-    override suspend fun addNotes(userId: String, notesList: List<NetworkNotes>) {
-        val batch = firebaseFirestore.batch()
-
-        for (note in notesList){
-            val documentId = notesRef.document().id
-            val noteMap = mapOf(
-                "userId" to userId,
-                "title" to note.title,
-                "description" to note.description,
-                "timestamp" to note.timestamp,
-                "colorIndex" to note.colorIndex,
-                "documentId" to note.documentId
-            )
-
-            val newDocumentRef = notesRef.document(documentId)
-            batch.set(newDocumentRef,noteMap)
-        }
-        batch.commit()
+    override fun addNote(
+        userId: String,
+        title: String,
+        description: String,
+        timestamp: Timestamp,
+        color: Int,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val documentId = notesRef.document().id
+        val note = NetworkNotes(
+            userId,
+            title,
+            description,
+            timestamp,
+            colorIndex = color,
+            documentId = documentId
+        )
+        notesRef
+            .document(documentId)
+            .set(note)
             .addOnCompleteListener {
-                //Handle completion
-                // add logging or additional error handling here
+                onComplete.invoke(it.isSuccessful)
             }
     }
+
 
     override suspend fun updateNote(
         noteId: String,
