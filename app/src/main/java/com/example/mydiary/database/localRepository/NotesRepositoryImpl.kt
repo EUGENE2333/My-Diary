@@ -79,10 +79,26 @@ class NotesRepositoryImpl(
         }
     }
 
-    override suspend fun saveNotesToRemote(userId: String) {
+    override suspend fun saveNotesToRemote() {
         val localNotesList = notesDao.getNotesEntitiesAsFlow().firstOrNull() ?: emptyList()
         val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(it) }
-        network.addNotes(userId, networkNotesList)
+        networkNotesList.forEach { networkNote ->
+            network.addNote(
+                userId = networkNote.userId,
+                title = networkNote.title,
+                description = networkNote.description,
+                timestamp = networkNote.timestamp,
+                color = networkNote.colorIndex,
+                onComplete = {success ->
+                    if (success)
+                    {
+                        // Note added successfully to remote
+                    }else {
+                        // Handle failure to add note to remote
+                    }
+                }
+            )
+        }
     }
 
     override suspend fun deleteNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {

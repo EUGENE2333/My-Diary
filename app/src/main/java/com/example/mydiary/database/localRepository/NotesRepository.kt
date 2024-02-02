@@ -9,7 +9,7 @@ interface NotesRepository {
     suspend fun getSpecificNote(documentId: String): Resources<Notes>
     suspend fun syncNotesFromNetwork(userId: String)
     suspend fun saveNotesToLocal(domainNotes: Notes)
-    suspend fun saveNotesToRemote(userId:String)
+    suspend fun saveNotesToRemote()
     suspend fun deleteNote(note: Notes): Resources<Unit>
     suspend fun updateNote(note: Notes): Resources<Unit>
 }
