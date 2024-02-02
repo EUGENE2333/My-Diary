@@ -21,7 +21,9 @@ class NotesRepositoryImpl(
     private val notesRemoteMapper: NotesRemoteMapper,
     private val notesDomainMapper: NotesDomainMapper
 ): NotesRepository {
-
+    override fun user() = network.user()
+   override  fun hasUser(): Boolean = network.hasUser()
+   override fun getUserId(): String =network.getUserId()
     override fun getNotesStream(): Flow<List<Notes>> = notesDao.getNotesEntitiesAsFlow()
         .map { entities ->
             entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
@@ -54,8 +56,8 @@ class NotesRepositoryImpl(
                 when (it) {
                     is Resources.Success -> {
                         val networkNotesList = it.data
-                        val localNotesList = networkNotesList?.mapNotNull {
-                            notesRemoteMapper.mapFromRemote(it)
+                        val localNotesList = networkNotesList?.mapNotNull {networkNotes ->
+                            notesRemoteMapper.mapFromRemote(networkNotes)
                         }
                         if (localNotesList != null) {
                             notesDao.insertNotes(localNotesList)
@@ -75,23 +77,40 @@ class NotesRepositoryImpl(
 
     override suspend fun saveNotesToLocal(domainNotes: Notes) {
         withContext(ioDispatcher) {
-            notesDomainMapper.mapFromDomain(domainNotes)
+          val noteEntity =   notesDomainMapper.mapFromDomain(domainNotes)
+            noteEntity?.let { notesDao.insertNotes(listOf(it)) }
         }
     }
 
-    override suspend fun saveNotesToRemote(userId: String) {
+    override suspend fun saveNotesToRemote() {
         val localNotesList = notesDao.getNotesEntitiesAsFlow().firstOrNull() ?: emptyList()
-        localNotesList.forEach {
-            val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(it) }
+        val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(it) }
+        networkNotesList.forEach { networkNote ->
+            network.addNote(
+                userId = networkNote.userId,
+                title = networkNote.title,
+                description = networkNote.description,
+                timestamp = networkNote.timestamp,
+                color = networkNote.colorIndex,
+                onComplete = {success ->
+                    if (success)
+                    {
+                        // Note added successfully to remote
+                    }else {
+                        // Handle failure to add note to remote
+                    }
+                }
+            )
         }
-
-
     }
 
     override suspend fun deleteNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
         try {
             val noteEntity = notesDomainMapper.mapFromDomain(note)
-            noteEntity?.let { notesDao.deleteNotes(it) }
+            noteEntity?.let {
+                notesDao.deleteNotes(it)
+
+            }
 
             Resources.Success(Unit)
 
@@ -103,7 +122,17 @@ class NotesRepositoryImpl(
     override suspend fun updateNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
         try {
             val noteEntity = notesDomainMapper.mapFromDomain(note)
-            noteEntity?.let { notesDao.updateNotes(it) }
+            noteEntity?.let {
+                notesDao.updateNotes(it)
+
+                val networkNote = notesRemoteMapper.mapToRemote(it)
+                network.updateNote(
+                    title = networkNote.title,
+                    note = networkNote.description,
+                    color = networkNote.colorIndex,
+                    noteId = networkNote.documentId,
+                ){}
+            }
 
             Resources.Success(Unit)
         } catch (e: Exception) {
