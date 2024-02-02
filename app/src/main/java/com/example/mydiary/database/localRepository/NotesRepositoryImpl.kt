@@ -8,11 +8,13 @@ import com.example.mydiary.database.NotesDao
 import com.example.mydiary.database.model.NotesEntity
 import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.io.IOException
 
 class NotesRepositoryImpl(
     private val notesDao: NotesDao,
@@ -137,6 +139,19 @@ class NotesRepositoryImpl(
             Resources.Success(Unit)
         } catch (e: Exception) {
             Resources.Error(e)
+        }
+    }
+
+   private suspend fun <T> retryIO(block:suspend () -> T): T {
+        var curlDelay = 1000L
+        while (true){
+            try {
+                return block()
+            }catch (e:IOException){
+                e.printStackTrace() // log the error
+            }
+            delay(curlDelay)
+            curlDelay = (curlDelay * 2).coerceAtMost(60000L)
         }
     }
 }
