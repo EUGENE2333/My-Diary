@@ -28,6 +28,7 @@ interface NotesNetworkDatasource {
         noteId: String,
         onComplete:(Boolean) -> Unit
     )
+    fun signOut()
     fun deleteAccount(context: Context)
 
 }
