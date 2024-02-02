@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "notes")
 data class NotesEntity(
     @PrimaryKey
-    val userId: String = "",
+    var userId: String = "",
     @ColumnInfo(defaultValue = "")
-    val title: String = "",
+    var title: String = "",
     @ColumnInfo(defaultValue = "")
-    val description: String = "",
-    val timestamp: Long = 0,
-    val colorIndex: Int = 0,
+    var description: String = "",
+    var timestamp: Long = 0,
+    var colorIndex: Int = 0,
     @ColumnInfo(defaultValue = "")
-    val documentId: String = ""
+    var documentId: String = ""
 )
