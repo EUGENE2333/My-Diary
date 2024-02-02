@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.Flow
 interface NotesNetworkDatasource {
 
     fun user(): FirebaseUser?
+
+    fun hasUser(): Boolean
     suspend fun getNotes(userId:String): Flow<Resources<List<NetworkNotes>>>
     fun addNote(
         userId: String,
