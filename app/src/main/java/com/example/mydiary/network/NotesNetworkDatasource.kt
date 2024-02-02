@@ -15,12 +15,13 @@ interface NotesNetworkDatasource {
         color: Int,
         onComplete: (Boolean) -> Unit
     )
-    suspend fun updateNote(
-        noteId:String,
+    fun updateNote(
         title: String,
-        description: String,
-        colorIndex: Int
-    ):Boolean
+        note: String,
+        color: Int,
+        noteId: String,
+        onResult:(Boolean) -> Unit
+    )
 
     suspend fun deleteNote(noteId: String): Boolean
 }
