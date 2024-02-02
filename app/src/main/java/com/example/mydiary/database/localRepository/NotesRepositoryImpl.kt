@@ -54,8 +54,8 @@ class NotesRepositoryImpl(
                 when (it) {
                     is Resources.Success -> {
                         val networkNotesList = it.data
-                        val localNotesList = networkNotesList?.mapNotNull {
-                            notesRemoteMapper.mapFromRemote(it)
+                        val localNotesList = networkNotesList?.mapNotNull {networkNotes ->
+                            notesRemoteMapper.mapFromRemote(networkNotes)
                         }
                         if (localNotesList != null) {
                             notesDao.insertNotes(localNotesList)
