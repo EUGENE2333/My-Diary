@@ -24,6 +24,7 @@ class NotesRepositoryImpl(
     private val notesDomainMapper: NotesDomainMapper
 ): NotesRepository {
     fun user() = network.user()
+    fun hasUser(): Boolean = network.hasUser()
     override fun getNotesStream(): Flow<List<Notes>> = notesDao.getNotesEntitiesAsFlow()
         .map { entities ->
             entities.mapNotNull { notesDomainMapper.mapToDomain(it) }
