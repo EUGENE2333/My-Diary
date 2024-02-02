@@ -28,6 +28,8 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
 
     override fun hasUser(): Boolean = Firebase.auth.currentUser != null
 
+    override fun getUserId(): String = Firebase.auth.currentUser?.uid.orEmpty()
+
     override suspend fun getNotes(userId:String): Flow<Resources<List<NetworkNotes>>> = callbackFlow {
 
         var snapshotStateListener: ListenerRegistration? = null

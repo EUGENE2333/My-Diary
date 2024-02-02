@@ -12,6 +12,8 @@ interface NotesNetworkDatasource {
     fun user(): FirebaseUser?
 
     fun hasUser(): Boolean
+
+    fun getUserId(): String
     suspend fun getNotes(userId:String): Flow<Resources<List<NetworkNotes>>>
     fun addNote(
         userId: String,
