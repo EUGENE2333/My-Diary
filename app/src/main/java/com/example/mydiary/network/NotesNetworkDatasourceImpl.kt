@@ -106,6 +106,8 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
             }
     }
 
+   override fun signOut() = Firebase.auth.signOut()
+
     override fun deleteAccount(context: Context) {
         val user = Firebase.auth.currentUser
 
