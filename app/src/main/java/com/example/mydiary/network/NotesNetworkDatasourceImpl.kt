@@ -10,8 +10,6 @@ import com.google.firebase.firestore.Query
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 
 const val NOTES_COLLECTION_REF = "notes"
@@ -96,12 +94,11 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
                 onResult(it.isSuccessful)
             }
     }
-
-    override suspend fun deleteNote(noteId: String): Boolean = suspendCoroutine { continuation ->
+    override fun deleteNote(noteId: String,onComplete:(Boolean) -> Unit){
         notesRef.document(noteId)
             .delete()
-            .addOnCompleteListener { task ->
-                continuation.resume(task.isSuccessful)
+            .addOnCompleteListener {
+                onComplete.invoke(it.isSuccessful)
             }
     }
 }
