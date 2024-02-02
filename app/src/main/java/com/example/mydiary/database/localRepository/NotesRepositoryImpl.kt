@@ -75,7 +75,8 @@ class NotesRepositoryImpl(
 
     override suspend fun saveNotesToLocal(domainNotes: Notes) {
         withContext(ioDispatcher) {
-            notesDomainMapper.mapFromDomain(domainNotes)
+          val noteEntity =   notesDomainMapper.mapFromDomain(domainNotes)
+            noteEntity?.let { notesDao.insertNotes(listOf(it)) }
         }
     }
 
