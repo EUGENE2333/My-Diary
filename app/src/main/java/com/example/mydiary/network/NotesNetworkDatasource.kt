@@ -23,5 +23,8 @@ interface NotesNetworkDatasource {
         onResult:(Boolean) -> Unit
     )
 
-    suspend fun deleteNote(noteId: String): Boolean
+    fun deleteNote(
+        noteId: String,
+        onComplete:(Boolean) -> Unit
+    )
 }
