@@ -119,7 +119,7 @@ class NotesRepositoryImpl(
         }
     }
 
-    override suspend fun updateLocalNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
+    override suspend fun updateNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
         try {
             val noteEntity = notesDomainMapper.mapFromDomain(note)
             noteEntity?.let {
