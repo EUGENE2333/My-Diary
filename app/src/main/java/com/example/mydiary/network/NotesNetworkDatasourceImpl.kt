@@ -23,6 +23,9 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
     private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
     //obtain the notes reference
     private val notesRef: CollectionReference = firebaseFirestore.collection(NOTES_COLLECTION_REF)
+
+   override fun user() =  Firebase.auth.currentUser
+
     override suspend fun getNotes(userId:String): Flow<Resources<List<NetworkNotes>>> = callbackFlow {
 
         var snapshotStateListener: ListenerRegistration? = null
