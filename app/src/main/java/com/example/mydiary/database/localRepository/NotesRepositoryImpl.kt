@@ -5,6 +5,7 @@ import com.example.mydiary.data.mapper.NotesRemoteMapper
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.database.NotesDao
+import com.example.mydiary.database.model.NotesEntity
 import com.example.mydiary.network.NotesNetworkDatasource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -28,11 +29,24 @@ class NotesRepositoryImpl(
         }
         .flowOn(ioDispatcher)
 
-    override suspend fun getSpecificNote(userId: String): Resources<Notes> =
+    override suspend fun getSpecificNote(documentId: String): Resources<Notes> =
         withContext(ioDispatcher) {
-            val localModel = notesDao.getNoteEntityById(userId)
-            Resources.Success(notesDomainMapper.mapToDomain(localModel))
+            try {
+                val localModel: NotesEntity? = notesDao.getNoteEntityById(documentId)
+
+                return@withContext if (localModel != null) {
+                    Resources.Success(notesDomainMapper.mapToDomain(localModel))
+                } else {
+                    Resources.Error(Exception("Note not found"))
+                }
+            } catch (e: Exception) {
+                Resources.Error(e)
+            }
         }
+
+
+
+
 
     override suspend fun syncNotesFromNetwork(userId: String) {
         network.getNotes(userId)
@@ -67,7 +81,10 @@ class NotesRepositoryImpl(
 
     override suspend fun saveNotesToRemote(userId: String) {
         val localNotesList = notesDao.getNotesEntitiesAsFlow().firstOrNull() ?: emptyList()
-        val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(localNotesList) }
+        localNotesList.forEach {
+            val networkNotesList = localNotesList.map { notesRemoteMapper.mapToRemote(it) }
+        }
+
 
     }
 
