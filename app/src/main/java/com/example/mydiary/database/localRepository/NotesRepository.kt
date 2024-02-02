@@ -15,5 +15,6 @@ interface NotesRepository {
     suspend fun saveNotesToLocal(domainNotes: Notes)
     suspend fun saveNotesToRemote()
     suspend fun deleteNote(note: Notes): Resources<Unit>
-    suspend fun updateNote(note: Notes): Resources<Unit>
+    suspend fun updateLocalNote(note: Notes): Resources<Unit>
+
 }

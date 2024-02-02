@@ -107,7 +107,10 @@ class NotesRepositoryImpl(
     override suspend fun deleteNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
         try {
             val noteEntity = notesDomainMapper.mapFromDomain(note)
-            noteEntity?.let { notesDao.deleteNotes(it) }
+            noteEntity?.let {
+                notesDao.deleteNotes(it)
+
+            }
 
             Resources.Success(Unit)
 
@@ -116,10 +119,20 @@ class NotesRepositoryImpl(
         }
     }
 
-    override suspend fun updateNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
+    override suspend fun updateLocalNote(note: Notes): Resources<Unit> = withContext(ioDispatcher) {
         try {
             val noteEntity = notesDomainMapper.mapFromDomain(note)
-            noteEntity?.let { notesDao.updateNotes(it) }
+            noteEntity?.let {
+                notesDao.updateNotes(it)
+
+                val networkNote = notesRemoteMapper.mapToRemote(it)
+                network.updateNote(
+                    title = networkNote.title,
+                    note = networkNote.description,
+                    color = networkNote.colorIndex,
+                    noteId = networkNote.documentId,
+                ){}
+            }
 
             Resources.Success(Unit)
         } catch (e: Exception) {
