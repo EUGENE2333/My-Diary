@@ -9,7 +9,7 @@ interface NotesRepository {
     fun user():FirebaseUser?
     fun hasUser():Boolean
     fun getUserId():String
-    fun getNotesStream():Flow<List<Notes>>
+    fun getNotesStream():Flow<Resources<List<Notes>>>
     suspend fun getSpecificNote(documentId: String): Resources<Notes>
     suspend fun syncNotesFromNetwork(userId: String)
     suspend fun saveNotesToLocal(domainNotes: Notes)
