@@ -5,13 +5,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.StorageRepository
+import com.example.mydiary.domain.NotesUseCase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val repository: StorageRepository = StorageRepository()
+    private val repository: StorageRepository = StorageRepository(),
+
+    private val notesUsecase: NotesUseCase
 ): ViewModel(){
 
 
@@ -35,8 +40,9 @@ class DetailViewModel(
     }
 
     fun addNote(){
+
         if(hasUser){
-            repository.addNote(
+         /*   repository.addNote(
                 userId = user!!.uid,
                 title = detailUiState.title,
                 description = detailUiState.note,
@@ -44,6 +50,18 @@ class DetailViewModel(
                 color = detailUiState.colorIndex
             ){
                 detailUiState = detailUiState.copy(noteAddedStatus = it)
+            } */
+
+            viewModelScope.launch {
+                notesUsecase.addNote(
+                    userId = user!!.uid,
+                    title = detailUiState.title,
+                    description = detailUiState.note,
+                    timestamp = Timestamp.now(),
+                    color = detailUiState.colorIndex
+                ) {
+                    detailUiState = detailUiState.copy(noteAddedStatus = it)
+                }
             }
         }
     }
