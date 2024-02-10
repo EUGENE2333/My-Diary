@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 class NotesUseCase(
     private val notesRepository: NotesRepository
 ){
-    fun getAllNotes(): Flow<List<Notes>> = notesRepository.getNotesStream()
+    fun getAllNotes(): Flow<Resources<List<Notes>>> = notesRepository.getNotesStream()
 
    suspend fun getSpecificNote(documentId: String): Resources<Notes> = notesRepository.getSpecificNote(documentId)
 
@@ -18,7 +18,8 @@ class NotesUseCase(
         title: String,
         description: String,
         timestamp: Timestamp,
-        color: Int = 0
+        color: Int = 0,
+        onComplete:(Boolean) -> Unit
     ){
         try {
             val localNote = Notes(
@@ -26,7 +27,7 @@ class NotesUseCase(
                 title = title,
                 description = description,
                 timestamp = timestamp,
-                colorIndex = color
+                colorIndex = color,
             )
             notesRepository.saveNotesToLocal(localNote)
 
