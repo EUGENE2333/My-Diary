@@ -9,11 +9,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.data.repository.StorageRepository
+import com.example.mydiary.domain.NotesUseCase
 import kotlinx.coroutines.launch
 
 
 class HomeViewModel (
-    private val repository: StorageRepository =  StorageRepository()
+    private val repository: StorageRepository =  StorageRepository(),
+    private val notesUsecase: NotesUseCase
 ): ViewModel() {
     var homeUiState by mutableStateOf(HomeUiState())
     var notesNull = mutableStateOf(false)
@@ -24,10 +26,13 @@ class HomeViewModel (
     private val userId: String
         get() = repository.getUserId()
 
-    fun loadNotes() {
+    suspend fun loadNotes() {
         if (hasUser) {
             if (userId.isNotBlank()) {
-                getUserNotes(userId)
+                notesUsecase.getAllNotes().collect{
+                    homeUiState = homeUiState.copy(notesList = it)
+                }
+               // getUserNotes(userId)
             } else {
                 homeUiState = homeUiState.copy(
                     notesList = Resources.Error(
