@@ -15,6 +15,10 @@ object CoroutineModule {
     @Provides
     fun providesDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
 
+    @IoDispatcher
+    @Provides
+    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
 }
 
 @Retention(AnnotationRetention.BINARY)
