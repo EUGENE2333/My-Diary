@@ -2,6 +2,7 @@ package com.example.mydiary.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.mydiary.database.NotesDao
 import com.example.mydiary.database.NotesDatabase
 import dagger.Module
 import dagger.Provides
@@ -21,4 +22,7 @@ object DatabaseModule {
       "Notes.db"
     ).build()
   }
+
+  @Provides
+  fun providesNotesDao(database: NotesDatabase): NotesDao = database.notesDao()
 }
