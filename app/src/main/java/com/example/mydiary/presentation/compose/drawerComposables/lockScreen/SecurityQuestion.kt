@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
@@ -32,7 +33,7 @@ import kotlinx.coroutines.withContext
 @Composable
 fun SecurityQuestions(
     navController: NavController,
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
 ) {
     var answer by remember { mutableStateOf("") }
     val selectedFont = viewModel.passwordManager.getFontTheme()

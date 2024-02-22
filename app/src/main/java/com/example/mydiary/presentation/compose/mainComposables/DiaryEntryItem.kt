@@ -1,6 +1,10 @@
 package com.example.mydiary.presentation.compose.mainComposables
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -14,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.presentation.DiaryViewModel
@@ -22,13 +27,13 @@ import com.google.firebase.Timestamp
 import me.saket.swipe.SwipeAction
 import me.saket.swipe.SwipeableActionsBox
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 
 @Composable
 fun DiaryEntryItem(
     notes: Notes,
-    viewModel:DiaryViewModel,
+    viewModel:DiaryViewModel = hiltViewModel(),
     onSwipeToDelete:() -> Unit,
     onLongClick: () -> Unit,
     onClick: () -> Unit,

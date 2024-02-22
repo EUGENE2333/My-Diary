@@ -14,13 +14,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.presentation.DiaryViewModel
 
 
 @Composable
 fun MyDiaryTheme(
-    viewModel: DiaryViewModel,
-    content: @Composable () -> Unit
+    viewModel: DiaryViewModel = hiltViewModel(),
+    content: @Composable () -> Unit = {}
 ) {
 
     val selectedColorTheme  by rememberUpdatedState(viewModel.passwordManager.getColorTheme())
@@ -185,16 +186,4 @@ modifier = Modifier.semantics { contentDescription = "Dark mode switch" }
 )
 }
  * **/
-
-
-
-
-
-
-
-
-
-
-
-
 

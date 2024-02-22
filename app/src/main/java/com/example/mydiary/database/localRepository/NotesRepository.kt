@@ -1,5 +1,5 @@
 package com.example.mydiary.database.localRepository
-
+/*
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.google.firebase.auth.FirebaseUser
@@ -10,7 +10,7 @@ interface NotesRepository {
     fun hasUser():Boolean
     fun getUserId():String
     fun getNotesStream():Flow<Resources<List<Notes>>>
-    suspend fun getSpecificNote(documentId: String): Resources<Notes>
+   // suspend fun getSpecificNote(documentId: String): Resources<Notes>
     suspend fun syncNotesFromNetwork(userId: String)
     suspend fun saveNotesToLocal(domainNotes: Notes)
     suspend fun saveNotesToRemote()
@@ -18,3 +18,4 @@ interface NotesRepository {
     suspend fun updateNote(note: Notes): Resources<Unit>
 
 }
+*/

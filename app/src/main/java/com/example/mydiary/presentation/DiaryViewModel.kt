@@ -7,27 +7,29 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mydiary.MyDiaryApplication
 import com.example.mydiary.data.LoginUiState
 import com.example.mydiary.data.utils.PasswordManager
 import com.example.mydiary.data.utils.PreferencesManager
 import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.domain.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DiaryViewModel(
-    private val application: MyDiaryApplication,
+@HiltViewModel
+class DiaryViewModel @Inject constructor(
+    //val passwordManager: PasswordManager
     private val authRepository: AuthRepository,
-    private val preferencesManager: PreferencesManager,
-    ) : AndroidViewModel(application) {
+   private val preferencesManager: PreferencesManager,
+    ) : ViewModel(){
 
-
-    var passwordManager: PasswordManager = application.passwordManager
+        @Inject
+   lateinit var passwordManager: PasswordManager
 
      // login
      private val currentUser = authRepository.currentUser

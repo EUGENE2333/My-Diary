@@ -1,14 +1,10 @@
 package com.example.mydiary.data.mapper
 
-import com.example.mydiary.data.model.Notes
-import com.example.mydiary.database.model.NotesEntity
-import com.example.mydiary.network.module.NetworkNotes
-import com.google.firebase.Timestamp
-
 /**
  * Converts the network model to the local model for persisting
  * by the local data source
  */
+/*
 fun NetworkNotes.asEntity() = NotesEntity(
      userId = userId,
      title = title,
@@ -44,7 +40,7 @@ fun Notes.asEntityModel() = NotesEntity(
     colorIndex = colorIndex,
     documentId = documentId
 )
-
+*/
 
 
 

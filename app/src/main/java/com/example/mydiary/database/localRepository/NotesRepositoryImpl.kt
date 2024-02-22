@@ -1,12 +1,12 @@
 package com.example.mydiary.database.localRepository
-
+/*
 import com.example.mydiary.data.mapper.NotesDomainMapper
 import com.example.mydiary.data.mapper.NotesRemoteMapper
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.database.NotesDao
-import com.example.mydiary.database.model.NotesEntity
-import com.example.mydiary.network.NotesNetworkDatasource
+import com.example.mydiary.di.IoDispatcher
+import com.example.mydiary.network.NotesNetworkDatasourceImpl
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -15,11 +15,12 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import java.io.IOException
+import javax.inject.Inject
 
-class NotesRepositoryImpl(
+class NotesRepositoryImpl @Inject constructor(
     private val notesDao: NotesDao,
-    private val network: NotesNetworkDatasource,
-    private val ioDispatcher: CoroutineDispatcher,
+    private val network: NotesNetworkDatasourceImpl,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val notesRemoteMapper: NotesRemoteMapper,
     private val notesDomainMapper: NotesDomainMapper
 ): NotesRepository {
@@ -39,7 +40,7 @@ class NotesRepositoryImpl(
 
 
 
-    override suspend fun getSpecificNote(documentId: String): Resources<Notes> =
+  /*  override suspend fun getSpecificNote(documentId: String): Resources<Notes> =
         withContext(ioDispatcher) {
             try {
                 val localModel: NotesEntity? = notesDao.getNoteEntityById(documentId)
@@ -52,7 +53,7 @@ class NotesRepositoryImpl(
             } catch (e: Exception) {
                 Resources.Error(e)
             }
-        }
+        } */
 
 
 
@@ -161,3 +162,4 @@ class NotesRepositoryImpl(
         }
     }
 }
+*/

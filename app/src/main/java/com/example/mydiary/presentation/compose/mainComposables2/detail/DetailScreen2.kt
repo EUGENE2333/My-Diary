@@ -22,13 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.data.utils.Utils
 import kotlinx.coroutines.launch
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun DetailScreen2(
-    detailViewModel: DetailViewModel?,
+    detailViewModel: DetailViewModel = hiltViewModel(),
     noteId: String,
     onNavigate: () -> Unit
 ){
@@ -145,7 +146,7 @@ fun ColorItem(
 @Composable
 fun PreviewDetailScreen(){
     MaterialTheme{
-        DetailScreen2(detailViewModel = null, noteId = "" ) {
+        DetailScreen2( noteId = "" ) {
             
         }
     }

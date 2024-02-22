@@ -5,20 +5,22 @@ import android.content.Context
 import com.example.mydiary.data.model.Notes
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-
-
+import javax.inject.Inject
 
 
 const val NOTES_COLLECTION_REF = "notes"
 
 
 @Suppress("IMPLICIT_CAST_TO_ANY")
-class StorageRepository {
+class StorageRepository @Inject constructor(){
 
     private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 

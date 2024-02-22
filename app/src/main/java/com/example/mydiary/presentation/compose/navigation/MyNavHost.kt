@@ -3,6 +3,7 @@ package com.example.mydiary.presentation.compose.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -14,9 +15,12 @@ import com.example.mydiary.presentation.compose.drawerComposables.ReccomendApp.R
 import com.example.mydiary.presentation.compose.drawerComposables.about.About
 import com.example.mydiary.presentation.compose.drawerComposables.colorAndStyle.ColorAndStyle
 import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportScreen
-import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportViewModel
 import com.example.mydiary.presentation.compose.drawerComposables.layout.Layout
-import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.*
+import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.ChangePassword
+import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.ForgotPassword
+import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.LockScreen
+import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.LockScreenScreen
+import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.SecurityQuestions
 import com.example.mydiary.presentation.compose.drawerComposables.rateAndReview.RateAndReview
 import com.example.mydiary.presentation.compose.drawerComposables.reminder.Reminder
 import com.example.mydiary.presentation.compose.drawerComposables.userProfile.SignInPage
@@ -28,17 +32,12 @@ import com.example.mydiary.presentation.compose.mainComposables.NewDiaryEntryScr
 import com.example.mydiary.presentation.compose.mainComposables.SplashScreen
 import com.example.mydiary.presentation.compose.mainComposables2.NewEntry
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailScreen2
-import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.home.Home
-import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
 
 @Composable
 fun MyNavHost(
     navController: NavHostController = rememberNavController(),
-    viewModel: DiaryViewModel,
-    homeViewModel: HomeViewModel,
-    detailViewModel: DetailViewModel,
-    exportViewModel: ExportViewModel
+    viewModel: DiaryViewModel = hiltViewModel()
 ) {
 
     val passwordManager = viewModel.passwordManager
@@ -51,9 +50,7 @@ fun MyNavHost(
 
         composable(route = Screen.SplashScreen.route){
 
-            SplashScreen (
-                viewModel = viewModel
-                    ){
+            SplashScreen{
                 if(!viewModel.hasUser ){
                     viewModel.passwordManager.setPassword("null")
                     passwordManager.setQuestionAnswer("","")
@@ -100,8 +97,6 @@ fun MyNavHost(
         composable(route = Screen.DiaryList.route) {
             DiaryListScreen(
                 navController = navController,
-                viewModel = viewModel,
-                homeViewModel = homeViewModel,
                 onNoteClick = { noteId ->
                     navController.navigate(Screen.DiaryDetail.route + "?userid=$noteId")
                 },
@@ -125,8 +120,6 @@ fun MyNavHost(
         composable(route = Screen.NewDiaryEntry.route) {
             NewDiaryEntryScreen(
                 navController = navController,
-                viewModel = viewModel,
-                detailViewModel = detailViewModel,
                 onNavigate = { navController.navigate(Screen.DiaryList.route)}
             )
 
@@ -143,8 +136,6 @@ fun MyNavHost(
 
             DiaryDetailScreen(
                 navController = navController,
-                viewModel = viewModel ,
-                detailViewModel = detailViewModel,
                 noteId = entry.arguments?.getString("userid") as String) {
                  navController.navigate(Screen.DiaryList.route)
             }
@@ -155,7 +146,6 @@ fun MyNavHost(
 
             LockScreen(
                 navController = navController,
-                viewModel = viewModel,
                 onPasswordSet = {
                     passwordManager.setPassword(it).toString()
                 },
@@ -164,33 +154,28 @@ fun MyNavHost(
         composable(route = Screen.SecurityQuestions.route){
             SecurityQuestions(
                 navController = navController,
-                viewModel = viewModel,
             )
         }
         composable(route = Screen.ForgotPassword.route){
-            ForgotPassword (navController = navController,viewModel = viewModel)
+            ForgotPassword (navController = navController)
         }
 
 
         composable(route = Screen.LockScreenScreen.route) {
 
             LockScreenScreen(
-                viewModel = viewModel,
                 navController = navController,
             )
         }
 
             composable(route = Screen.ColorAndStyle.route) {
                 ColorAndStyle(
-                    viewModel = viewModel,
                     navController = navController
                 )
         }
         composable(route = Screen.UserProfile.route) {
             UserProfile(
                 navController = navController,
-                viewModel = viewModel,
-                homeViewModel = homeViewModel,
                 navToSignUpPage = {
                     navController.navigate(Screen.SignInPage.route){
                         launchSingleTop = true
@@ -224,7 +209,6 @@ fun MyNavHost(
         composable(route = Screen.SignInPage.route) {
            SignInPage(
                navController = navController,
-               viewModel = viewModel,
                onNavigateToNoteHomeScreen = { navController.navigate(Screen.Home.route){
                    launchSingleTop = true
                    popUpTo(0){
@@ -242,28 +226,27 @@ fun MyNavHost(
         }
 
         composable(route = Screen.RateAndReview.route) {
-            RateAndReview(navController = navController, viewModel = viewModel)
+            RateAndReview(navController = navController)
         }
 
         composable(route = Screen.Reminder.route) {
-            Reminder(navController = navController, viewModel = viewModel)
+            Reminder(navController = navController)
         }
         composable(route = Screen.Recommend.route) {
             RecommendApp(navController = navController)
         }
 
         composable(route = Screen.About.route) {
-            About(navController = navController,viewModel = viewModel)
+            About(navController = navController)
         }
 
         composable(route = Screen.Export.route) {
-                 ExportScreen(navController = navController, viewModel = viewModel, exportViewModel = exportViewModel )
+                 ExportScreen(navController = navController)
         }
 
         composable(route = Screen.Layout.route) {
             Layout(
                 navController = navController,
-                viewModel = viewModel,
                 onNavigateToNoteHomeScreen = {
                     navController.navigate(Screen.Home.route){
                         launchSingleTop = true
@@ -283,8 +266,7 @@ fun MyNavHost(
         }
 
         composable(route = Screen.Home.route) {
-            Home(homeViewModel = homeViewModel,
-                viewModel  = viewModel,
+            Home(
                 navController = navController,
                 onNoteClick = { noteId ->
                     navController.navigate(Screen.DiaryDetail2.route + "?id=$noteId")
@@ -312,7 +294,6 @@ fun MyNavHost(
             })
         ) { entry->
             DetailScreen2(
-                detailViewModel = detailViewModel,
                 noteId = entry.arguments?.getString("id") as String
             ) {
                 navController.navigateUp()
@@ -320,7 +301,7 @@ fun MyNavHost(
 
         }
         composable(route = Screen.NewEntry.route) {
-            NewEntry(detailViewModel = detailViewModel, viewModel = viewModel) {
+            NewEntry{
                 navController.navigateUp()
             }
         }
@@ -328,7 +309,6 @@ fun MyNavHost(
         composable(route = Screen.ChangePassword.route) {
 
            ChangePassword(
-                viewModel = viewModel,
                 navController = navController,
             )
         }

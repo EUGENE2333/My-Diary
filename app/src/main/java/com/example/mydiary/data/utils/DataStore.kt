@@ -11,12 +11,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
+import javax.inject.Inject
 
 
 //create an instance of Datastore<Preferences>.
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")   //
 
-class PreferencesManager(context: Context) {
+class PreferencesManager @Inject constructor(context: Context) {
 
     private object PreferencesKeys {
         val ENABLED = booleanPreferencesKey("enabled")

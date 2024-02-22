@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.example.mydiary.presentation.DiaryViewModel
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 @RequiresApi(value = 26)
 @Composable
 fun LockScreenScreen(
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
     navController: NavHostController,
 ) {
     val passwordManager = viewModel.passwordManager

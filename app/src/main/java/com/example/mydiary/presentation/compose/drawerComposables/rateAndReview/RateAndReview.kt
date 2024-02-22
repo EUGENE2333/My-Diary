@@ -25,6 +25,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
@@ -39,7 +40,7 @@ import kotlinx.coroutines.launch
 fun RateAndReview(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
 ) {
     val scaffoldState = rememberScaffoldState()
     val selectedStars = remember { mutableStateOf(0) }
@@ -104,10 +105,8 @@ fun RateAndReview(
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 10.dp)
                         .padding(top = 40.dp)
                         .fillMaxWidth()
-                ) {
+                ){
                     repeat(5) { index ->
-
-
                         Icon(
                             imageVector = if (selected.value) Icons.Filled.Star else Icons.Outlined.Star,
                             contentDescription = "Star",

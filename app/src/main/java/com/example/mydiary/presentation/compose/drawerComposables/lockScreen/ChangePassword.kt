@@ -16,21 +16,25 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
+import com.example.mydiary.data.utils.PasswordManager
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ChangePassword(
     navController: NavController,
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
+
 ) {
     var password by remember { mutableStateOf("") }
     var passwordConfirmation by remember { mutableStateOf("") }

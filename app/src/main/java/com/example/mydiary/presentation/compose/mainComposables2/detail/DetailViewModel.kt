@@ -5,18 +5,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.StorageRepository
-import com.example.mydiary.domain.NotesUseCase
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.coroutines.launch
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DetailViewModel(
-    private val repository: StorageRepository = StorageRepository(),
-
-    private val notesUsecase: NotesUseCase
+@HiltViewModel
+class DetailViewModel @Inject constructor(
+    private val repository: StorageRepository,
+  //  private val notesRepositoryImpl: NotesRepositoryImpl
 ): ViewModel(){
 
 
@@ -42,7 +41,7 @@ class DetailViewModel(
     fun addNote(){
 
         if(hasUser){
-         /*   repository.addNote(
+           repository.addNote(
                 userId = user!!.uid,
                 title = detailUiState.title,
                 description = detailUiState.note,
@@ -50,9 +49,9 @@ class DetailViewModel(
                 color = detailUiState.colorIndex
             ){
                 detailUiState = detailUiState.copy(noteAddedStatus = it)
-            } */
+            }
 
-            viewModelScope.launch {
+          /*  viewModelScope.launch {
                 notesUsecase.addNote(
                     userId = user!!.uid,
                     title = detailUiState.title,
@@ -62,7 +61,7 @@ class DetailViewModel(
                 ) {
                     detailUiState = detailUiState.copy(noteAddedStatus = it)
                 }
-            }
+            } */
         }
     }
 

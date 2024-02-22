@@ -9,30 +9,31 @@ import androidx.lifecycle.viewModelScope
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.data.repository.Resources
 import com.example.mydiary.data.repository.StorageRepository
-import com.example.mydiary.domain.NotesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class HomeViewModel (
-    private val repository: StorageRepository =  StorageRepository(),
-    private val notesUsecase: NotesUseCase
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository: StorageRepository,
+   // private val notesRepositoryImpl: NotesRepositoryImpl
 ): ViewModel() {
     var homeUiState by mutableStateOf(HomeUiState())
     var notesNull = mutableStateOf(false)
 
-    val user = repository.user()
+    val user =/* notesRepositoryImpl.user() */ repository.user()
     val hasUser: Boolean
-        get() = repository.hasUser()
+        get() = /*notesRepositoryImpl.hasUser() */  repository.hasUser()
     private val userId: String
-        get() = repository.getUserId()
+        get() = /*notesRepositoryImpl.getUserId() */    repository.getUserId()
 
     suspend fun loadNotes() {
         if (hasUser) {
             if (userId.isNotBlank()) {
-                notesUsecase.getAllNotes().collect{
+            /*    notesRepositoryImpl.getNotesStream().collect{
                     homeUiState = homeUiState.copy(notesList = it)
-                }
-               // getUserNotes(userId)
+                } */
+                getUserNotes(userId)
             } else {
                 homeUiState = homeUiState.copy(
                     notesList = Resources.Error(

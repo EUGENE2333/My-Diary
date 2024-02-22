@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
@@ -20,7 +21,7 @@ import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBa
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ColorAndStyle(
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
     navController: NavController
 ) {
     val selectedColorTheme = viewModel.selectedColorTheme.collectAsState()

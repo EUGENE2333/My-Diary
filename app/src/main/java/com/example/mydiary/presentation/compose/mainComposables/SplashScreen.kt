@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import kotlinx.coroutines.delay
@@ -32,7 +33,7 @@ import kotlinx.coroutines.delay
 @SuppressLint("RememberReturnType")
 @Composable
  fun SplashScreen(
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
     onNavigate:() -> Unit
 ) {
 
