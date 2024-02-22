@@ -8,51 +8,26 @@ import androidx.activity.compose.setContent
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import androidx.lifecycle.ViewModelProvider
-import com.example.mydiary.presentation.DiaryViewModel
-import com.example.mydiary.presentation.compose.drawerComposables.exportEntries.ExportViewModel
-import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
-import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewModel
+import androidx.navigation.compose.rememberNavController
 import com.example.mydiary.presentation.compose.navigation.MyNavHost
 import com.example.mydiary.ui.theme.MyDiaryTheme
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
-    private lateinit var diaryViewModel: DiaryViewModel
-    private lateinit var textToSpeech: TextToSpeech
-    private lateinit var homeViewModel: HomeViewModel
-    private lateinit var detailViewModel: DetailViewModel
-    private lateinit var exportViewModel: ExportViewModel
 
-    private val application: MyDiaryApplication by lazy {
-        applicationContext as MyDiaryApplication
-    }
+    private lateinit var textToSpeech: TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        diaryViewModel = ViewModelProvider(this, application.diaryViewModelFactory).get(DiaryViewModel::class.java)
-
-        homeViewModel = ViewModelProvider(this,).get(HomeViewModel::class.java)
-
-        detailViewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-
-       exportViewModel = ViewModelProvider(this,).get(ExportViewModel:: class.java)
-
         // Initialize the TextToSpeech engine
         textToSpeech = TextToSpeech(this, this)
 
-
         setContent {
-                MyDiaryTheme(viewModel = diaryViewModel) {
-
-                    MyNavHost(
-                        viewModel = diaryViewModel,
-                        homeViewModel = homeViewModel,
-                        detailViewModel = detailViewModel,
-                        exportViewModel = exportViewModel
-                    )
+                MyDiaryTheme{
+                    val navController = rememberNavController()
+                    MyNavHost(navController = navController)
                 }
 
 
