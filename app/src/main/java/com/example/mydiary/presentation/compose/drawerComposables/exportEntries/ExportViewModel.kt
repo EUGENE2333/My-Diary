@@ -7,11 +7,14 @@ import com.example.mydiary.data.repository.Resources
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ExportViewModel: ViewModel() {
+@HiltViewModel
+class ExportViewModel @Inject constructor(): ViewModel() {
 
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 

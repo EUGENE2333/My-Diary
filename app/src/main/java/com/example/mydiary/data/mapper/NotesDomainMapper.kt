@@ -1,10 +1,11 @@
 package com.example.mydiary.data.mapper
-
+/*
 import com.example.mydiary.data.model.Notes
 import com.example.mydiary.database.model.NotesEntity
 import com.google.firebase.Timestamp
+import javax.inject.Inject
 
-class NotesDomainMapper(): DomainMapper<NotesEntity?, Notes?>{
+class NotesDomainMapper @Inject constructor(): DomainMapper<NotesEntity?, Notes?>{
     override fun mapToDomain(entity: NotesEntity?): Notes? {
         return kotlin.runCatching {
             tryMapToDomain(local = entity!!)
@@ -51,3 +52,4 @@ class NotesDomainMapper(): DomainMapper<NotesEntity?, Notes?>{
 
 }
 
+*/

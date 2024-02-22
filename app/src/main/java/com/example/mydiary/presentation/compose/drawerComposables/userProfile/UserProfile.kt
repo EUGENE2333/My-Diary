@@ -1,7 +1,16 @@
 package com.example.mydiary.presentation.compose.drawerComposables.userProfile
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
@@ -9,8 +18,16 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,6 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
@@ -30,8 +48,8 @@ import com.example.mydiary.presentation.compose.mainComposables2.home.HomeViewMo
 @Composable
 fun UserProfile(
     navController: NavController,
-    viewModel: DiaryViewModel,
-    homeViewModel: HomeViewModel?,
+    viewModel: DiaryViewModel= hiltViewModel(),
+    homeViewModel: HomeViewModel = hiltViewModel(),
     navToSignUpPage: () -> Unit,
     navToLoginPage: () -> Unit
 ) {
@@ -39,7 +57,7 @@ fun UserProfile(
     val scaffoldState = rememberScaffoldState()
     val selectedFont = viewModel.passwordManager.getFontTheme()
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()
-    val userEmail = homeViewModel?.user?.email.toString()
+    val userEmail = homeViewModel.user?.email.toString()
     var expanded by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
@@ -83,14 +101,14 @@ fun UserProfile(
                     DropdownMenuItem(
                         text = { Text("Sign out") },
                         onClick = {
-                            homeViewModel?.signOut()
+                            homeViewModel.signOut()
                             navToLoginPage.invoke()
                         },
                     )
                     DropdownMenuItem(
                         text = { Text("Delete Account") },
                         onClick = {
-                            homeViewModel?.deleteAccount(context,navToSignUpPage)
+                            homeViewModel.deleteAccount(context,navToSignUpPage)
                         },
                     )
 
@@ -132,15 +150,3 @@ fun UserProfile(
             }
         })
 }
-
-
-
-
-
-
-
-
-
-
-
-

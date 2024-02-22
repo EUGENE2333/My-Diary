@@ -1,12 +1,6 @@
 package com.example.mydiary.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.example.mydiary.MyDiaryApplication
-import com.example.mydiary.data.utils.PreferencesManager
-import com.example.mydiary.domain.repository.AuthRepository
-
-
+/*
 class DiaryViewModelFactory(
     private val application: MyDiaryApplication,
     private val  authRepository: AuthRepository,
@@ -24,4 +18,4 @@ class DiaryViewModelFactory(
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-}
+} */

@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 @Composable
  fun Layout(
     navController: NavController,
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
     onNavigateToNoteHomeScreen: () -> Unit,
     onNavigateToDiaryHomeScreen: () -> Unit
 ) {

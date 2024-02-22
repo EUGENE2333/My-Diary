@@ -1,11 +1,22 @@
 package com.example.mydiary.presentation.compose.drawerComposables.exportEntries
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -17,6 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.data.repository.Resources
@@ -26,8 +38,8 @@ import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBa
 @Composable
 fun ExportScreen(
     navController: NavController,
-    viewModel: DiaryViewModel,
-    exportViewModel:ExportViewModel
+    viewModel: DiaryViewModel = hiltViewModel(),
+    exportViewModel:ExportViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
     val selectedColorTheme = viewModel.passwordManager.getColorTheme()

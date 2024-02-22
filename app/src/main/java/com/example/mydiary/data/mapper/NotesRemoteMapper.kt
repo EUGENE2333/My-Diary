@@ -1,11 +1,7 @@
 package com.example.mydiary.data.mapper
 
-import android.util.Log
-import com.example.mydiary.database.model.NotesEntity
-import com.example.mydiary.network.module.NetworkNotes
-import com.google.firebase.Timestamp
-
-class NotesRemoteMapper():RemoteMapper<NetworkNotes,NotesEntity?> {
+/*
+class NotesRemoteMapper @Inject constructor():RemoteMapper<NetworkNotes,NotesEntity?> {
     override fun mapFromRemote(remote: NetworkNotes): NotesEntity? {
       return runCatching {
           tryMapFromRemote(netWorkNotes = remote)
@@ -46,3 +42,4 @@ class NotesRemoteMapper():RemoteMapper<NetworkNotes,NotesEntity?> {
     }
 
 }
+ */

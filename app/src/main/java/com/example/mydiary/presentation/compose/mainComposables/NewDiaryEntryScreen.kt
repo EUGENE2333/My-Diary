@@ -3,13 +3,25 @@ package com.example.mydiary.presentation.compose.mainComposables
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.runtime.*
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -18,6 +30,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
@@ -25,7 +38,6 @@ import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailUi
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.*
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -33,8 +45,8 @@ import java.util.*
 @Composable
 fun NewDiaryEntryScreen(
     navController: NavController,
-    viewModel: DiaryViewModel,
-    detailViewModel: DetailViewModel?,
+    viewModel: DiaryViewModel = hiltViewModel(),
+    detailViewModel: DetailViewModel = hiltViewModel(),
     onNavigate: () -> Unit
 ) {
     val detailUiState = detailViewModel?.detailUiState ?: DetailUiState()

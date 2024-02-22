@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
@@ -38,7 +39,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun DrawerContent(
     navController: NavController,
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
 
     ) {
     val context = LocalContext.current

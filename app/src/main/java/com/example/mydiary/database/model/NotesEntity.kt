@@ -1,9 +1,6 @@
 package com.example.mydiary.database.model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
+/*
 @Entity(tableName = "notes")
 data class NotesEntity(
     @PrimaryKey
@@ -17,3 +14,4 @@ data class NotesEntity(
     @ColumnInfo(defaultValue = "")
     var documentId: String = ""
 )
+*/

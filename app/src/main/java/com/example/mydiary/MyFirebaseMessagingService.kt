@@ -10,11 +10,12 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import javax.inject.Inject
 
 const val channelId = "notification_channel"
 const val channelName = "com.example.mydiary"
 
-class MyFirebaseMessagingService: FirebaseMessagingService() {
+class MyFirebaseMessagingService @Inject constructor(): FirebaseMessagingService() {
     // generate the notification
     // show the notification
 

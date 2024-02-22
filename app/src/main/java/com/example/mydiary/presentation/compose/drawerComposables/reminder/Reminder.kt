@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.MainActivity
@@ -37,7 +38,7 @@ import java.util.*
 @Composable
 fun Reminder(
     navController: NavController,
-    viewModel: DiaryViewModel
+    viewModel: DiaryViewModel = hiltViewModel()
 
 ) {
     var sliderPosition by remember { mutableStateOf(0f) }

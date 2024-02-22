@@ -1,5 +1,5 @@
 package com.example.mydiary.network
-
+/*
 import android.app.AlertDialog
 import android.content.Context
 import com.example.mydiary.data.repository.Resources
@@ -14,10 +14,11 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import javax.inject.Inject
 
 
 const val NOTES_COLLECTION_REF = "notes"
-class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
+class NotesNetworkDatasourceImpl @Inject constructor():NotesNetworkDatasource{
 
 
     private val firebaseFirestore: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -152,3 +153,4 @@ class NotesNetworkDatasourceImpl:NotesNetworkDatasource {
         }
     }
 }
+*/

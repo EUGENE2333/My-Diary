@@ -1,11 +1,6 @@
 package com.example.mydiary.domain
 
-import com.example.mydiary.data.model.Notes
-import com.example.mydiary.data.repository.Resources
-import com.example.mydiary.database.localRepository.NotesRepository
-import com.google.firebase.Timestamp
-import kotlinx.coroutines.flow.Flow
-
+/*
 class NotesUseCase(
     private val notesRepository: NotesRepository
 ){
@@ -36,3 +31,4 @@ class NotesUseCase(
         }
     }
 }
+*/

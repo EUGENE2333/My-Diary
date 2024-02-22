@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.presentation.DiaryViewModel
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 fun SignUpPage(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: DiaryViewModel,
+    viewModel: DiaryViewModel = hiltViewModel(),
     onNavigateToDiaryList : () -> Unit
 ) {
     val loginUiState = viewModel.loginUiState

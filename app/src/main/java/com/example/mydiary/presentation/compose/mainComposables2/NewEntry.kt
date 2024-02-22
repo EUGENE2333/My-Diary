@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.data.utils.Utils
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailUiState
@@ -33,8 +34,8 @@ import kotlinx.coroutines.launch
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun NewEntry(
-    detailViewModel: DetailViewModel?,
-    viewModel: DiaryViewModel,
+    detailViewModel: DetailViewModel = hiltViewModel(),
+    viewModel: DiaryViewModel = hiltViewModel(),
     onNavigate: () -> Unit
 ){
 

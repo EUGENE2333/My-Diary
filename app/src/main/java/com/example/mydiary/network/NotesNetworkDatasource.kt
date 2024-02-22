@@ -1,12 +1,6 @@
 package com.example.mydiary.network
 
-import android.content.Context
-import com.example.mydiary.data.repository.Resources
-import com.example.mydiary.network.module.NetworkNotes
-import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.coroutines.flow.Flow
-
+/*
 interface NotesNetworkDatasource {
 
     fun user(): FirebaseUser?
@@ -39,3 +33,4 @@ interface NotesNetworkDatasource {
     fun deleteAccount(context: Context)
 
 }
+*/
