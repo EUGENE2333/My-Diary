@@ -23,46 +23,46 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DiaryViewModel @Inject constructor(
-    //val passwordManager: PasswordManager
+    val passwordManager: PasswordManager,
     private val authRepository: AuthRepository,
    private val preferencesManager: PreferencesManager,
-    ) : ViewModel(){
 
-        @Inject
-   lateinit var passwordManager: PasswordManager
+    ) : ViewModel() {
 
-     // login
-     private val currentUser = authRepository.currentUser
+    // login
+    private val currentUser = authRepository.currentUser
     val hasUser: Boolean
         get() = authRepository.hasUser()
 
     var loginUiState by mutableStateOf(LoginUiState())
-       private set
+        private set
 
 
     val enabledFlow: Flow<Boolean> = preferencesManager.enabledFlow
     val isNoteFormat: Flow<Boolean> = preferencesManager.isFormatFlow
 
 
-
-
     private val _selectedColorTheme = MutableStateFlow(Color(0xFF1E6D65))
     var selectedColorTheme = _selectedColorTheme.asStateFlow()
 
 
-    fun onUserNameChange(userName: String){
+    fun onUserNameChange(userName: String) {
         loginUiState = loginUiState.copy(userName = userName)
     }
-    fun onPasswordChange(password: String){
+
+    fun onPasswordChange(password: String) {
         loginUiState = loginUiState.copy(password = password)
     }
-    fun onUserNameSignUpChange(userNameSignUp: String){
+
+    fun onUserNameSignUpChange(userNameSignUp: String) {
         loginUiState = loginUiState.copy(userNameSignUp = userNameSignUp)
     }
-    fun onPasswordSignUpChange(passwordSignUp: String){
+
+    fun onPasswordSignUpChange(passwordSignUp: String) {
         loginUiState = loginUiState.copy(passwordSignUp = passwordSignUp)
     }
-    fun onConfirmPasswordSignUpChange(confirmPasswordSignUp: String){
+
+    fun onConfirmPasswordSignUpChange(confirmPasswordSignUp: String) {
         loginUiState = loginUiState.copy(confirmPasswordSignUp = confirmPasswordSignUp)
     }
 
@@ -78,61 +78,62 @@ class DiaryViewModel @Inject constructor(
     fun createUser(context: Context) = viewModelScope.launch {
 
         try {
-            if(!validateSignUpForm()){
+            if (!validateSignUpForm()) {
                 throw IllegalArgumentException("email and password cannot be empty")
             }
             loginUiState = loginUiState.copy(isLoading = true)
-            if(loginUiState.passwordSignUp != loginUiState.confirmPasswordSignUp){
+            if (loginUiState.passwordSignUp != loginUiState.confirmPasswordSignUp) {
                 throw IllegalArgumentException(
                     "Password do not match"
                 )
             }
             loginUiState = loginUiState.copy(signUpError = null)
-            authRepository.createUser(loginUiState.userNameSignUp, loginUiState.passwordSignUp){
-                    isSuccessful ->
-                if(isSuccessful){
-                   Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
+            authRepository.createUser(
+                loginUiState.userNameSignUp,
+                loginUiState.passwordSignUp
+            ) { isSuccessful ->
+                if (isSuccessful) {
+                    Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
                     loginUiState = loginUiState.copy(isSuccessLogin = true)
                     passwordManager.setUserAccount(currentUser?.email.toString())
 
-                }else{
+                } else {
                     Toast.makeText(context, "login failed", Toast.LENGTH_SHORT).show()
                     loginUiState = loginUiState.copy(isSuccessLogin = false)
                 }
             }
 
-        }catch(e:Exception){
-               loginUiState = loginUiState.copy(signUpError = e.localizedMessage)
+        } catch (e: Exception) {
+            loginUiState = loginUiState.copy(signUpError = e.localizedMessage)
             e.printStackTrace()
-        }finally {
+        } finally {
             loginUiState = loginUiState.copy(isLoading = false)
         }
     }
 
     fun loginUser(context: Context) = viewModelScope.launch {
         try {
-            if(!validateLoginForm()){
+            if (!validateLoginForm()) {
                 throw IllegalArgumentException("email and password cannot be empty")
             }
             loginUiState = loginUiState.copy(isLoading = true)
 
             loginUiState = loginUiState.copy(loginError = null)
-            authRepository.loginUser(loginUiState.userName, loginUiState.password){
-                    isSuccessful ->
-                if(isSuccessful){
+            authRepository.loginUser(loginUiState.userName, loginUiState.password) { isSuccessful ->
+                if (isSuccessful) {
                     Toast.makeText(context, "success login", Toast.LENGTH_SHORT).show()
                     loginUiState = loginUiState.copy(isSuccessLogin = true)
                     passwordManager.setUserAccount(currentUser?.email.toString())
 
-                }else{
+                } else {
                     Toast.makeText(context, "login failed", Toast.LENGTH_SHORT).show()
                     loginUiState = loginUiState.copy(isSuccessLogin = false)
                 }
             }
-        }catch(e:Exception){
+        } catch (e: Exception) {
             loginUiState = loginUiState.copy(loginError = e.localizedMessage)
             e.printStackTrace()
-        }finally {
+        } finally {
             loginUiState = loginUiState.copy(isLoading = false)
         }
     }
@@ -161,5 +162,4 @@ class DiaryViewModel @Inject constructor(
         _selectedFont.value = font
         passwordManager.setFontTheme(font) // Save the selected font theme using PasswordManager
     }
-
 }
