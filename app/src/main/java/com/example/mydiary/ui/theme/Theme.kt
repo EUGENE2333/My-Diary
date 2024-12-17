@@ -1,5 +1,3 @@
-
-
 package com.example.mydiary.ui.theme
 
 import android.app.Activity

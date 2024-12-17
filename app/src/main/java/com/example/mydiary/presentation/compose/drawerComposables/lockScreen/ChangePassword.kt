@@ -20,13 +20,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.mydiary.R
-import com.example.mydiary.data.utils.PasswordManager
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

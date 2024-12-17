@@ -10,12 +10,11 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.example.mydiary.R
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+
 class PasswordManager @Inject constructor(
     private val context: Context
-) {
+){
 
     companion object {
         private const val PREFS_NAME = "MyDiaryPrefs"

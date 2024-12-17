@@ -12,9 +12,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mydiary.presentation.compose.navigation.MyNavHost
 import com.example.mydiary.ui.theme.MyDiaryTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity(), TextToSpeech.OnInitListener {
+class MainActivity @Inject constructor() : ComponentActivity(), TextToSpeech.OnInitListener {
 
     private lateinit var textToSpeech: TextToSpeech
 
