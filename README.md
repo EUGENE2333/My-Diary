@@ -1,4 +1,4 @@
-# My-Diary
+## My-Diary
 ## Overview
 Diary, Notes and Journal App - an elegant and feature-rich mobile application developed using Kotlin,
 Jetpack Compose, and MVVM architecture. This app is designed to provide users with a seamless experience for managing their diary entries
@@ -14,8 +14,8 @@ and notes, offering a range of functionalities to enhance productivity and perso
 - Flexible Layouts: Two distinct layouts for diary and note entries ensure that users can organize their thoughts effectively.
 - Seamless Transition: Switch between diary and note layouts without any data loss, providing a fluid user experience.
 - Firebase Firestore: Real-time data storage and retrieval via Firebase Firestore, ensuring data consistency across devices.
-- Intelligent Reminders: Reminder Notifications: Set reminders for important diary entries or notes to stay organized and never miss a deadline.
-- Text-to-Speech Integration: Text-to-Speech: An integrated feature that allows users to listen to their entries for enhanced accessibility.
+- Intelligent Reminders: Set reminders for important diary entries or notes to stay organized and never miss a deadline.
+- Text-to-Speech Integration: An integrated feature that allows users to listen to their entries for enhanced accessibility.
 - Share with Friends: Recommendation Feature: Easily share the app with friends through a built-in recommendation feature, promoting user growth.
 - User Feedback: Feedback Mechanism: Users can provide valuable feedback or report issues, contributing to ongoing app improvement.
 - Aesthetically Pleasing UI
