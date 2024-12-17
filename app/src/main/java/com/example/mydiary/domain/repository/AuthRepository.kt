@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor() {
-    private val firebaseAuth: FirebaeAuth = FirebaseAuth.getInstance()
+    private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val currentUser: FirebaseUser? = firebaseAuth.currentUser
 
     fun hasUser(): Boolean = firebaseAuth.currentUser != null
