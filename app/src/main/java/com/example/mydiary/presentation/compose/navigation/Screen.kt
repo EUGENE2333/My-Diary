@@ -20,6 +20,7 @@ sealed class Screen(val route: String){
     object  About: Screen("about_page")
     object  Layout: Screen("layout_page")
     object  Export: Screen("export_page")
+    object  Subscription: Screen("subscription_screen")
 
     object DiaryDetail: Screen("diary_detail_screen/{userid}")
 
