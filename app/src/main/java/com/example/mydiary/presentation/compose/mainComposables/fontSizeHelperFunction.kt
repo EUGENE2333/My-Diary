@@ -22,3 +22,10 @@ fun headerFontSizeBasedOnFontTheme(selectedFontTheme: FontFamily): TextUnit =
         selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
         selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
     )  37.sp else  25.sp
+
+fun fontSizeBasedOnFontThemePremiumSection(selectedFontTheme: FontFamily): TextUnit =
+    if (selectedFontTheme == FontFamily(Font(R.font.pizzat)) ||
+        selectedFontTheme == FontFamily(Font(R.font.first_writing)) ||
+        selectedFontTheme == FontFamily(Font(R.font.slimshoot)) ||
+        selectedFontTheme == FontFamily(Font(R.font.gnyrwn977))
+    )  30.sp else  20.sp

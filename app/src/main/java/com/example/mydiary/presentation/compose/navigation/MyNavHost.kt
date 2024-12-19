@@ -30,6 +30,7 @@ import com.example.mydiary.presentation.compose.mainComposables.DiaryDetailScree
 import com.example.mydiary.presentation.compose.mainComposables.DiaryListScreen
 import com.example.mydiary.presentation.compose.mainComposables.NewDiaryEntryScreen
 import com.example.mydiary.presentation.compose.mainComposables.SplashScreen
+import com.example.mydiary.presentation.compose.mainComposables.subscription.SubscriptionScreen
 import com.example.mydiary.presentation.compose.mainComposables2.NewEntry
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailScreen2
 import com.example.mydiary.presentation.compose.mainComposables2.home.Home
@@ -242,6 +243,10 @@ fun MyNavHost(
 
         composable(route = Screen.Export.route) {
                  ExportScreen(navController = navController)
+        }
+
+        composable(route = Screen.Subscription.route){
+            SubscriptionScreen(onNavigate = {})
         }
 
         composable(route = Screen.Layout.route) {
