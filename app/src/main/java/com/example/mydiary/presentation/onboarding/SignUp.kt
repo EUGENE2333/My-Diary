@@ -1,10 +1,23 @@
-package com.example.mydiary.presentation.compose.drawerComposables.userProfile
+package com.example.mydiary.presentation.onboarding
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TextButton
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.PasswordTextField
 import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.delay
@@ -29,7 +41,7 @@ import kotlinx.coroutines.launch
 fun SignUpPage(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: DiaryViewModel = hiltViewModel(),
+    viewModel: LoginOrSignUpViewModel = hiltViewModel(),
     onNavigateToDiaryList : () -> Unit
 ) {
     val loginUiState = viewModel.loginUiState

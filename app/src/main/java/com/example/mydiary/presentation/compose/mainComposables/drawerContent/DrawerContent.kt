@@ -3,12 +3,34 @@ package com.example.mydiary.presentation.compose.mainComposables.drawerContent
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Divider
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Switch
+import androidx.compose.material.Text
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +51,7 @@ import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.presentation.DiaryViewModel
 import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontTheme
+import com.example.mydiary.presentation.compose.mainComposables.fontSizeBasedOnFontThemePremiumSection
 import com.example.mydiary.presentation.compose.mainComposables.headerFontSizeBasedOnFontTheme
 import com.example.mydiary.presentation.compose.navigation.Screen
 import kotlinx.coroutines.Dispatchers
@@ -122,12 +145,9 @@ fun DrawerContent(
 
 
                 Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 20.dp)
-                        .width(10.dp),
-
-                    color = Color.White
+                    modifier = Modifier.fillMaxWidth(),
+                    thickness = 0.5.dp,
+                    color = Color.DarkGray
                 )
             }
 
@@ -135,8 +155,62 @@ fun DrawerContent(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(color = Color(0xFF2C2428), shape = RectangleShape)
-                    .padding(top = 16.dp)
+                    //.padding(top = 8.dp)
             ) {
+
+                /**PREMIUM SCREEN */
+
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        navController.navigate(Screen.Subscription.route)
+                    }
+                ){
+                    // Add some other fields in the drawer
+                    Row(
+                        modifier = Modifier.paddingForSection()
+                    ) {
+
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_crown),
+                            contentDescription = "Premium",
+                            modifier = Modifier.paddingForImage()
+
+                        )
+                        Row(modifier = Modifier.fillMaxWidth()){
+                            Text(
+                                text = "Get Premium",
+                                fontSize = fontSizeBasedOnFontThemePremiumSection(selectedFontTheme),
+                                modifier = Modifier.paddingForText(),
+                                color = Color.White,
+                                fontFamily = selectedFontTheme,
+                            )
+                            Text(
+                                text = "😍",
+                                fontSize = fontSizeBasedOnFontThemePremiumSection(selectedFontTheme),
+                                modifier = Modifier
+                                    .padding(top = 16.dp)
+                                    .graphicsLayer(
+                                        transformOrigin = TransformOrigin(
+                                            pivotFractionX = 0.5f,
+                                            pivotFractionY = 0.5f,
+                                        ),
+                                        rotationZ = value
+                                    ),
+                                color = Color.White,
+                                fontFamily = selectedFontTheme,
+                            )
+                        }
+
+                    }
+
+                    Divider(
+                        modifier = Modifier.fillMaxWidth(),
+                        thickness = 0.5.dp,
+                        color = Color.DarkGray
+                    )
+
+                }
 
                 /**LOCK SCREEN */
 

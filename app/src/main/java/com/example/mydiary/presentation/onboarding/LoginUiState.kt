@@ -1,4 +1,4 @@
-package com.example.mydiary.data
+package com.example.mydiary.presentation.onboarding
 
 data class LoginUiState(
     val userName: String = "",
