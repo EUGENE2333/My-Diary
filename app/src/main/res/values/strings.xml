@@ -44,6 +44,19 @@
             " towards empyreal echelons you've scarce fathomed."
     </string>
 
-    <string name="revenuecat_sdk_key" translatable="false">goog_jlBEBqJeheOFjkNYbXZRxgEgroP</string>
+    <string name="revenuecat_sdk_key" translatable="false">rrr</string>
+    <string name="pricing_plan_monthly">Monthly</string>
+    <string name="pricing_plan_monthly_cadence">/ Month</string>
+    <string name="pricing_plan_yearly">Yearly</string>
+    <string name="pricing_plan_yearly_cadence">/ Year</string>
+    <string name="subscribe_button">Get Premium</string>
+    <string name="restore_purchase">Restore Purchase</string>
+    <string name="pricing_plan_offer_no_ads">Remove Ads</string>
+    <string name="pricing_plan_offer_access_fonts">Acess all stylish fonts</string>
+    <string name="pricing_plan_offer_priority_on_support">Priority on support</string>
+    <string name="pricing_plan_offer_add_images">Add Images to your entries</string>
+    <string name="pricing_plan_best_value">Best Value</string>
+    <string name="pricing_plan_screen_title">😊Get Premium</string>
+    <string name="pricing_plan_screen_subtitle">Unlock all features of myDiary.Get the best experience by unlocking premium features.</string>
 
 </resources>
