@@ -121,14 +121,24 @@ fun SubscriptionContent(
 
                 Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
 
-                state.monthlyPlanUi ?: return
-                state.yearlyPlanUi ?: return
-
-                PricingPlans(
-                    monthlyPlan = state.monthlyPlanUi,
-                    yearlyPlan = state.yearlyPlanUi,
-                    onPlanSelect = { onPlanSelect(it) }
-                )
+                // Check for null values before rendering PricingPlans
+                if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) {
+                    PricingPlans(
+                        monthlyPlan = state.monthlyPlanUi,
+                        yearlyPlan = state.yearlyPlanUi,
+                        onPlanSelect = { onPlanSelect(it) }
+                    )
+                } else {
+                    // Display a loading or placeholder UI
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(LocalSpacing.current.medium),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Loading plans...", style = bodyLarge)
+                    }
+                }
 
                 Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
                 Button(
