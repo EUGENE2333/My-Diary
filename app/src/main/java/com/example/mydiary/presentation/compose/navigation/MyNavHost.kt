@@ -40,7 +40,7 @@ import com.example.mydiary.presentation.onboarding.SignUpPage
 fun MyNavHost(
     navController: NavHostController = rememberNavController(),
     viewModel: DiaryViewModel = hiltViewModel(),
-    onBoardingViewModel: LoginOrSminoir ignUpViewModel = hiltViewModel()
+    onBoardingViewModel: LoginOrSignUpViewModel = hiltViewModel()
 ) {
 
     val passwordManager = viewModel.passwordManager
