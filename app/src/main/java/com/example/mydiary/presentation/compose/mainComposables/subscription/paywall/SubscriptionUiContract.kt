@@ -59,5 +59,5 @@ fun SubscriptionPlan.toUi(selected: Boolean = false): SubscriptionPlanUi {
 }
 
 sealed interface SubscriptionUiEvent {
-    data object SubscriptionPurchased : SubscriptionUiEvent
+     object SubscriptionPurchased : SubscriptionUiEvent
 }
