@@ -1,5 +1,5 @@
 package com.example.mydiary.core.analytics
-
+/*
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ParametersBuilder
@@ -59,3 +59,5 @@ private fun Map<Property, Any>.transformToFirebaseProperty(): Map<String, Any> =
         else -> property.propertyName
     }
 }
+
+*/

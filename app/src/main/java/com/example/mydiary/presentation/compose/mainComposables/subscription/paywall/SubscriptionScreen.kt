@@ -1,5 +1,6 @@
 package com.example.mydiary.presentation.compose.mainComposables.subscription.paywall
 
+//import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -19,11 +20,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +40,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.mydiary.R
 import com.example.mydiary.ui.components.MyDiaryFilledButton
 import com.example.mydiary.ui.theme.LocalSpacing
@@ -59,10 +59,10 @@ import com.example.mydiary.ui.theme.headlineExtraLarge
     viewModel: SubscriptionViewModel = hiltViewModel(),
     onNavigate:() -> Unit
 ){
-    val uiState by viewModel.state.collectAsStateWithLifecycle()
+     val uiState = viewModel.state.value
 
     SubscriptionContent(
-        state = uiState,
+       state = uiState,
         onPlanSelect = onPlanSelect,
         onRestorePurchase = onRestorePurchase,
         onSubscriptionPurchase = onNavigateToSuccess,
@@ -81,7 +81,7 @@ fun SubscriptionContent(
 ){
 
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize().background(color = Color(0xFFA53E97))
     ) {
         Spacer(modifier = Modifier.height(LocalSpacing.current.large))
         Box(
@@ -111,7 +111,8 @@ fun SubscriptionContent(
                 Text(
                     text = stringResource(id = R.string.pricing_plan_screen_subtitle),
                     textAlign = TextAlign.Start,
-                    style = bodyLarge
+                    style = bodyLarge,
+                    color = MaterialTheme.colorScheme.onPrimary,
                 )
 
                 Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
@@ -130,10 +131,40 @@ fun SubscriptionContent(
                 )
 
                 Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
+                Button(
+                    onClick = {
+                        val selectedPlan = if (state.yearlyPlanUi?.selected == true) {
+                            state.yearlyPlanUi
+                        } else {
+                            state.monthlyPlanUi
+                        }
+                        selectedPlan?.let {
+                            //   onSubscriptionPurchase(PurchaseSubscriptionInput(context, selectedPlan))
+                            onSubscriptionPurchase()
+                        }
+                    }
+                    ){
+                    Text(
+                    text = stringResource(id = R.string.subscribe_button),
+                        color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = LocalSpacing.current.small)
+                    )
+                }
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onRestorePurchase() },
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    text = stringResource(id = R.string.restore_purchase),
+                    style = bodyLarge,
+                    textAlign = TextAlign.Center
+                )
             }
         }
 
-        Column(
+       /* Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.primaryContainer)
@@ -169,7 +200,7 @@ fun SubscriptionContent(
                 style = bodyLarge,
                 textAlign = TextAlign.Center
             )
-        }
+        } */
     }
 }
 

@@ -1,5 +1,5 @@
 package com.example.mydiary.core.analytics
-
+/*
 import com.example.mydiary.core.analytics.di.AnalyticsProviders
 import javax.inject.Inject
 
@@ -31,4 +31,4 @@ class AnalyticsTrackerImpl @Inject constructor(
     override fun clearUserDetails() {
         providers.forEach { it.clearUserDetails() }
     }
-}
+} */
