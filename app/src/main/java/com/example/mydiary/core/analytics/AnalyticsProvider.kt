@@ -1,5 +1,5 @@
 package com.example.mydiary.core.analytics
-
+/*
 /**
  * Common interface for all analytics providers.
  * Analytics providers are responsible for tracking events and pages using the respective analytics SDKs.
@@ -35,3 +35,4 @@ interface AnalyticsProvider {
 
     fun clearPage() {}
 }
+*/
