@@ -23,8 +23,6 @@ import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.Loc
 import com.example.mydiary.presentation.compose.drawerComposables.lockScreen.SecurityQuestions
 import com.example.mydiary.presentation.compose.drawerComposables.rateAndReview.RateAndReview
 import com.example.mydiary.presentation.compose.drawerComposables.reminder.Reminder
-import com.example.mydiary.presentation.onboarding.SignInPage
-import com.example.mydiary.presentation.onboarding.SignUpPage
 import com.example.mydiary.presentation.compose.drawerComposables.userProfile.UserProfile
 import com.example.mydiary.presentation.compose.mainComposables.DiaryDetailScreen
 import com.example.mydiary.presentation.compose.mainComposables.DiaryListScreen
@@ -34,11 +32,15 @@ import com.example.mydiary.presentation.compose.mainComposables.subscription.pay
 import com.example.mydiary.presentation.compose.mainComposables2.NewEntry
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailScreen2
 import com.example.mydiary.presentation.compose.mainComposables2.home.Home
+import com.example.mydiary.presentation.onboarding.LoginOrSignUpViewModel
+import com.example.mydiary.presentation.onboarding.SignInPage
+import com.example.mydiary.presentation.onboarding.SignUpPage
 
 @Composable
 fun MyNavHost(
     navController: NavHostController = rememberNavController(),
-    viewModel: DiaryViewModel = hiltViewModel()
+    viewModel: DiaryViewModel = hiltViewModel(),
+    onBoardingViewModel: LoginOrSminoir ignUpViewModel = hiltViewModel()
 ) {
 
     val passwordManager = viewModel.passwordManager
@@ -197,7 +199,7 @@ fun MyNavHost(
     }
 
         composable(route = Screen.SignUpPage.route) {
-           SignUpPage(navController = navController, viewModel = viewModel, onNavigateToDiaryList = {
+           SignUpPage(navController = navController, viewModel = onBoardingViewModel, onNavigateToDiaryList = {
                navController.navigate(Screen.DiaryList.route) {
                    launchSingleTop = true
                    popUpTo(route = Screen.SignInPage.route) {
