@@ -39,7 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+//import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.mydiary.R
 import com.example.mydiary.ui.components.MyDiaryFilledButton
 import com.example.mydiary.ui.theme.LocalSpacing
@@ -59,10 +59,10 @@ import com.example.mydiary.ui.theme.headlineExtraLarge
     viewModel: SubscriptionViewModel = hiltViewModel(),
     onNavigate:() -> Unit
 ){
-    val uiState by viewModel.state.collectAsStateWithLifecycle()
+     val uiState = viewModel.state.value
 
     SubscriptionContent(
-        state = uiState,
+       state = uiState,
         onPlanSelect = onPlanSelect,
         onRestorePurchase = onRestorePurchase,
         onSubscriptionPurchase = onNavigateToSuccess,
