@@ -20,7 +20,7 @@ class LoginOrSignUpViewModel @Inject constructor(
     val passwordManager: PasswordManager,
     private val authRepository: AuthRepository,
     private val preferencesManager: PreferencesManager,
-): ViewModel() {
+): ViewModel(){
 
     private val currentUser = authRepository.currentUser
     val isNoteFormat: Flow<Boolean> = preferencesManager.isFormatFlow
