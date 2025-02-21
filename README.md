@@ -3,7 +3,7 @@
 Diary, Notes and Journal App - an elegant and feature-rich mobile application developed using Kotlin,
 Jetpack Compose, and MVVM architecture. This app is designed to provide users with a seamless experience for managing their diary entries
 and notes, offering a range of functionalities to enhance productivity and personalization.
-## Highlights
+### Highlights
 - User-Friendly Authentication
 - Email-Based Login: A secure and hassle-free login system based on email addresses.
 - Password Lock: Users can lock the app with a password for added security and privacy.
