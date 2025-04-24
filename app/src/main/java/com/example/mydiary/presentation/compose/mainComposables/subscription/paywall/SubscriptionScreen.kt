@@ -13,18 +13,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,7 +42,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.R
-import com.example.mydiary.ui.components.MyDiaryFilledButton
 import com.example.mydiary.ui.theme.LocalSpacing
 import com.example.mydiary.ui.theme.bodyLarge
 import com.example.mydiary.ui.theme.bodyMedium
@@ -52,24 +52,57 @@ import com.example.mydiary.ui.theme.headlineExtraLarge
 
 @SuppressLint("RememberReturnType")
 @Composable
- fun SubscriptionScreen(
-    onNavigateToSuccess: () -> Unit ={},
+fun SubscriptionScreen(
+    onNavigateToSuccess: () -> Unit = {},
     onRestorePurchase: () -> Unit = {},
     onPlanSelect: (PurchaseSubscriptionInput) -> Unit = {},
     viewModel: SubscriptionViewModel = hiltViewModel(),
-    onNavigate:() -> Unit
+    onNavigate: () -> Unit
 ){
-     val uiState = viewModel.state.value
+    // Collect state as state flow to ensure recomposition when it changes
+    val uiState by viewModel.state.collectAsState()
+    val context = LocalContext.current
 
-    SubscriptionContent(
-       state = uiState,
-        onPlanSelect = onPlanSelect,
-        onRestorePurchase = onRestorePurchase,
-        onSubscriptionPurchase = onNavigateToSuccess,
-        modifier = Modifier.fillMaxSize()
-    )
+    // Handle UI events from the ViewModel
+    LaunchedEffect(key1 = Unit) {
+        viewModel.events.collect { event ->
+            when (event) {
+                is SubscriptionUiEvent.SubscriptionPurchased -> onNavigateToSuccess()
+            }
+        }
+    }
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        SubscriptionContent(
+            state = uiState,
+            onPlanSelect = { input ->
+                viewModel.onSubscriptionPlanSelected(input)
+            },
+            onRestorePurchase = {
+                viewModel.onRestorePurchase()
+            },
+            onSubscriptionPurchase = {
+                // Get the currently selected plan
+                /*   val selectedPlan = if (uiState.yearlyPlanUi?.selected == true) {
+                uiState.yearlyPlanUi
+            } else {
+                uiState.monthlyPlanUi
+            }
+
+            // If there's a valid selected plan, initiate purchase
+            selectedPlan?.let { plan ->
+                viewModel.onSubscriptionPurchase(
+                    PurchaseSubscriptionInput(
+                        context = context,
+                        plan = plan
+                    )
+                )
+            } */
+            },
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
-
 
 @Composable
 fun SubscriptionContent(
@@ -78,55 +111,78 @@ fun SubscriptionContent(
     onPlanSelect: (PurchaseSubscriptionInput) -> Unit,
     onSubscriptionPurchase: () -> Unit,
     modifier: Modifier = Modifier
-){
+) {
+    // Show loading indicator if state is loading
+   /* if (state.isLoading) {
+        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
 
-    Column(
-        modifier = modifier.fillMaxSize().background(color = Color(0xFFA53E97))
+    // Show error if there is one
+    state.error?.let { errorMessage ->
+        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text(
+                text = errorMessage,
+                color = MaterialTheme.colorScheme.error,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(horizontal = LocalSpacing.current.medium)
+            )
+        }
+        return
+    } */
+
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .fillMaxSize()
+            .background(color = Color(0xFFA53E97))
+            .padding(horizontal = LocalSpacing.current.medium)
     ) {
-        Spacer(modifier = Modifier.height(LocalSpacing.current.large))
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-        ) {
-            Column(
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.large))
+        }
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.large))
+        }
+        item {
+            Text(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-                    .padding(horizontal = LocalSpacing.current.medium)
-            ) {
-                Spacer(modifier = Modifier.height(LocalSpacing.current.large))
+                    .fillMaxWidth()
+                    .padding(vertical = LocalSpacing.current.small),
+                text = stringResource(id = R.string.pricing_plan_screen_title),
+                maxLines = 2,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onPrimary,
+                style = headlineExtraLarge
+            )
+        }
+        item {
+            Text(
+                text = stringResource(id = R.string.pricing_plan_screen_subtitle),
+                textAlign = TextAlign.Center,
+                style = bodyLarge,
+                color = MaterialTheme.colorScheme.onPrimary,
+            )
+        }
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
+        }
+        item {
+            Offers(/*modifier = Modifier.align(Alignment.CenterHorizontally*/)
+        }
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
+        }
+        item{
 
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = LocalSpacing.current.small),
-                    text = stringResource(id = R.string.pricing_plan_screen_title),
-                    maxLines = 2,
-                    textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    style = headlineExtraLarge
-                )
-
-                Text(
-                    text = stringResource(id = R.string.pricing_plan_screen_subtitle),
-                    textAlign = TextAlign.Start,
-                    style = bodyLarge,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                )
-
-                Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
-
-                Offers()
-
-                Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
-
-                // Check for null values before rendering PricingPlans
-                if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) {
+        // Check for null values before rendering PricingPlans
+           if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) {
                     PricingPlans(
                         monthlyPlan = state.monthlyPlanUi,
                         yearlyPlan = state.yearlyPlanUi,
-                        onPlanSelect = { onPlanSelect(it) }
+                        onPlanSelect = onPlanSelect
                     )
                 } else {
                     // Display a loading or placeholder UI
@@ -136,71 +192,33 @@ fun SubscriptionContent(
                             .padding(LocalSpacing.current.medium),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "Loading plans...", style = bodyLarge)
+                        Text(
+                            text = "Loading plans...",
+                            style = bodyLarge,
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
                     }
                 }
+        }
 
-                Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
-                Button(
-                    onClick = {
-                        val selectedPlan = if (state.yearlyPlanUi?.selected == true) {
-                            state.yearlyPlanUi
-                        } else {
-                            state.monthlyPlanUi
-                        }
-                        selectedPlan?.let {
-                            //   onSubscriptionPurchase(PurchaseSubscriptionInput(context, selectedPlan))
-                            onSubscriptionPurchase()
-                        }
-                    }
-                    ){
-                    Text(
-                    text = stringResource(id = R.string.subscribe_button),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = LocalSpacing.current.small)
-                    )
-                }
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
+        }
+        item {
+            Button(
+                onClick = onSubscriptionPurchase,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = LocalSpacing.current.small),
+                enabled = state.monthlyPlanUi != null && state.yearlyPlanUi != null
+            ){
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { onRestorePurchase() },
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    text = stringResource(id = R.string.restore_purchase),
-                    style = bodyLarge,
-                    textAlign = TextAlign.Center
+                text = stringResource(id = R.string.subscribe_button),
+                 color = MaterialTheme.colorScheme.onPrimary,
                 )
             }
         }
-
-       /* Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.primaryContainer)
-                .padding(
-                    bottom = LocalSpacing.current.large,
-                    start = LocalSpacing.current.medium,
-                    end = LocalSpacing.current.medium
-                )
-        ) {
-            MyDiaryFilledButton(
-                onClick = {
-                    val selectedPlan = if (state.yearlyPlanUi?.selected == true) {
-                        state.yearlyPlanUi
-                    } else {
-                        state.monthlyPlanUi
-                    }
-                    selectedPlan?.let {
-                        //   onSubscriptionPurchase(PurchaseSubscriptionInput(context, selectedPlan))
-                        onSubscriptionPurchase()
-                    }
-                },
-                text = stringResource(id = R.string.subscribe_button),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = LocalSpacing.current.small)
-            )
+        item {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -210,14 +228,58 @@ fun SubscriptionContent(
                 style = bodyLarge,
                 textAlign = TextAlign.Center
             )
-        } */
+        }
     }
 }
 
 @Composable
-private fun Offers() {
+fun PricingPlans(
+    monthlyPlan: SubscriptionPlanUi,
+    yearlyPlan: SubscriptionPlanUi,
+    onPlanSelect: (PurchaseSubscriptionInput) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Yearly Plan with Best Value label
+        Column(
+            modifier = Modifier
+                .padding(bottom = LocalSpacing.current.extraMediumLarge)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            BestValueLabel()
+
+            SubscriptionItemView(
+                title = yearlyPlan.title.toString(context),
+                price = yearlyPlan.price.toString(context),
+                cadence = yearlyPlan.cadence.toString(context),
+                selected = yearlyPlan.selected,
+                highlight = true,
+                onClick = { onPlanSelect(PurchaseSubscriptionInput(context, yearlyPlan)) }
+            )
+        }
+
+        // Monthly Plan
+        SubscriptionItemView(
+            title = monthlyPlan.title.toString(context),
+            price = monthlyPlan.price.toString(context),
+            cadence = monthlyPlan.cadence.toString(context),
+            selected = monthlyPlan.selected,
+            highlight = false,
+            onClick = { onPlanSelect(PurchaseSubscriptionInput(context, monthlyPlan)) }
+        )
+    }
+}
+
+@Composable
+private fun Offers(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxWidth()
             .padding(horizontal = LocalSpacing.current.medium),
         verticalArrangement = Arrangement.spacedBy(LocalSpacing.current.medium)
     ) {
@@ -267,49 +329,6 @@ private fun PricingPlanOfferItem(text: AnnotatedString) {
             textAlign = TextAlign.Start,
             color = MaterialTheme.colorScheme.onPrimary,
             style = bodyMedium
-        )
-    }
-}
-
-@Composable
-fun PricingPlans(
-    monthlyPlan: SubscriptionPlanUi,
-    yearlyPlan: SubscriptionPlanUi,
-    onPlanSelect: (PurchaseSubscriptionInput) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier =
-        modifier
-            .fillMaxWidth()
-            .padding(bottom = LocalSpacing.current.medium),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-    ) {
-        val context = LocalContext.current
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            SubscriptionItemView(
-                modifier = Modifier.offset(y = 28.dp),
-                title = yearlyPlan.title.toString(LocalContext.current),
-                price = yearlyPlan.price.toString(LocalContext.current),
-                cadence = yearlyPlan.cadence.toString(LocalContext.current),
-                selected = yearlyPlan.selected,
-                highlight = true,
-                onClick = { onPlanSelect(PurchaseSubscriptionInput(context, yearlyPlan)) }
-            )
-            BestValueLabel()
-        }
-        Spacer(modifier = Modifier.height(LocalSpacing.current.extraMediumLarge))
-        SubscriptionItemView(
-            title = monthlyPlan.title.toString(LocalContext.current),
-            price = monthlyPlan.price.toString(LocalContext.current),
-            cadence = monthlyPlan.cadence.toString(LocalContext.current),
-            selected = monthlyPlan.selected,
-            highlight = false,
-            onClick = { onPlanSelect(PurchaseSubscriptionInput(context, monthlyPlan)) }
         )
     }
 }
