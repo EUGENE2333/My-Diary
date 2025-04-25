@@ -19,11 +19,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -44,10 +44,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.R
 import com.example.mydiary.ui.theme.LocalSpacing
 import com.example.mydiary.ui.theme.bodyLarge
-import com.example.mydiary.ui.theme.bodyMedium
 import com.example.mydiary.ui.theme.bodySmall
 import com.example.mydiary.ui.theme.crownColor
 import com.example.mydiary.ui.theme.headlineExtraLarge
+import com.example.mydiary.ui.theme.headlineLarge
 
 
 @SuppressLint("RememberReturnType")
@@ -64,13 +64,14 @@ fun SubscriptionScreen(
     val context = LocalContext.current
 
     // Handle UI events from the ViewModel
-    LaunchedEffect(key1 = Unit) {
+   /* LaunchedEffect(key1 = Unit) {
         viewModel.events.collect { event ->
             when (event) {
                 is SubscriptionUiEvent.SubscriptionPurchased -> onNavigateToSuccess()
             }
         }
-    }
+    } */
+
 
     Column(modifier = Modifier.fillMaxSize()) {
         SubscriptionContent(
@@ -137,7 +138,7 @@ fun SubscriptionContent(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color(0xFFA53E97))
+            .background(color = Color.Black/*Color(0xFFA53E97)*/)
             .padding(horizontal = LocalSpacing.current.medium)
     ) {
         item {
@@ -170,7 +171,8 @@ fun SubscriptionContent(
             Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
         }
         item {
-            Offers(/*modifier = Modifier.align(Alignment.CenterHorizontally*/)
+
+                Offers(/*modifier = Modifier.align(Alignment.CenterHorizontally*/)
         }
         item {
             Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
@@ -178,13 +180,13 @@ fun SubscriptionContent(
         item{
 
         // Check for null values before rendering PricingPlans
-           if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) {
+        /*   if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) { */
                     PricingPlans(
-                        monthlyPlan = state.monthlyPlanUi,
-                        yearlyPlan = state.yearlyPlanUi,
-                        onPlanSelect = onPlanSelect
+                     //   monthlyPlan = state.monthlyPlanUi,
+                     //   yearlyPlan = state.yearlyPlanUi,
+                      //  onPlanSelect = onPlanSelect
                     )
-                } else {
+              /*  } else {
                     // Display a loading or placeholder UI
                     Box(
                         modifier = Modifier
@@ -198,7 +200,7 @@ fun SubscriptionContent(
                             color = MaterialTheme.colorScheme.onPrimary
                         )
                     }
-                }
+                } */
         }
 
         item {
@@ -210,13 +212,18 @@ fun SubscriptionContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = LocalSpacing.current.small),
-                enabled = state.monthlyPlanUi != null && state.yearlyPlanUi != null
+                colors = ButtonDefaults.buttonColors(containerColor = crownColor),
+               // enabled = state.monthlyPlanUi != null && state.yearlyPlanUi != null
             ){
                 Text(
                 text = stringResource(id = R.string.subscribe_button),
                  color = MaterialTheme.colorScheme.onPrimary,
+                 style = headlineLarge
                 )
             }
+        }
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.large))
         }
         item {
             Text(
@@ -234,44 +241,58 @@ fun SubscriptionContent(
 
 @Composable
 fun PricingPlans(
-    monthlyPlan: SubscriptionPlanUi,
-    yearlyPlan: SubscriptionPlanUi,
-    onPlanSelect: (PurchaseSubscriptionInput) -> Unit,
+   // monthlyPlan: SubscriptionPlanUi,
+  //  yearlyPlan: SubscriptionPlanUi,
+   // onPlanSelect: (PurchaseSubscriptionInput) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
 
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        modifier = modifier.padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         // Yearly Plan with Best Value label
-        Column(
+      /*  Column(
             modifier = Modifier
                 .padding(bottom = LocalSpacing.current.extraMediumLarge)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            BestValueLabel()
+        ) { */
+      //      BestValueLabel()
+// Monthly Plan
+        SubscriptionItemView(
+            title ="Monthly",//monthlyPlan.title.toString(context),
+            price ="$9.99",//monthlyPlan.price.toString(context),
+            cadence ="6",//monthlyPlan.cadence.toString(context),
+            selected = false ,//monthlyPlan.selected,
+            highlight = false,
+            onClick = { /*onPlanSelect(PurchaseSubscriptionInput(context, monthlyPlan))*/ }
+        )
+        Spacer(modifier = Modifier.width(LocalSpacing.current.large))
 
             SubscriptionItemView(
-                title = yearlyPlan.title.toString(context),
-                price = yearlyPlan.price.toString(context),
-                cadence = yearlyPlan.cadence.toString(context),
-                selected = yearlyPlan.selected,
+                title = "Yearly", //yearlyPlan.title.toString(context),
+                price = "$19.99", //yearlyPlan.price.toString(context),
+                modifier = Modifier.padding(horizontal = 8.dp),
+                cadence = "1",//yearlyPlan.cadence.toString(context),
+                selected = true,//yearlyPlan.selected,
                 highlight = true,
-                onClick = { onPlanSelect(PurchaseSubscriptionInput(context, yearlyPlan)) }
+                onClick = {/* onPlanSelect(PurchaseSubscriptionInput(context, yearlyPlan)) */}
             )
-        }
+      //  }
+
+        Spacer(modifier = Modifier.width(LocalSpacing.current.large))
 
         // Monthly Plan
         SubscriptionItemView(
-            title = monthlyPlan.title.toString(context),
-            price = monthlyPlan.price.toString(context),
-            cadence = monthlyPlan.cadence.toString(context),
-            selected = monthlyPlan.selected,
+            title ="Monthly",//monthlyPlan.title.toString(context),
+            price ="$2.99",//monthlyPlan.price.toString(context),
+            cadence ="3",//monthlyPlan.cadence.toString(context),
+            selected = false ,//monthlyPlan.selected,
             highlight = false,
-            onClick = { onPlanSelect(PurchaseSubscriptionInput(context, monthlyPlan)) }
+            onClick = { /*onPlanSelect(PurchaseSubscriptionInput(context, monthlyPlan))*/ }
         )
     }
 }
@@ -280,8 +301,8 @@ fun PricingPlans(
 private fun Offers(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth()
-            .padding(horizontal = LocalSpacing.current.medium),
-        verticalArrangement = Arrangement.spacedBy(LocalSpacing.current.medium)
+            .padding(horizontal = LocalSpacing.current.extraExtraLarge),
+        verticalArrangement = Arrangement.spacedBy(LocalSpacing.current.medium),
     ) {
         PricingPlanOfferItem(
             buildAnnotatedString {
@@ -328,7 +349,7 @@ private fun PricingPlanOfferItem(text: AnnotatedString) {
             text = text,
             textAlign = TextAlign.Start,
             color = MaterialTheme.colorScheme.onPrimary,
-            style = bodyMedium
+            style = bodyLarge
         )
     }
 }
@@ -340,7 +361,7 @@ private fun BestValueLabel() {
             .wrapContentWidth(Alignment.CenterHorizontally)
             .heightIn(min = LocalSpacing.current.extraLarge)
             .background(
-                color = Color(0xFF4CAF50),
+                color = crownColor,
                 shape = MaterialTheme.shapes.medium
             ),
         contentAlignment = Alignment.Center
