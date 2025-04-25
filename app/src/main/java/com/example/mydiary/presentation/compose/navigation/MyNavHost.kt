@@ -49,7 +49,7 @@ fun MyNavHost(
     var startDestination = Screen.SplashScreen.route
 
 
-    NavHost(navController = navController, startDestination = startDestination) {
+    NavHost(navController = navController, startDestination = startDestination){
 
         composable(route = Screen.SplashScreen.route){
 
