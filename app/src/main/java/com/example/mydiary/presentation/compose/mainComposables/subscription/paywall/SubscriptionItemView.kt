@@ -1,30 +1,27 @@
 package com.example.mydiary.presentation.compose.mainComposables.subscription.paywall
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.example.mydiary.R
-import com.example.mydiary.ui.components.animatedBorder
 import com.example.mydiary.ui.theme.LocalSpacing
 import com.example.mydiary.ui.theme.bodyLarge
+import com.example.mydiary.ui.theme.crownColor
 import com.example.mydiary.ui.theme.titleMedium
-import com.google.common.collect.ImmutableList
 
 @Composable
 fun SubscriptionTitle(
@@ -68,58 +65,70 @@ fun SubscriptionItemView(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val appliedBorder = if (highlight) {
-        modifier.fillMaxWidth().animatedBorder(
-            borderColors = listOf(Color.Red, Color.Green, Color.Blue, Color.Yellow) as ImmutableList<Color>,
-            backgroundColor = Color.White,
-            shape = MaterialTheme.shapes.large,
-            borderWidth = 1.dp
+    // Simple border for testing
+    val borderModifier = if (highlight) {
+        modifier.border(
+            width = 2.dp,
+            color = crownColor,  // Use a simple color for testing
+            shape = MaterialTheme.shapes.large
         )
     } else {
-        modifier.fillMaxWidth().border(
+        modifier.border(
             width = 1.dp,
-            color = MaterialTheme.colorScheme.secondary,
+            color = MaterialTheme.colorScheme.onPrimary,
             shape = MaterialTheme.shapes.large
         )
     }
-    Row(
-        modifier = appliedBorder
-            .background(
-                color = MaterialTheme.colorScheme.primaryContainer,
-                shape = MaterialTheme.shapes.large
-            )
-            .padding(
-                horizontal = LocalSpacing.current.medium,
-                vertical = LocalSpacing.current.large
-            )
-            .clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Spacer(modifier = Modifier.width(LocalSpacing.current.extraSmall))
-        if (selected) {
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_checkbox_checked),
-                contentDescription = null,
-                tint = Color.Unspecified,
-                modifier = Modifier.size(LocalSpacing.current.medium + LocalSpacing.current.extraSmall)
-            )
-        } else {
-            Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_checkbox_unchecked),
-                contentDescription = null,
-                tint = Color.Unspecified,
-                modifier = Modifier.size(LocalSpacing.current.medium + LocalSpacing.current.extraSmall)
-            )
-        }
-        Spacer(modifier = Modifier.width(LocalSpacing.current.medium))
 
-        SubscriptionTitle(title, selected)
+    // Add debug log
+    Log.d("SubscriptionItemView", "Rendering: title=$title, price=$price, selected=$selected")
+
+    Column (
+        modifier = borderModifier
+            .background(
+                color =Color.Black, //Color(0xFFA53E97),
+                shape = MaterialTheme.shapes.large)
+            .padding(14.dp)
+            .clickable { onClick() },
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+       // Spacer(modifier = Modifier.height(LocalSpacing.current.extraSmall))
+
+        // Simplified checkbox - just a colored box for testing
+      /*  Box(
+            modifier = Modifier
+                .size(LocalSpacing.current.medium + LocalSpacing.current.extraSmall)
+                .background(if (selected) crownColor else Color.White)
+                .clip(RoundedCornerShape(28.dp))
+        ) */
+
+       // Spacer(modifier = Modifier.height(LocalSpacing.current.medium))
+
+        // Use regular Text for title first
+        Text(
+            text = cadence,
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onPrimary
+        )
+        Text(
+            text = title,
+            style = if (selected) MaterialTheme.typography.titleMedium else MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onPrimary,
+            modifier = modifier
+        )
+
         Spacer(
-            modifier =
-            Modifier
-                .width(LocalSpacing.current.medium)
+            modifier = Modifier
+                .height(LocalSpacing.current.medium)
                 .weight(1f)
         )
-        SubscriptionPriceRow(price, cadence)
+
+        // Simplified price display
+        Text(
+            text = price,
+            color = MaterialTheme.colorScheme.onPrimary,
+            style = MaterialTheme.typography.titleMedium
+        )
     }
 }
