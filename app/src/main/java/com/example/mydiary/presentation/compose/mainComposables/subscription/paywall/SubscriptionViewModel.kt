@@ -2,6 +2,8 @@ package com.example.mydiary.presentation.compose.mainComposables.subscription.pa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mydiary.R
+import com.example.mydiary.core.resources.TextResource
 /*import com.example.mydiary.core.analytics.AnalyticsTracker
 import com.example.mydiary.core.analytics.Events
 import com.example.mydiary.core.analytics.Page
