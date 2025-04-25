@@ -18,6 +18,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -47,7 +50,7 @@ import com.example.mydiary.ui.theme.bodyLarge
 import com.example.mydiary.ui.theme.bodySmall
 import com.example.mydiary.ui.theme.crownColor
 import com.example.mydiary.ui.theme.headlineExtraLarge
-import com.example.mydiary.ui.theme.headlineLarge
+import com.example.mydiary.ui.theme.titleLarge
 
 
 @SuppressLint("RememberReturnType")
@@ -145,9 +148,29 @@ fun SubscriptionContent(
             Spacer(modifier = Modifier.height(LocalSpacing.current.large))
         }
         item {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(onClick = {/* navController.popBackStack()*/ }) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
+                }
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onRestorePurchase() },
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    text = stringResource(id = R.string.restore_purchase),
+                    style = bodyLarge,
+                )
+
+            }
+        }
+        item {
             Spacer(modifier = Modifier.height(LocalSpacing.current.large))
         }
         item {
+
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -218,7 +241,7 @@ fun SubscriptionContent(
                 Text(
                 text = stringResource(id = R.string.subscribe_button),
                  color = MaterialTheme.colorScheme.onPrimary,
-                 style = headlineLarge
+                 style = titleLarge
                 )
             }
         }
@@ -230,9 +253,9 @@ fun SubscriptionContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onRestorePurchase() },
-                color = MaterialTheme.colorScheme.onPrimary,
-                text = stringResource(id = R.string.restore_purchase),
-                style = bodyLarge,
+                color = Color.DarkGray,
+                text = stringResource(id = R.string.terms_of_service),
+                style = bodySmall,
                 textAlign = TextAlign.Center
             )
         }
