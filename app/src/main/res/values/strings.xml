@@ -58,5 +58,6 @@
     <string name="pricing_plan_best_value">Best Value</string>
     <string name="pricing_plan_screen_title">😊Get Premium</string>
     <string name="pricing_plan_screen_subtitle">Unlock all features of myDiary.Get the best experience by unlocking premium features.</string>
+    <string name="terms_of_service">Terms of service | Privacy Policy | Info</string>
 
 </resources>
