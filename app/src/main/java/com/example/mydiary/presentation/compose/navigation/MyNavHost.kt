@@ -42,12 +42,10 @@ fun MyNavHost(
     viewModel: DiaryViewModel = hiltViewModel(),
     onBoardingViewModel: LoginOrSignUpViewModel = hiltViewModel()
 ) {
-
     val passwordManager = viewModel.passwordManager
     val isNoteFormat by viewModel.isNoteFormat.collectAsState(initial = false)
 
     var startDestination = Screen.SplashScreen.route
-
 
     NavHost(navController = navController, startDestination = startDestination){
 
