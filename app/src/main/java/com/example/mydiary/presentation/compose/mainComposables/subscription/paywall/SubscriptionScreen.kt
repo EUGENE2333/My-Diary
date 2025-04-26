@@ -47,6 +47,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mydiary.R
 import com.example.mydiary.ui.theme.LocalSpacing
 import com.example.mydiary.ui.theme.bodyLarge
+import com.example.mydiary.ui.theme.bodyMedium
 import com.example.mydiary.ui.theme.bodySmall
 import com.example.mydiary.ui.theme.crownColor
 import com.example.mydiary.ui.theme.headlineExtraLarge
@@ -150,14 +151,14 @@ fun SubscriptionContent(
         item {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = {/* navController.popBackStack()*/ }) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
                 }
                 Text(
                     modifier = Modifier
-                        .fillMaxWidth()
                         .clickable { onRestorePurchase() },
                     color = MaterialTheme.colorScheme.onPrimary,
                     text = stringResource(id = R.string.restore_purchase),
@@ -165,6 +166,9 @@ fun SubscriptionContent(
                 )
 
             }
+        }
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.large))
         }
         item {
             Spacer(modifier = Modifier.height(LocalSpacing.current.large))
@@ -252,10 +256,10 @@ fun SubscriptionContent(
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onRestorePurchase() },
+                    .clickable { /*TODO*/},
                 color = Color.DarkGray,
                 text = stringResource(id = R.string.terms_of_service),
-                style = bodySmall,
+                style = bodyMedium,
                 textAlign = TextAlign.Center
             )
         }
