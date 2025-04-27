@@ -44,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.mydiary.R
 import com.example.mydiary.ui.theme.LocalSpacing
 import com.example.mydiary.ui.theme.bodyLarge
@@ -61,7 +62,9 @@ fun SubscriptionScreen(
     onRestorePurchase: () -> Unit = {},
     onPlanSelect: (PurchaseSubscriptionInput) -> Unit = {},
     viewModel: SubscriptionViewModel = hiltViewModel(),
-    onNavigate: () -> Unit
+    onNavigateToPolicy: () -> Unit = {},
+    onNavigate: () -> Unit,
+    navController: NavController
 ){
     // Collect state as state flow to ensure recomposition when it changes
     val uiState by viewModel.state.collectAsState()
@@ -104,6 +107,8 @@ fun SubscriptionScreen(
                 )
             } */
             },
+            navController = navController,
+            onNavigateToPolicy = onNavigateToPolicy,
             modifier = Modifier.fillMaxSize()
         )
     }
@@ -115,6 +120,8 @@ fun SubscriptionContent(
     onRestorePurchase: () -> Unit,
     onPlanSelect: (PurchaseSubscriptionInput) -> Unit,
     onSubscriptionPurchase: () -> Unit,
+    onNavigateToPolicy: () -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     // Show loading indicator if state is loading
@@ -154,7 +161,7 @@ fun SubscriptionContent(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = {/* navController.popBackStack()*/ }) {
+                IconButton(onClick = { navController.popBackStack() }) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
                 }
                 Text(
@@ -252,16 +259,26 @@ fun SubscriptionContent(
         item {
             Spacer(modifier = Modifier.height(LocalSpacing.current.large))
         }
+        item{
+              Text(
+                     modifier = Modifier
+                         .fillMaxWidth(),
+                  color = MaterialTheme.colorScheme.onPrimary,
+                     text = "By subscribing, you agree to our",
+                     style = bodyMedium,
+                     textAlign = TextAlign.Center
+                 )
+        }
         item {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { /*TODO*/},
-                color = Color.DarkGray,
-                text = stringResource(id = R.string.terms_of_service),
-                style = bodyMedium,
-                textAlign = TextAlign.Center
-            )
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {onNavigateToPolicy.invoke()},
+                    color = crownColor,
+                    text = stringResource(id = R.string.terms_of_service),
+                    style = bodyMedium,
+                    textAlign = TextAlign.Center
+                )
         }
     }
 }
