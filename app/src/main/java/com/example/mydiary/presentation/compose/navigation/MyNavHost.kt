@@ -29,6 +29,7 @@ import com.example.mydiary.presentation.compose.mainComposables.DiaryListScreen
 import com.example.mydiary.presentation.compose.mainComposables.NewDiaryEntryScreen
 import com.example.mydiary.presentation.compose.mainComposables.SplashScreen
 import com.example.mydiary.presentation.compose.mainComposables.subscription.paywall.SubscriptionScreen
+import com.example.mydiary.presentation.compose.mainComposables.subscription.paywall.TermsOfserviceAndPolicy
 import com.example.mydiary.presentation.compose.mainComposables2.NewEntry
 import com.example.mydiary.presentation.compose.mainComposables2.detail.DetailScreen2
 import com.example.mydiary.presentation.compose.mainComposables2.home.Home
@@ -47,45 +48,44 @@ fun MyNavHost(
 
     var startDestination = Screen.SplashScreen.route
 
-    NavHost(navController = navController, startDestination = startDestination){
+    NavHost(navController = navController, startDestination = startDestination) {
 
-        composable(route = Screen.SplashScreen.route){
+        composable(route = Screen.SplashScreen.route) {
 
-            SplashScreen{
-                if(!viewModel.hasUser ){
+            SplashScreen {
+                if (!viewModel.hasUser) {
                     viewModel.passwordManager.setPassword("null")
-                    passwordManager.setQuestionAnswer("","")
-                    navController.navigate( Screen.SignInPage.route){
+                    passwordManager.setQuestionAnswer("", "")
+                    navController.navigate(Screen.SignInPage.route) {
                         launchSingleTop = true
-                        popUpTo(0){
+                        popUpTo(0) {
                             inclusive = true
                         }
+                    }
+                } else if (viewModel.passwordManager.getPassword() != "null") {
+                    navController.navigate(Screen.LockScreenScreen.route) {
+                        launchSingleTop = true
+                        popUpTo(0) {
+                            inclusive = true
+                        }
+
                     }
                 }
-                    else if(viewModel.passwordManager.getPassword() != "null"){
-                        navController.navigate(Screen.LockScreenScreen.route){
-                            launchSingleTop = true
-                            popUpTo(0){
-                                inclusive = true
-                            }
-
-                        }
-                    }
                 //    else if (isPasswordSet){ Screen.LockScreenScreen.route }
 
-                else if(isNoteFormat){
-                    navController.navigate( Screen.Home.route){
+                else if (isNoteFormat) {
+                    navController.navigate(Screen.Home.route) {
                         launchSingleTop = true
-                        popUpTo(0){
+                        popUpTo(0) {
                             inclusive = true
                         }
                     }
 
 
-                } else{
-                    navController.navigate( Screen.DiaryList.route){
+                } else {
+                    navController.navigate(Screen.DiaryList.route) {
                         launchSingleTop = true
-                        popUpTo(0){
+                        popUpTo(0) {
                             inclusive = true
                         }
                     }
@@ -103,9 +103,9 @@ fun MyNavHost(
                 },
 
                 navToLoginPage = {
-                    navController.navigate(Screen.SignInPage.route){
+                    navController.navigate(Screen.SignInPage.route) {
                         launchSingleTop = true
-                        popUpTo(0){
+                        popUpTo(0) {
                             inclusive = true
                         }
                     }
@@ -121,24 +121,25 @@ fun MyNavHost(
         composable(route = Screen.NewDiaryEntry.route) {
             NewDiaryEntryScreen(
                 navController = navController,
-                onNavigate = { navController.navigate(Screen.DiaryList.route)}
+                onNavigate = { navController.navigate(Screen.DiaryList.route) }
             )
 
         }
 
         composable(
-         //   route = Screen.DiaryDetail.route,
+            //   route = Screen.DiaryDetail.route,
             route = Screen.DiaryDetail.route + "?userid={userid}",
             arguments = listOf(navArgument("userid") {
                 type = NavType.StringType
                 defaultValue = ""
             })
-        ) {entry->
+        ) { entry ->
 
             DiaryDetailScreen(
                 navController = navController,
-                noteId = entry.arguments?.getString("userid") as String) {
-                 navController.navigate(Screen.DiaryList.route)
+                noteId = entry.arguments?.getString("userid") as String
+            ) {
+                navController.navigate(Screen.DiaryList.route)
             }
         }
 
@@ -152,13 +153,13 @@ fun MyNavHost(
                 },
             )
         }
-        composable(route = Screen.SecurityQuestions.route){
+        composable(route = Screen.SecurityQuestions.route) {
             SecurityQuestions(
                 navController = navController,
             )
         }
-        composable(route = Screen.ForgotPassword.route){
-            ForgotPassword (navController = navController)
+        composable(route = Screen.ForgotPassword.route) {
+            ForgotPassword(navController = navController)
         }
 
 
@@ -169,61 +170,66 @@ fun MyNavHost(
             )
         }
 
-            composable(route = Screen.ColorAndStyle.route) {
-                ColorAndStyle(
-                    navController = navController
-                )
+        composable(route = Screen.ColorAndStyle.route) {
+            ColorAndStyle(
+                navController = navController
+            )
         }
         composable(route = Screen.UserProfile.route) {
             UserProfile(
                 navController = navController,
                 navToSignUpPage = {
-                    navController.navigate(Screen.SignInPage.route){
+                    navController.navigate(Screen.SignInPage.route) {
                         launchSingleTop = true
-                        popUpTo(0){
+                        popUpTo(0) {
                             inclusive = true
                         }
                     }
 
                 }
-            ){
-                navController.navigate(Screen.SignInPage.route){
+            ) {
+                navController.navigate(Screen.SignInPage.route) {
                     launchSingleTop = true
-                    popUpTo(0){
+                    popUpTo(0) {
                         inclusive = true
                     }
                 }
             }
-    }
+        }
 
         composable(route = Screen.SignUpPage.route) {
-           SignUpPage(navController = navController, viewModel = onBoardingViewModel, onNavigateToDiaryList = {
-               navController.navigate(Screen.DiaryList.route) {
-                   launchSingleTop = true
-                   popUpTo(route = Screen.SignInPage.route) {
-                       inclusive = true
-                   }
-               }
-           })
+            SignUpPage(
+                navController = navController,
+                viewModel = onBoardingViewModel,
+                onNavigateToDiaryList = {
+                    navController.navigate(Screen.DiaryList.route) {
+                        launchSingleTop = true
+                        popUpTo(route = Screen.SignInPage.route) {
+                            inclusive = true
+                        }
+                    }
+                })
         }
 
         composable(route = Screen.SignInPage.route) {
-           SignInPage(
-               navController = navController,
-               onNavigateToNoteHomeScreen = { navController.navigate(Screen.Home.route){
-                   launchSingleTop = true
-                   popUpTo(0){
-                       inclusive = true
-                   }
-               } }
-           ){
-               navController.navigate(Screen.DiaryList.route){
-                   launchSingleTop = true
-                   popUpTo(0){
-                       inclusive = true
-                   }
-               }
-           }
+            SignInPage(
+                navController = navController,
+                onNavigateToNoteHomeScreen = {
+                    navController.navigate(Screen.Home.route) {
+                        launchSingleTop = true
+                        popUpTo(0) {
+                            inclusive = true
+                        }
+                    }
+                }
+            ) {
+                navController.navigate(Screen.DiaryList.route) {
+                    launchSingleTop = true
+                    popUpTo(0) {
+                        inclusive = true
+                    }
+                }
+            }
         }
 
         composable(route = Screen.RateAndReview.route) {
@@ -242,28 +248,32 @@ fun MyNavHost(
         }
 
         composable(route = Screen.Export.route) {
-                 ExportScreen(navController = navController)
+            ExportScreen(navController = navController)
         }
 
-        composable(route = Screen.Subscription.route){
-            SubscriptionScreen(onNavigate = {})
+        composable(route = Screen.Subscription.route) {
+            SubscriptionScreen(
+                navController = navController,
+                onNavigate = {},
+                onNavigateToPolicy = { navController.navigate(Screen.TermsOfService.route)}
+                )
         }
 
         composable(route = Screen.Layout.route) {
             Layout(
                 navController = navController,
                 onNavigateToNoteHomeScreen = {
-                    navController.navigate(Screen.Home.route){
+                    navController.navigate(Screen.Home.route) {
                         launchSingleTop = true
-                        popUpTo(0){
+                        popUpTo(0) {
                             inclusive = true
                         }
                     }
                 }
             ) {
-                navController.navigate(Screen.DiaryList.route){
+                navController.navigate(Screen.DiaryList.route) {
                     launchSingleTop = true
-                    popUpTo(0){
+                    popUpTo(0) {
                         inclusive = true
                     }
                 }
@@ -276,17 +286,17 @@ fun MyNavHost(
                 onNoteClick = { noteId ->
                     navController.navigate(Screen.DiaryDetail2.route + "?id=$noteId")
                 },
-               navToNewEntryScreen = {
-                   navController.navigate(Screen.NewEntry.route)
-               },
+                navToNewEntryScreen = {
+                    navController.navigate(Screen.NewEntry.route)
+                },
                 navToLoginPage = {
-                     navController.navigate(Screen.SignInPage.route){
-                         launchSingleTop = true
-                         popUpTo(0){
-                             inclusive = true
-                         }
+                    navController.navigate(Screen.SignInPage.route) {
+                        launchSingleTop = true
+                        popUpTo(0) {
+                            inclusive = true
+                        }
 
-                     }
+                    }
                 },
             )
         }
@@ -297,7 +307,7 @@ fun MyNavHost(
                 type = NavType.StringType
                 defaultValue = ""
             })
-        ) { entry->
+        ) { entry ->
             DetailScreen2(
                 noteId = entry.arguments?.getString("id") as String
             ) {
@@ -306,16 +316,20 @@ fun MyNavHost(
 
         }
         composable(route = Screen.NewEntry.route) {
-            NewEntry{
+            NewEntry {
                 navController.navigateUp()
             }
         }
 
         composable(route = Screen.ChangePassword.route) {
 
-           ChangePassword(
+            ChangePassword(
                 navController = navController,
             )
         }
+
+        composable(route = Screen.TermsOfService.route) {
+            TermsOfserviceAndPolicy(navController = navController)
+        } 
     }
 }
