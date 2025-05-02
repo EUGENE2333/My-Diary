@@ -6,9 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
@@ -37,14 +35,14 @@ fun SubscriptionTitle(
 }
 
 @Composable
-fun SubscriptionPriceRow(
+fun SubscriptionPriceColumn(
     price: String,
     cadence: String,
     modifier: Modifier = Modifier
 ) {
-    Row(
+    Column(
         modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
         Text(
             text = price,
@@ -93,22 +91,14 @@ fun SubscriptionItemView(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-       // Spacer(modifier = Modifier.height(LocalSpacing.current.extraSmall))
+        Spacer(modifier = Modifier.width(LocalSpacing.current.medium))
+        SubscriptionTitle(title, selected)
+        Spacer(modifier = Modifier.width(LocalSpacing.current.small))
+        SubscriptionPriceColumn(price, cadence)
 
-        // Simplified checkbox - just a colored box for testing
-      /*  Box(
-            modifier = Modifier
-                .size(LocalSpacing.current.medium + LocalSpacing.current.extraSmall)
-                .background(if (selected) crownColor else Color.White)
-                .clip(RoundedCornerShape(28.dp))
-        ) */
-
-       // Spacer(modifier = Modifier.height(LocalSpacing.current.medium))
-
-        // Use regular Text for title first
-        Text(
+      /*  Text(
             text = cadence,
-            style = MaterialTheme.typography.headlineLarge,
+            style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onPrimary
         )
         Text(
@@ -129,6 +119,6 @@ fun SubscriptionItemView(
             text = price,
             color = MaterialTheme.colorScheme.onPrimary,
             style = MaterialTheme.typography.titleMedium
-        )
+        ) */
     }
 }
