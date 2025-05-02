@@ -14,7 +14,6 @@ class SecretProviderImpl @Inject constructor(@ApplicationContext private val con
     override fun getSecretValue(id: SecretId): String {
         return when (id) {
             SecretId.REVENUECAT_API_KEY -> getSecret(R.string.revenuecat_sdk_key)
-           // SecretId.GOOGLE_AUTH_SERVER_CLIENT_ID -> getSecret(R.string.android_client_id)
 
             else -> throw IllegalArgumentException("Invalid secret requested")
         }
