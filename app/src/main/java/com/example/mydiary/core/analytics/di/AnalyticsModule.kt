@@ -1,8 +1,14 @@
 package com.example.mydiary.core.analytics.di
-/*
+
 import com.example.mydiary.core.analytics.AnalyticsProvider
 import com.example.mydiary.core.analytics.AnalyticsTracker
 import com.example.mydiary.core.analytics.AnalyticsTrackerImpl
+import com.example.mydiary.core.analytics.FirebaseAnalyticsProvider
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.ParametersBuilder
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,10 +20,10 @@ typealias AnalyticsProviders = List<@JvmSuppressWildcards AnalyticsProvider>
 @InstallIn(SingletonComponent::class)
 class AnalyticsModule {
 
-   /* @Provides
-    fun provideFirebaseAnalytics(): FirebaseAnalytics = Firebase.analytics */
+    @Provides
+    fun provideFirebaseAnalytics(): FirebaseAnalytics = Firebase.analytics
 
-   /* @Provides
+    @Provides
     fun provideFirebaseAnalyticsProvider(
         firebaseAnalytics: FirebaseAnalytics
     ): FirebaseAnalyticsProvider = FirebaseAnalyticsProvider(firebaseAnalytics, ParametersBuilder())
@@ -25,7 +31,7 @@ class AnalyticsModule {
     @Provides
     fun provideAnalyticsProviders(
         firebaseAnalyticsProvider: FirebaseAnalyticsProvider
-    ): AnalyticsProviders = listOf(firebaseAnalyticsProvider) */
+    ): AnalyticsProviders = listOf(firebaseAnalyticsProvider)
 
     @Provides
     fun provideAnalyticsTracker(
@@ -37,9 +43,8 @@ class AnalyticsModule {
 @InstallIn(SingletonComponent::class)
 interface AnalyticsModuleBinds {
 
- /*   @Binds
+    @Binds
     fun bindsAnalyticsProviders(
         firebaseAnalyticsProvider: FirebaseAnalyticsProvider
-    ): AnalyticsProvider */
+    ): AnalyticsProvider
 }
-*/
