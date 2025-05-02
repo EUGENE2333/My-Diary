@@ -230,6 +230,7 @@ fun SubscriptionContent(
                     style = bodyMedium,
                     textAlign = TextAlign.Center
                 )
+
     }
 }
 
