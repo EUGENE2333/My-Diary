@@ -187,7 +187,6 @@ fun SubscriptionContent(
         }
 
 
-
             Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
             Button(
                 onClick = {
