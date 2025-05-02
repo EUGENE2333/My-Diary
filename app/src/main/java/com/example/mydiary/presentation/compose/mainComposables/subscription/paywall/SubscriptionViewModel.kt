@@ -2,13 +2,11 @@ package com.example.mydiary.presentation.compose.mainComposables.subscription.pa
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mydiary.R
-import com.example.mydiary.core.resources.TextResource
-/*import com.example.mydiary.core.analytics.AnalyticsTracker
+import com.example.mydiary.core.analytics.AnalyticsTracker
 import com.example.mydiary.core.analytics.Events
 import com.example.mydiary.core.analytics.Page
 import com.example.mydiary.core.analytics.Properties
-import com.example.mydiary.core.analytics.Property */
+import com.example.mydiary.core.analytics.Property
 import com.example.mydiary.data.model.SubscriptionType
 import com.example.mydiary.domain.repository.AuthRepository
 import com.example.mydiary.presentation.compose.mainComposables.subscription.revenuecat.RestoreResult
@@ -28,7 +26,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SubscriptionViewModel @Inject constructor(
     private val revenueCatController: RevenueCatPurchases,
-  //  private val analyticsTracker: AnalyticsTracker,
+    private val analyticsTracker: AnalyticsTracker,
     private val authRepository: AuthRepository,
 ): ViewModel() {
 
@@ -39,7 +37,7 @@ class SubscriptionViewModel @Inject constructor(
     val events: Flow<SubscriptionUiEvent> = _events.receiveAsFlow()
 
     init {
-      //  analyticsTracker.trackPage(Page.SUBSCRIPTION)
+        analyticsTracker.trackPage(Page.SUBSCRIPTION)
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true) }
 
@@ -51,7 +49,7 @@ class SubscriptionViewModel @Inject constructor(
                         monthlyPlanUi = subscriptionPlans.find { it.type == SubscriptionType.MONTHLY }
                             ?.toUi(),
                         yearlyPlanUi = subscriptionPlans.find { it.type == SubscriptionType.YEARLY }
-                            ?.toUi()
+                            ?.toUi(selected = true)
                     )
                 }
             }.onFailure {
@@ -137,7 +135,7 @@ class SubscriptionViewModel @Inject constructor(
     }
 
     private fun trackTapSubscriptionEvent(input: PurchaseSubscriptionInput) {
-      /*  when (input.plan.productId) {
+        when (input.plan.productId) {
             state.value.monthlyPlanUi?.productId -> {
                 analyticsTracker.track(
                     Events.TAP_MONTHLY_SUBSCRIPTION,
@@ -151,11 +149,11 @@ class SubscriptionViewModel @Inject constructor(
                     mapOf(Properties.SUBSCRIPTION_TYPE to SubscriptionType.YEARLY)
                 )
             }
-        } */
+        }
     }
 
     private fun trackSubscriptionPurchase(input: PurchaseSubscriptionInput) {
-      /*  val subscriptionType = when (input.plan.productId) {
+        val subscriptionType = when (input.plan.productId) {
             state.value.monthlyPlanUi?.productId -> SubscriptionType.MONTHLY
             state.value.yearlyPlanUi?.productId -> SubscriptionType.YEARLY
             else -> null
@@ -164,7 +162,7 @@ class SubscriptionViewModel @Inject constructor(
         props[Properties.SUBSCRIPTION_PRICE] = input.rawPrice
         subscriptionType?.let { props.put(Properties.SUBSCRIPTION_TYPE, it) }
         input.currency?.let { props.put(Properties.SUBSCRIPTION_CURRENCY, it) }
-        analyticsTracker.track(Events.ACTION_SUBSCRIPTION_PURCHASED, props) */
+        analyticsTracker.track(Events.ACTION_SUBSCRIPTION_PURCHASED, props)
     }
 
     private inline fun <reified T : PricingPlanUiState> updateScreenUiState(function: (T) -> T) =
