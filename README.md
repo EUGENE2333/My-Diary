@@ -23,7 +23,7 @@ and notes, offering a range of functionalities to enhance productivity and perso
 - Account Management: Empower users to log out or delete their accounts, offering complete control over their data. Implement security questions for password 
   recovery, ensuring a secure and user-friendly process
 
-  ### Screenshots
+  ## Screenshots
 
 <p>
        <img  width="210" height= "420"src = "https://github.com/EUGENE2333/My-Diary/assets/124275936/58fcb1e5-63e6-407f-9e94-2d6a66c8cb72" hspace= "10">
