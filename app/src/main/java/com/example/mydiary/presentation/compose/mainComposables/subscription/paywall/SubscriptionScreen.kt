@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -126,19 +127,20 @@ fun SubscriptionContent(
     modifier: Modifier = Modifier
 ) {
 
-    Column(
+    LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxSize()
             .background(color = Color.Black/*Color(0xFFA53E97)*/)
             .padding(horizontal = LocalSpacing.current.medium)
     ) {
-        Spacer(modifier = Modifier.height(LocalSpacing.current.large))
-         Row(
+        item {
+            Spacer(modifier = Modifier.height(LocalSpacing.current.large))
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Back", tint = Color.White)
                 }
@@ -171,20 +173,20 @@ fun SubscriptionContent(
             )
             Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
 
-                Offers()
+            Offers()
             Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
 
-        // Check for null values before rendering PricingPlans
-           if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) {
-          //  state.monthlyPlanUi ?: return
-         //   state.yearlyPlanUi ?: return
+            // Check for null values before rendering PricingPlans
+            if (state.monthlyPlanUi != null && state.yearlyPlanUi != null) {
+                //  state.monthlyPlanUi ?: return
+                //   state.yearlyPlanUi ?: return
 
-                    PricingPlans(
-                        monthlyPlan = state.monthlyPlanUi,
-                        yearlyPlan = state.yearlyPlanUi,
-                        onPlanSelect = onPlanSelect
-                    )
-        }
+                PricingPlans(
+                    monthlyPlan = state.monthlyPlanUi,
+                    yearlyPlan = state.yearlyPlanUi,
+                    onPlanSelect = onPlanSelect
+                )
+            }
 
 
             Spacer(modifier = Modifier.height(LocalSpacing.current.extraLarge))
@@ -196,7 +198,7 @@ fun SubscriptionContent(
                         state.monthlyPlanUi
                     }
                     selectedPlan?.let {
-                         //  onSubscriptionPurchase(PurchaseSubscriptionInput(context, selectedPlan))
+                        //  onSubscriptionPurchase(PurchaseSubscriptionInput(context, selectedPlan))
                         onSubscriptionPurchase()
                     }
                 },
@@ -205,32 +207,33 @@ fun SubscriptionContent(
                     .padding(bottom = LocalSpacing.current.small),
                 colors = ButtonDefaults.buttonColors(containerColor = crownColor),
                 enabled = state.monthlyPlanUi != null && state.yearlyPlanUi != null
-            ){
+            ) {
                 Text(
-                text = stringResource(id = R.string.subscribe_button),
-                 color = MaterialTheme.colorScheme.onPrimary,
-                 style = titleLarge
+                    text = stringResource(id = R.string.subscribe_button),
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    style = titleLarge
                 )
             }
             Spacer(modifier = Modifier.height(LocalSpacing.current.large))
-              Text(
-                     modifier = Modifier
-                         .fillMaxWidth(),
-                  color = MaterialTheme.colorScheme.onPrimary,
-                     text = "By subscribing, you agree to our",
-                     style = bodyMedium,
-                     textAlign = TextAlign.Center
-                 )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable { onNavigateToPolicy.invoke() },
-                    color = crownColor,
-                    text = stringResource(id = R.string.terms_of_service),
-                    style = bodyMedium,
-                    textAlign = TextAlign.Center
-                )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                color = MaterialTheme.colorScheme.onPrimary,
+                text = "By subscribing, you agree to our",
+                style = bodyMedium,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onNavigateToPolicy.invoke() },
+                color = crownColor,
+                text = stringResource(id = R.string.terms_of_service),
+                style = bodyMedium,
+                textAlign = TextAlign.Center
+            )
 
+        }
     }
 }
 
@@ -276,6 +279,12 @@ fun PricingPlans(
 
 @Composable
 private fun Offers(modifier: Modifier = Modifier) {
+    // Get strings OUTSIDE buildAnnotatedString
+    val noAdsText = stringResource(id = R.string.pricing_plan_offer_no_ads)
+    val accessFontsText = stringResource(id = R.string.pricing_plan_offer_access_fonts)
+    val prioritySupportText = stringResource(id = R.string.pricing_plan_offer_priority_on_support)
+    val addImagesText = stringResource(id = R.string.pricing_plan_offer_add_images)
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -285,28 +294,28 @@ private fun Offers(modifier: Modifier = Modifier) {
         PricingPlanOfferItem(
             buildAnnotatedString {
                 withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append(stringResource(id = R.string.pricing_plan_offer_no_ads))
+                    append(noAdsText)
                 }
             }
         )
         PricingPlanOfferItem(
             buildAnnotatedString {
                 withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append(stringResource(id = R.string.pricing_plan_offer_access_fonts))
+                    append(accessFontsText)
                 }
             }
         )
         PricingPlanOfferItem(
             buildAnnotatedString {
                 withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append(stringResource(id = R.string.pricing_plan_offer_priority_on_support))
+                    append(prioritySupportText)
                 }
             }
         )
         PricingPlanOfferItem(
             buildAnnotatedString {
                 withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append(stringResource(id = R.string.pricing_plan_offer_add_images))
+                    append(addImagesText)
                 }
             }
         )
@@ -315,7 +324,10 @@ private fun Offers(modifier: Modifier = Modifier) {
 
 @Composable
 private fun PricingPlanOfferItem(text: AnnotatedString) {
-    Row {
+    Row(
+        modifier = Modifier.fillMaxWidth(), // ADD THIS
+        verticalAlignment = Alignment.CenterVertically // ADD THIS
+    ) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.ic_crown),
             contentDescription = null,
@@ -326,7 +338,7 @@ private fun PricingPlanOfferItem(text: AnnotatedString) {
         Text(
             text = text,
             textAlign = TextAlign.Start,
-            color = MaterialTheme.colorScheme.onPrimary,
+            color = Color.White,
             style = bodyLarge
         )
     }

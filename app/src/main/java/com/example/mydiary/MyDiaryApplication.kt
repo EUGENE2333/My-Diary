@@ -1,36 +1,22 @@
 package com.example.mydiary
 
 import android.app.Application
+import com.example.mydiary.presentation.compose.mainComposables.subscription.revenuecat.RevenueCatController
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
 class MyDiaryApplication: Application() {
 
-    //  val passwordManager: PasswordManager by lazy { PasswordManager(this) }
-
-    //  private val authRepository: AuthRepository by lazy { AuthRepository()}
-
-    //  private val preferencesManager: PreferencesManager by lazy { PreferencesManager(this) }
-
-    //   private val storageRepository: StorageRepository by lazy {StorageRepository()}
-
-    //  private val notesUsecase: NotesUseCase by lazy {NotesUseCase()}
-
-    /* val diaryViewModelFactory by lazy {
-        DiaryViewModelFactory(
-            this,
-            authRepository,
-            preferencesManager,
+    @Inject
+    lateinit var revenueCatController: RevenueCatController
 
 
-        ) */
-
-    /* val detailViewModelFactory by lazy {
-        DetailViewModelFactory(
-            storageRepository,
-            notesRepository
-        )
-    } */
+    override fun onCreate() {
+        super.onCreate()
+        // In your Application class onCreate():
+        revenueCatController.initialize(this)
+    }
 }
 
 

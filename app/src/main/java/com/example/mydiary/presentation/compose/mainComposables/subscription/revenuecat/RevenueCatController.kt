@@ -3,6 +3,7 @@ package com.example.mydiary.presentation.compose.mainComposables.subscription.re
 import android.content.Context
 import com.example.mydiary.common.provider.SecretId
 import com.example.mydiary.common.provider.SecretsProvider
+import com.example.mydiary.data.model.Price
 import com.example.mydiary.data.model.SubscriberInfo
 import com.example.mydiary.data.model.SubscriptionPlan
 import com.example.mydiary.data.model.SubscriptionType
@@ -99,6 +100,25 @@ class RevenueCatController @Inject constructor(
 
     override suspend fun getSubscriptions(): Result<List<SubscriptionPlan>> =
         withContext(ioDispatcher) {
+            // TODO: Remove this mock data once RevenueCat is configured
+            return@withContext Result.success(
+                listOf(
+                    SubscriptionPlan(
+                        productId = "monthly_plan",
+                        type = SubscriptionType.MONTHLY,
+                        price = Price(formattedValue = "$9.99", currency = "USD"),
+                        identifier = ""
+                    ),
+                    SubscriptionPlan(
+                        productId = "yearly_plan",
+                        type = SubscriptionType.YEARLY,
+                        price = Price(formattedValue = "$99.99", currency = "USD"),
+                        identifier = ""
+                    )
+                )
+            )
+
+            /* Original code - uncomment when RevenueCat is set up
             runCatching {
                 val offerings = purchases.get().awaitOfferings()
                 listOfNotNull(
@@ -108,7 +128,28 @@ class RevenueCatController @Inject constructor(
             }.map { offeringList ->
                 offeringList.map { it.toSubscriptionPlan() }
             }
+            */
         }
+    /*override suspend fun getSubscriptions(): Result<List<SubscriptionPlan>> =
+        withContext(ioDispatcher) {
+            runCatching {
+                Timber.d("Fetching offerings from RevenueCat...") // ADD THIS
+                val offerings = purchases.get().awaitOfferings()
+                println("🥰🥰Current offering: ${offerings.current}") // ADD THIS
+                println("🥰🥰Monthly package: ${offerings.current?.monthly}") // ADD THIS
+                println("🥰🥰Annual package: ${offerings.current?.annual}") // ADD THIS
+
+                listOfNotNull(
+                    offerings.current?.monthly?.also { Timber.d("\n\nMonthly: $it") },
+                    offerings.current?.annual?.also { Timber.d("\n\nAnnual: $it") }
+                )
+            }.map { offeringList ->
+                println("Mapping ${offeringList.size} offerings to SubscriptionPlan") // ADD THIS
+                offeringList.map { it.toSubscriptionPlan() }
+            }.onFailure {
+                println(" ❌$it, Failed to get subscriptions") // ADD THIS
+            }
+        }*/
 
     override suspend fun restorePurchase(): Boolean = withContext(ioDispatcher) {
         var success = false

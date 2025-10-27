@@ -30,7 +30,8 @@ fun SubscriptionTitle(
     Text(
         modifier = modifier,
         text = title.uppercase(),
-        style = if (selected) titleMedium else bodyLarge
+        style = if (selected) titleMedium else bodyLarge,
+        color = if (selected) crownColor else Color.White
     )
 }
 
@@ -38,6 +39,7 @@ fun SubscriptionTitle(
 fun SubscriptionPriceColumn(
     price: String,
     cadence: String,
+    selected: Boolean,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -46,7 +48,7 @@ fun SubscriptionPriceColumn(
     ){
         Text(
             text = price,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
+            color = if(selected) crownColor else Color.White,
             style = titleMedium
         )
         Spacer(modifier = Modifier.width(LocalSpacing.current.small))
@@ -94,7 +96,7 @@ fun SubscriptionItemView(
         Spacer(modifier = Modifier.width(LocalSpacing.current.medium))
         SubscriptionTitle(title, selected)
         Spacer(modifier = Modifier.width(LocalSpacing.current.small))
-        SubscriptionPriceColumn(price, cadence)
+        SubscriptionPriceColumn(price, cadence, selected)
 
       /*  Text(
             text = cadence,
