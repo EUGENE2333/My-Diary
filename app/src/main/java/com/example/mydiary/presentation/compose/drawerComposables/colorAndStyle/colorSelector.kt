@@ -42,6 +42,7 @@ fun ColorThemeSelectionGrid(
                 onColorSelected = { onColorSelected(color) }
             )
         }
+
     }
 }
 
